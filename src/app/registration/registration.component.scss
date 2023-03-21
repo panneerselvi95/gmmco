@@ -1,0 +1,226 @@
+input#res {
+    /* padding: 3px 1px 1px 11px; */
+    /* display: inline-flex; */
+    position: absolute !important;
+    right: 52% !important;
+    top: 5px !important;
+    /* align-items: start; */
+}
+
+.er-msg{
+        /* background-color: red; */
+    /* margin: 24px 0 0 0; */
+    margin-top: 9px !important;
+    color: #f00 !important;
+    /* float: right; */
+    text-align: right !important;
+    font-size: 14px !important;
+}
+
+button.close.acept_btn {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #000103;
+    width: 100px;
+    max-width: 100%;
+    background: #FCBA13;
+    border-radius: 5px;
+    height: 59px;
+    border: 0;
+}
+
+
+.toggle-password-button{
+    float: none;
+    position: absolute;
+    top: 11px;
+    outline: none;
+    background: transparent;
+    border: 0;
+    left: 215px;
+
+}
+.toggle-password-button .fa-eye-slash, .toggle-password-button .fa-eye:before {
+    color: #fcba13;
+}
+.register-base .form-control{
+    padding: 0 !important;
+}
+.toggle-password-button{
+    left: unset;
+    right: 10px;
+}
+.register-base .form-control:last-child span.icon-span {
+     left: 14px !important; 
+}
+.register-base .dual-form-options .form-control{
+    width: 45%;
+}
+.register-base .form-control:first-child{
+    margin-right: 20px;
+}
+@media only screen and (max-width:576px) {
+    .form-control{
+        width: 100%;
+        padding:0 !important;
+        margin: 5px 0 !important;
+    }
+   
+    div.login-base-section.register-base .form-section {
+        // max-height: calc(100vh - 220px);
+        // overflow: auto;
+        margin: 10px auto !important;
+        padding: 10px !important;
+    }
+   
+    .lrs-footer {
+        padding: 10px;
+        flex-direction: column;
+    }
+    .register-base .form-control {
+        margin: 10px 0;
+        width: 100% !important;
+        padding: 0 !important;
+    }
+    .toggle-password-button{
+        left: unset;
+        right: 10px;
+    }
+    .register-base .form-control span.icon-span{
+        left: 14px !important;
+    }
+   
+   
+  
+    .login-left-section {
+        height: 0px;
+    }
+    .login-left-section::after{
+        display: none;
+    }
+    div.lls-tp_img{
+        padding: 0 !important;
+    }
+    .lls-caption p {
+        display: none;
+    }
+    .lld_img-section img {
+        display: none;
+    }
+    .arrow_img_section {
+        display: none;
+    }
+    .login-right-section{
+        border-radius: 0 !important;
+    }
+    .login-left-section{
+        height: 15vh;
+
+    }
+    .login-right-section{
+        height: 85vh;
+
+    }
+    .form-section {
+        max-height: calc(85vh - 180px);
+        overflow: auto;
+        margin: 10px auto !important;
+        padding: 10px !important;
+    }
+    .lrs-footer {
+        padding: 10px;
+        flex-direction: column;
+        max-height: 180px;
+    }
+    .app-play-img-sec a img{
+        width: 90px;
+    }
+    .mobile-app{
+        font-size: 13px;
+    }
+    .lrs-footer-sec-one{
+        text-align: center;
+    }
+    .foot-cont {
+        text-align: center;
+    }
+    .lrs-footer-sec-three {
+        text-align: center;
+    }
+}
+@media only screen and (max-width:992px) and (min-width:567px){
+    .lrs-footer-sec-one{
+        text-align: center;
+    }
+    .foot-cont {
+        text-align: center;
+    }
+    .lrs-footer-sec-three {
+        text-align: center;
+    }
+    .lls-tp_img{
+        padding: 0;
+    }
+    .lls-caption p {
+        display: none;
+    }
+    .arrow_img_section {
+        display: none;
+    }
+    .lld_img-section {
+        display: none;
+    }
+    .login-right-section {
+        border-radius: 0;
+    }
+    
+    .form-control {
+        margin: 10px 0;
+    }
+
+    .form-control.checkbox-division p{
+        margin: 5px 0 !important;
+    }
+   
+    .login-left-section::after{
+        display: none;
+    }
+    .login-left-section{
+        height: 15vh;
+    }
+    .login-right-section{
+        height: 85vh;
+    }
+    .form-section {
+        min-height: calc(85vh - 225px);
+        overflow: auto;
+        margin: 20px auto !important;
+        padding: 10px !important;
+    }
+    .lrs-footer {
+        padding: 10px;
+        max-height: 180px;
+        min-height: 70px;
+    }
+    .app-play-img-sec a img{
+        width: 90px;
+    }
+    .mobile-app{
+        font-size: 13px;
+    }
+}
+@media only screen and (min-width:992px) {
+    .app-play-img-sec {
+        display: flex;
+    }
+    .mobile-app.text-center.text-white {
+        font-size: 15px;
+    }
+    li.list-inline-item {
+        margin: 0.1rem;
+    }
+}

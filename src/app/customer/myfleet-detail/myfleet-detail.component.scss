@@ -1,0 +1,27 @@
+.ml-0{margin-left: 0;}
+// 23/12/21
+@media only screen and (max-width:1200px) and (min-width:992px) {
+    .com-sec.ng-star-inserted {
+          flex-wrap: wrap;
+          justify-content: center;
+      }
+      .par-txt {
+          text-align: center;
+          padding-top: 10px;
+      }
+    
+}
+@media only screen and (max-width:425px) {
+    .com-sec.ng-star-inserted {
+          flex-wrap: wrap;
+          justify-content: center;
+      }
+      .par-txt {
+          text-align: center;
+          padding-top: 10px;
+      }
+      .lod-sec-txt p{
+            width: unset;
+      }
+    
+}

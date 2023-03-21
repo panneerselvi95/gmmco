@@ -1,0 +1,17 @@
+.ds-bk-sec {
+    flex-wrap: wrap;
+}
+.ds-bk-sec .ds-txt,.ds-bk-sec .ds-txt2,.ds-bk-sec .ds-txt3{
+    width: auto;
+}
+@media only screen and (max-width:576px){
+    .ds-bk-sec .ds-txt,.ds-bk-sec .ds-txt2,.ds-bk-sec .ds-txt3{
+        width: 100%;
+        text-align: left;
+        align-items: flex-start;
+    }
+    .ds-co p{
+        margin: unset;
+    }
+
+}

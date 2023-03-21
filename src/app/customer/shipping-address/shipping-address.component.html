@@ -1,0 +1,35 @@
+<!-- <img class="fixed-msg-icon" src="../../assets/images/fixed-msg.png"/> -->
+<app-header></app-header>
+<div class="content_section">
+    <div class="container">
+        
+        <div class="row">
+            <div class="body-base float-left w-100">
+                <div class="header_float">
+                    <div class="bread_crumb">
+                      <h1 class="mb-0"><img class="mr-2" width="30" src="../../../../assets/images/back-arrow.png" alt=""> 
+                        Home  >  My Account  > <span><b>Saved Address</b></span> </h1>
+                         
+                    </div>
+                   
+                </div>
+                <div class="tabs_wrapper-part">
+                    <ul ngbNav #nav="ngbNav" class="nav-tabs">
+                        <li ngbNavItem>
+                          <a ngbNavLink>First</a>
+                          <ng-template ngbNavContent>First content</ng-template>
+                        </li>
+                        <li ngbNavItem>
+                          <a ngbNavLink>Second</a>
+                          <ng-template ngbNavContent>Second content</ng-template>
+                        </li>
+                      </ul>
+                      <div [ngbNavOutlet]="nav"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ </div>
+  
+<app-footer></app-footer>

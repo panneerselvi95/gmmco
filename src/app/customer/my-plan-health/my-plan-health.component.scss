@@ -1,0 +1,103 @@
+.tabs-container{
+    position: relative;
+    height: 50px;
+    padding: 0 2em;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+  
+  .tabs {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    flex-wrap: no-wrap;
+    transform: translateX(0px);
+    transition: transform 300ms ease-in-out;
+  }
+  
+  .tab {
+    width: 100px;
+    height: 100%;
+    padding-bottom: 1em;
+    margin: 0 20px;
+    flex-shrink: 0;
+    text-align: center;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+  }
+  
+  .tab.active{
+    border-bottom-color: hotpink;
+    transition: all 300ms linear;
+  }
+  
+  .change-btn {
+    height: 50px;
+    width: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #b5b5b5;
+    border-radius: 4px;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    background: white;
+    cursor: pointer;
+  }
+  
+  .change-btn.hide {
+    cursor: not-allowed;
+    pointer-events: none;
+    color: #b5b5b5;
+  }
+  
+  .change-btn.prev {
+    left: 0;
+  }
+  
+  .change-btn.next{
+    right: 0;
+  }
+  
+  .tab.active {
+    border-bottom-color: unset!important;
+    border-bottom: unset!important;
+}  
+// popup
+
+div.modal-dialog {
+  max-width: 721px !important;
+  width: 721px !important;
+}
+
+// 22/12
+.tabs-container{
+  overflow-x: scroll !important;
+   max-height:auto !important;
+}
+section.tabs-container {
+  padding-left: unset !important; 
+  width: 100%;
+}
+
+@media only screen and (max-width: 450px) {
+ 
+.assis-card-parent {
+  flex-wrap: wrap;
+}
+span.tab-caption {
+  font-size: 20px !important;
+}
+body h4.wrapper_title{
+  font-size: 20px;
+}
+ul.tabs li.tab {
+  width: 85vw;
+  min-width: 87vw;
+}
+.assis-card-parent {
+   display:unset;
+}
+}

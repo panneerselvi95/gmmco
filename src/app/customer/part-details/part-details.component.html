@@ -1,0 +1,161 @@
+<app-header></app-header>
+<div class="content_section w-100 float-left">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="src-sec">
+                    <div class="sec-txt">
+                        <a routerLink="/customer/my-fleet-details"><img src="../../../assets/images/back-arrow.png"></a>
+                        <li>
+                            <a routerLink="/customer/home">{{'Home'|translate}} ></a>
+                            <a routerLink="/customer/home">My Fleet</a>
+                            <a class="ml-0" routerLink="/customer/my-fleet-details"> >{{'Parts Catalogue' | translate}} </a>
+                            <a class="ml-0"> > {{'Part Detail'|translate}}</a>
+                        </li>
+                    </div>
+                    <div class="header-search">
+                        <div class="search-bar-divison my_fleet_search">
+                            <!-- <input class="sbd-sec" type="text" placeholder="{{'Search Parts Here...'| translate}}"  #val (input)="search_data(val.value)" /> -->
+                            <!-- <div class="filter_search">
+                    <div style="border: 1px solid;
+                    border-top: transparent;"*ngFor="let list of searchlist" (click)="route_parts(list)"><a>{{list.part_Description}}-{{list.material_No}}</a></div>
+                </div> -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <button (click)="getValidFoc()">hiiii part details</button> -->
+            <div class="wrapper_content w-100 float-left">
+                <div class="row m-0">
+                    <div class="col-lg-5 col-md-12 col-sm-12">
+                        <div *ngIf="ShowCartDetails">
+                            <div class="up-img">
+                                <div class="inner-text">{{ estimatedDetails?.discount }}</div>
+                            </div>
+                            <span class="text-off">OFF</span>
+                        </div>
+
+                        <ng-container *ngIf="galleryImages.length">
+
+                            <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery">
+                                <!-- <div class="up-img">
+                                    <div class="inner-text">{{ estimatedDetails.discount }}</div>
+                                </div> -->
+                            </ngx-gallery>
+                        </ng-container>
+                    </div>
+                    <div class="col-lg-7 col-md-12 col-sm-12">
+                        <div class="para_contents">
+                            <h1 class="mb-3 text-white"> <span class="text-dy" *ngIf="currentPartDetails">{{currentPartDetails?.modelNumber}}:</span>{{materialId?.partName}}</h1>
+                            <div class="select_flex">
+                                <span class="grand_total text-white">{{'MATERIAL'| translate}} <small class="text-white">{{splitchars(materialId?.partId)}}</small>
+                </span>
+                                <div class="form-group mb-0" *ngIf="!ShowCartDetails">
+                                    <label for="" class="text-white mb-0">{{'SELECT QUANTITY'| translate}}</label>
+                                    <select class="form-control ml-2 mt-0" id="5" [(ngModel)]="selectedQuantity">
+                    <ng-container *ngFor="let item of quantityList">
+                      <option [value]=item>{{item}}</option>
+                    </ng-container>
+                  </select>
+                                </div>
+                                <div class="form-group mb-0" *ngIf="ShowCartDetails">
+                                    <!-- {{estimatedDetails?.quantity}} -->
+                                    <label for="" class="text-white mb-0">{{'Selected QUANTITY'| translate}} </label>
+                                    <select class="form-control ml-2" id="5" [(ngModel)]="selectedQuantity" (change)="this._get_EstimatedPrice()" [disabled]="ButtonText == 'Review Cart'">
+                    <ng-container *ngFor="let item of quantityList">
+                      <option [value]=item>{{item}}</option>
+                    </ng-container>
+                  </select>
+
+                                </div>
+                            </div>
+                            <div class="bg_dark_flex mt-3">
+                                <div class="form-group mb-0">
+                                    <ul *ngIf="estimatedDetails">
+                                        <li><span>{{'Unit Price'| translate}}</span> <span class="text-white" *ngIf="estimatedDetails">{{estimatedDetails?.unitPrice | currency:'INR'}}</span> </li>
+                                        <li *ngIf="estimatedDetails?.discount !=  '0.000%'"><span>Unit Discount {{ estimatedDetails?.discount }}</span> <span class="text-white" *ngIf="estimatedDetails">(-) {{ estimatedDetails.discountValue / estimatedDetails.quantity | currency:'INR' }}</span> </li>
+                                        <li><span>Taxable Amount (For {{estimatedDetails?.quantity}} Qty)</span> <span class="text-white" *ngIf="estimatedDetails">{{ estimatedDetails.taxableValue | currency:'INR'}}</span> </li>
+
+                                        <!-- <li><span>{{'Extended Price'| translate}}</span> <span class="text-white" *ngIf="estimatedDetails">{{estimatedDetails.extendedPrice  | currency:'INR'}}</span> </li> -->
+                                        <li><span>{{'Total Price (inc. tax)'| translate}}</span> <span class="text-white" *ngIf="estimatedDetails">{{estimatedDetails.subTotal  | currency:'INR'}}</span> </li>
+                                        <!-- < stock -->
+                                        <li *ngIf="estimatedDetails.quantity < estimatedDetails.stock || estimatedDetails.quantity == estimatedDetails.stock">
+
+                                            <span>{{'Current Availability'| translate}} </span> <span class="text-white"> {{estimatedDetails?.quantity}} Qty ,
+                        {{estimatedDetails?.tatStockpartsDesc}}</span> </li>
+                                        <!-- <li><span>Expected Availability </span> <span class="text-white" *ngIf="estimatedDetails">15 Qty , 15-20 DAYS</span> </li> -->
+
+                                        <!-- > stock -->
+                                        <li *ngIf="estimatedDetails.stock  != 0 && estimatedDetails.quantity > estimatedDetails.stock">
+                                            <span>{{'Current Availability'| translate}}  </span> <span class="text-white">{{estimatedDetails?.stock}} Qty ,
+                        {{estimatedDetails?.tatStockpartsDesc}}</span> </li>
+
+                                        <li *ngIf="estimatedDetails.stock  != 0 && estimatedDetails.quantity > estimatedDetails.stock">
+                                            <span>{{'Expected Availability'| translate}} </span> <span class="text-white">{{estimatedDetails.quantity - estimatedDetails.stock}} Qty ,
+                        {{estimatedDetails?.tatNonstockpartsDesc}}</span> </li>
+
+                                        <!-- ===0 -->
+
+                                        <li *ngIf="estimatedDetails.stock  === 0 "><span>{{'Current Availability'| translate}} </span> <span class="text-white">{{estimatedDetails?.quantity}} Qty ,
+                        {{estimatedDetails?.tatNonstockpartsDesc}}</span> </li>
+
+                                    </ul>
+                                </div>
+                                <div *ngIf="ShowCartDetails">
+                                    <p class="text-center save_part_content" *ngIf="estimatedDetails?.discount != 0">You will save {{ estimatedDetails?.discountValue | currency:'INR' }} on this Part</p>
+                                </div>
+
+                            </div>
+
+                            <div class="content_flex">
+                                <h6 class="header_description mt-4">{{'Description'| translate}}</h6>
+                                <p class="text-white " *ngIf="currentPartDetails">{{currentPartDetails?.description}}</p>
+                                <!-- <h6 class="header_description mt-2">{{'Compatiblity'| translate}}</h6>
+                <ul *ngIf="currentPartDetails">
+                  <li *ngFor="let compatList of currentPartDetails.compatibility" class="mb-1"> <img
+                      src="../../../assets/images/tick.png" alt="">Model {{compatList.partDesc}}</li>
+                  <li><img src="../../../assets/images/tick.png" alt=""> Telehandler C4.4 TL1055D TL1255D</li>
+                </ul> -->
+                                <!-- <h6 class="header_description mt-4">Specifications</h6> -->
+                                <!-- <h6 class="header_description">Efficiency Rating: <span class="text-white">Standard Efficiency</span>
+                </h6> -->
+                                <button class="btn-get_price mt-3" (click)="OnAddCart()" *ngIf="ButtonText == 'Get Price and Availability'">{{ButtonText}}</button>
+
+                                <button class="btn-get_price mt-3" (click)="ItemAddedCart(false)" *ngIf="ButtonText != 'Get Price and Availability'">{{ButtonText === 'Add to Cart' ? 
+                  'Add to cart' : 'Review Cart'}}</button>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #mymodal1 let-modal1>
+
+    <div class="modal-body d-fl-wr d-flex align-items-center justify-content-center">
+        <!-- <div class="cre-vale"> -->
+        <!-- <h2>{{  this.creditValue | currency :'INR'}}</h2> -->
+        <!-- <p *ngIf="this.creditValue > getTotalValues['total']">Credit Value</p> -->
+        <!-- </div> -->
+        <button (click)="close()" type="button" class="close cst-modal-clos mt-3 mr-3" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+        <div class="cre-sec-txt cst-modal p-4">
+            <p>{{'You have Parts compatible with'| translate}}({{getFleetsdetails}}) {{'in your Cart already'| translate}} {{'Do you want to Continue or Clear Cart?'| translate}}</p>
+            <div class="cre-btn pt-3">
+                <button class="no-btn" (click)="clearAllcart()"><a>{{'Clear Cart'| translate}}</a></button>
+                <button class="yes-btn" (click)="ItemAddedCart(true)"><a>{{'Continue'| translate}}</a></button>
+            </div>
+
+        </div>
+    </div>
+
+</ng-template>
+<app-footer></app-footer>

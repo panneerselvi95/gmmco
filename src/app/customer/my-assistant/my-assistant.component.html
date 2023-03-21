@@ -1,0 +1,687 @@
+<app-header></app-header>
+<div class="content_section w-100 float-left">
+    <div class="container">
+        <div class="header_float">
+            <div class="bread_crumb">
+                <h1 class="mb-0">
+                    <a routerLink="/customer/home"> <img class="mr-2" width="30" src="../../../../assets/images/back-arrow.png" alt=""> </a><a routerLink="/customer/home">{{'Home'|translate}}</a>
+                    <strong> > </strong> <span><b>{{'ASSISTANCE'|translate}}</b></span> </h1>
+            </div>
+
+        </div>
+        <div class="row custom_row m-0">
+            <div class="w-100 float-left p-0">
+                <div class="row m-0">
+                    <div class="container p-0">
+                        <h4 class="wrapper_title text-white mt-4 mb-4">{{'ASSISTANCE'|translate}}</h4>
+                        <div class="assistant-slider">
+                            <div class="arrow-alft-caption">
+                                <div class="select-eqip">
+                                    <span>{{'SELECT AN EQUIPMENT FOR'|translate}} <strong>{{'ASSISTANCE'|translate}}</strong> </span>
+                                </div>
+                                <div class="t-right nav-arrow">
+                                    <span class="change-btn prev" (click)="scrollTab(-1)" [class.hide]="atStart">
+                    <img src="../../../assets/images/left-arrow.png">
+                  </span>
+                                    <span class="change-btn next" [class.hide]="atEnd" (click)="scrollTab(1)">
+                    <img src="../../../assets/images/right-arrow.png">
+                  </span>
+                                </div>
+                            </div>
+                            <div class="hm-pg-tab assis-hm-pg-tab" *ngIf="FleetsList?.length >0 ;else elsenofndopen">
+                                <section class="tabs-container">
+                                    <ul *ngFor="let fleets of FleetsList; let i=index" class="tabs" [ngStyle]="{'transform': abc }">
+                                        <li class="tab" [class.active]="selectedIndex===i" (click)="selectTab(i)">
+                                            <!--  (click)="_create_ticket(fleets)" -->
+                                            <div class="assis-card-parent" (click)="_get_TicketSummary(fleets.serialNumber)">
+                                                <div class="assis-card-left">
+                                                    <!-- <img src="../../../assets/images/assis-bulldowser1.png"> -->
+
+                                                    <img [src]=fleets.imageWeb [alt]=fleets.assetName onerror="this.src='../../../assets/images/no-image.png'" width="120px">
+                                                </div>
+                                                <div class="assis-card-right">
+                                                    <p><strong>{{fleets.modelOfAsset}}</strong>{{fleets.assetName}}</p>
+                                                    <div class="acr-deferd">
+                                                        <label>{{'Serial'|translate}}:</label> <span>{{fleets.serialNumber}}</span>
+                                                    </div>
+                                                    <div class="acr-deferd">
+                                                        <button (click)="_create_ticket(fleets)">{{'Service Request'|translate}}</button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+
+
+
+
+
+                                </section>
+                            </div>
+
+
+                            <ng-template #elsenofndopen>
+                                <div class="hm-pg-tab assis-hm-pg-tab"><span>{{'No Data Found'|translate}} !!!!</span></div>
+                            </ng-template>
+                        </div>
+                        <div class="raise-req-button">
+                            <!-- <button class="rais-req-btn btn">Raise Request</button> -->
+                        </div>
+
+                        <!-- tab -->
+                        <div class="assistant-tab-section">
+                            <ul ngbNav #nav="ngbNav" class="nav-tabs">
+                                <span class="tab-caption">{{'YOUR SERVICE REQUEST'|translate}}</span>
+                                <div class="acr-deferd" style="position: absolute;
+                left: 312px">
+                                    <button (click)="_get_TicketSummary()">Refresh</button>
+                                </div>
+
+                                <li ngbNavItem>
+                                    <a ngbNavLink><span class="tab-circle green-circle"></span>{{'OPEN SERVICE REQUEST'|translate}}
+                    ({{_calculate_tickets(summaryDetails).open}})</a>
+                                    <ng-template ngbNavContent>
+                                        <div class="new assiss-checkbox w-100">
+                                            <form>
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="html" (click)="_get_TicketSummary()">
+                                                    <label for="html">{{'View All'|translate}}</label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="accordion_wrapper my-assis-tab-card mb-4" *ngIf="_calculate_tickets(summaryDetails).open >0 ; else elsenofoundopntick">
+                                            <div class="accordion_row mb-3" *ngFor="let openDeatils of summaryDetails&&summaryDetails?.rows">
+                                                <div class="bg_color_panel col-lg-12 p-0" *ngIf="openDeatils[3] == 'Unresolved' || openDeatils[3] == 'Assigned'">
+                                                    <div class="row m-0">
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-12 matc-card-part p-0">
+                                                            <div class="row m-0">
+                                                                <div class="col-xl-6 col-lg-6 col-md-6 col-12 p-0 d-1">
+                                                                    <label>{{'Ticket Number'|translate}}</label>
+                                                                    <span class="matc-green matc">{{openDeatils[1]}}</span>
+                                                                </div>
+                                                                <div class="col-xl-6 col-lg-6 col-md-6 col-12 p-0 d-2">
+                                                                    <label>{{'Seriel'|translate}}</label>
+                                                                    <span class="matc matc-grey">{{openDeatils[2]}}</span>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-lg-6 col-md-6 col-12 matc-card-part p-0">
+                                                            <div class="row m-0">
+                                                                <div class="col-xl-4 col-lg-4 col-md-4 col-12 p-0 d-0">
+                                                                    <label>{{'Subject'|translate}}</label>
+                                                                    <span class="matc"> {{openDeatils[4]}}</span>
+                                                                </div>
+                                                                <div class="col-xl-4 col-lg-4 col-md-4 col-12 p-0 d-1 c-a-part" style="text-align: right;">
+                                                                    <label>{{'Updated Date'|translate}}</label>
+                                                                    <span class="matc">{{convertDate(openDeatils[6]) }}</span>
+                                                                </div>
+                                                                <div class="col-xl-4 col-lg-4 col-md-4 col-12 p-0 d-2">
+                                                                    <label>{{'Closed Date'|translate}}</label>
+                                                                    <span class="matc">{{openDeatils[7] || '--'}}</span>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-descrip-section">
+                                                        <div class="row m-0">
+                                                            <div class="col-xl-7 col-12 p-0 des-part">
+                                                                <!-- <label>{{'Description'|translate}}</label>
+                                <span class="des-part-span">{{openDeatils[4]}}.</span> -->
+                                                            </div>
+                                                            <div class="col-xl-5 col-12 p-0 tab-anchor-section">
+                                                                <a routerLink="/customer/ticket-details/{{openDeatils[1]}}">{{"See More Detail"|translate}} <img
+                                    src="../../assets/images/arrow-right.png" /></a> </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="accordion_row mb-3">
+                                        <div class="bg_color_panel col-lg-12 p-0">
+                                            <div class="row m-0">
+                                                <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                    <div class="row m-0">
+                                                    <div class="col-xl-6 col-12 p-0 d-1">
+                                                        <label>Ticket Number</label>
+                                                        <span class="matc-green matc">TICK124686</span>
+                                                    </div>
+                                                    <div class="col-xl-6 col-12 p-0 d-2">
+                                                        <label>Seriel #</label>
+                                                        <span class="matc matc-grey">K7C01126</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                    <div class="row m-0">
+                                                    <div class="col-xl-6 col-12 p-0 d-1">
+                                                        <label>Subject</label>
+                                                        <span class="matc">Breakdown Help</span>
+                                                    </div>
+                                                    <div class="col-xl-6 col-12 p-0 d-2">
+                                                        <label>Updated Date</label>
+                                                        <span class="matc">09 Jan 2021</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <div class="card-descrip-section">
+                                                <div class="row m-0">
+                                                    <div class="col-xl-7 col-12 p-0 des-part">
+                                                        <label>Description</label>
+                                                        <span class="des-part-span">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</span>
+                                                    </div>
+                                                    <div class="col-xl-5 col-12 p-0 tab-anchor-section">
+                                                        <a href="#">See More Detail <img src="../../assets/images/arrow-right.png"/></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion_row mb-3">
+                                        <div class="bg_color_panel col-lg-12 p-0">
+                                            <div class="row m-0">
+                                                <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                    <div class="row m-0">
+                                                    <div class="col-xl-6 col-12 p-0 d-1">
+                                                        <label>Ticket Number</label>
+                                                        <span class="matc-green matc">TICK124686</span>
+                                                    </div>
+                                                    <div class="col-xl-6 col-12 p-0 d-2">
+                                                        <label>Seriel #</label>
+                                                        <span class="matc matc-grey">K7C01126</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                    <div class="row m-0">
+                                                    <div class="col-xl-6 col-12 p-0 d-1">
+                                                        <label>Subject</label>
+                                                        <span class="matc">Parts Delivery Issue</span>
+                                                    </div>
+                                                    <div class="col-xl-6 col-12 p-0 d-2">
+                                                        <label>Updated Date</label>
+                                                        <span class="matc">09 Jan 2021</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <div class="card-descrip-section">
+                                                <div class="row m-0">
+                                                    <div class="col-xl-7 col-12 p-0 des-part">
+                                                        <label>Description</label>
+                                                        <span class="des-part-span">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</span>
+                                                    </div>
+                                                    <div class="col-xl-5 col-12 p-0 tab-anchor-section">
+                                                        <a href="#">See More Detail <img src="../../assets/images/arrow-right.png"/></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion_row">
+                                        <div class="bg_color_panel col-lg-12 p-0">
+                                            <div class="row m-0">
+                                                <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                    <div class="row m-0">
+                                                    <div class="col-xl-6 col-12 p-0 d-1">
+                                                        <label>Ticket Number</label>
+                                                        <span class="matc-green matc">TICK124686</span>
+                                                    </div>
+                                                    <div class="col-xl-6 col-12 p-0 d-2">
+                                                        <label>Seriel #</label>
+                                                        <span class="matc matc-grey">K7C01126</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                    <div class="row m-0">
+                                                    <div class="col-xl-6 col-12 p-0 d-1">
+                                                        <label>Subject</label>
+                                                        <span class="matc">Breakdown Help</span>
+                                                    </div>
+                                                    <div class="col-xl-6 col-12 p-0 d-2">
+                                                        <label>Updated Date</label>
+                                                        <span class="matc">09 Jan 2021</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <div class="card-descrip-section">
+                                                <div class="row m-0">
+                                                    <div class="col-xl-7 col-12 p-0 des-part">
+                                                        <label>Description</label>
+                                                        <span class="des-part-span">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</span>
+                                                    </div>
+                                                    <div class="col-xl-5 col-12 p-0 tab-anchor-section">
+                                                        <a href="#">See More Detail <img src="../../assets/images/arrow-right.png"/></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                        </div>
+                                        <ng-template #elsenofoundopntick>
+
+                                            <div class="accordion_wrapper my-assis-tab-card mb-4">
+
+                                                <div class="accordion_row mb-3"><span style="color: aliceblue;">{{'No Data Found'|translate}} !!</span></div>
+                                            </div>
+                                        </ng-template>
+
+
+                                    </ng-template>
+                                </li>
+                                <li ngbNavItem>
+                                    <a ngbNavLink><span class="tab-circle yellow-circle"></span> {{'INPROGRESS SERVICE REQUEST'|translate}}
+                    ({{_calculate_tickets(summaryDetails).inprogress}})</a>
+                                    <ng-template ngbNavContent>
+                                        <div class="new assiss-checkbox w-100">
+                                            <form>
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="html">
+                                                    <label for="html">{{'View All'|translate}}</label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="accordion_wrapper my-assis-tab-card mb-4" *ngIf="_calculate_tickets(summaryDetails).inprogress >0 ; else elsenodatainprogress">
+                                            <div class="accordion_row mb-3" *ngFor="let openDeatils of summaryDetails&&summaryDetails?.rows">
+                                                <div class="bg_color_panel col-lg-12 p-0" *ngIf="openDeatils[3] == 'In-Progress'">
+                                                    <div class="row m-0">
+                                                        <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                            <div class="row m-0">
+                                                                <div class="col-xl-6 col-12 p-0 d-1">
+                                                                    <label>{{'Ticket Number'|translate}}</label>
+                                                                    <span class="matc-green matc">{{openDeatils[1]}}</span>
+                                                                </div>
+                                                                <div class="col-xl-6 col-12 p-0 d-2">
+                                                                    <label>{{'Seriel'|translate}} #</label>
+                                                                    <span class="matc matc-grey">{{openDeatils[2]}}</span>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                            <div class="row m-0">
+                                                                <div class="col-xl-4 col-12 p-0 d-0">
+                                                                    <label>{{'Subject'|translate}}</label>
+                                                                    <span class="matc">{{openDeatils[4]}}</span>
+                                                                </div>
+                                                                <div class="col-xl-4 col-12 p-0 d-1 c-a-part" style="text-align: right;">
+                                                                    <label>{{'Updated Date'|translate}}</label>
+                                                                    <span class="matc">{{openDeatils[6] != null?splitdate(openDeatils[6])[0]:'--'}}</span>
+                                                                </div>
+                                                                <div class="col-xl-4 col-12 p-0 d-2">
+                                                                    <label>{{'Closed Date'|translate}}</label>
+                                                                    <span class="matc">{{ openDeatils[7] != null?splitdate(openDeatils[7])[0]: '--'}}</span>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-descrip-section">
+                                                        <div class="row m-0">
+                                                            <div class="col-xl-7 col-12 p-0 des-part">
+                                                                <!-- <label>{{'Description'|translate}}</label>
+                                <span class="des-part-span">{{openDeatils[4]}}.</span> -->
+                                                            </div>
+                                                            <div class="col-xl-5 col-12 p-0 tab-anchor-section">
+                                                                <a routerLink="/customer/ticket-details/{{openDeatils[1]}}">{{'See More Detail'|translate}} <img
+                                    src="../../assets/images/arrow-right.png" /></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="accordion_row mb-3">
+                                    <div class="bg_color_panel col-lg-12 p-0">
+                                        <div class="row m-0">
+                                            <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                <div class="row m-0">
+                                                <div class="col-xl-6 col-12 p-0 d-1">
+                                                    <label>Ticket Number</label>
+                                                    <span class="matc-green matc">TICK124686</span>
+                                                </div>
+                                                <div class="col-xl-6 col-12 p-0 d-2">
+                                                    <label>Seriel #</label>
+                                                    <span class="matc matc-grey">K7C01126</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                <div class="row m-0">
+                                                <div class="col-xl-6 col-12 p-0 d-1">
+                                                    <label>Subject</label>
+                                                    <span class="matc">Breakdown Help</span>
+                                                </div>
+                                                <div class="col-xl-6 col-12 p-0 d-2">
+                                                    <label>Updated Date</label>
+                                                    <span class="matc">09 Jan 2021</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="card-descrip-section">
+                                            <div class="row m-0">
+                                                <div class="col-xl-7 col-12 p-0 des-part">
+                                                    <label>Description</label>
+                                                    <span class="des-part-span">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</span>
+                                                </div>
+                                                <div class="col-xl-5 col-12 p-0 tab-anchor-section">
+                                                    <a href="#">See More Detail <img src="../../assets/images/arrow-right.png"/></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion_row mb-3">
+                                    <div class="bg_color_panel col-lg-12 p-0">
+                                        <div class="row m-0">
+                                            <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                <div class="row m-0">
+                                                <div class="col-xl-6 col-12 p-0 d-1">
+                                                    <label>Ticket Number</label>
+                                                    <span class="matc-green matc">TICK124686</span>
+                                                </div>
+                                                <div class="col-xl-6 col-12 p-0 d-2">
+                                                    <label>Seriel #</label>
+                                                    <span class="matc matc-grey">K7C01126</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                <div class="row m-0">
+                                                <div class="col-xl-6 col-12 p-0 d-1">
+                                                    <label>Subject</label>
+                                                    <span class="matc">Parts Delivery Issue</span>
+                                                </div>
+                                                <div class="col-xl-6 col-12 p-0 d-2">
+                                                    <label>Updated Date</label>
+                                                    <span class="matc">09 Jan 2021</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="card-descrip-section">
+                                            <div class="row m-0">
+                                                <div class="col-xl-7 col-12 p-0 des-part">
+                                                    <label>Description</label>
+                                                    <span class="des-part-span">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</span>
+                                                </div>
+                                                <div class="col-xl-5 col-12 p-0 tab-anchor-section">
+                                                    <a href="#">See More Detail <img src="../../assets/images/arrow-right.png"/></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion_row">
+                                    <div class="bg_color_panel col-lg-12 p-0">
+                                        <div class="row m-0">
+                                            <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                <div class="row m-0">
+                                                <div class="col-xl-6 col-12 p-0 d-1">
+                                                    <label>Ticket Number</label>
+                                                    <span class="matc-green matc">TICK124686</span>
+                                                </div>
+                                                <div class="col-xl-6 col-12 p-0 d-2">
+                                                    <label>Seriel #</label>
+                                                    <span class="matc matc-grey">K7C01126</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                            <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                <div class="row m-0">
+                                                <div class="col-xl-6 col-12 p-0 d-1">
+                                                    <label>Subject</label>
+                                                    <span class="matc">Breakdown Help</span>
+                                                </div>
+                                                <div class="col-xl-6 col-12 p-0 d-2">
+                                                    <label>Updated Date</label>
+                                                    <span class="matc">09 Jan 2021</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="card-descrip-section">
+                                            <div class="row m-0">
+                                                <div class="col-xl-7 col-12 p-0 des-part">
+                                                    <label>Description</label>
+                                                    <span class="des-part-span">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</span>
+                                                </div>
+                                                <div class="col-xl-5 col-12 p-0 tab-anchor-section">
+                                                    <a href="#">See More Detail <img src="../../assets/images/arrow-right.png"/></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> -->
+                                        </div>
+                                        <ng-template #elsenodatainprogress>
+
+                                            <div class="accordion_wrapper my-assis-tab-card mb-4">
+
+                                                <div class="accordion_row mb-3">
+                                                    <h4 style="color: aliceblue;">{{'No Data Found'|translate}} !!</h4>
+                                                </div>
+                                            </div>
+                                        </ng-template>
+                                    </ng-template>
+                                </li>
+                                <li ngbNavItem>
+                                    <a ngbNavLink><span class="tab-circle red-circle"></span> 
+                    {{'OTHER SERVICE REQUEST'|translate}} ({{_calculate_tickets(summaryDetails).close}})</a>
+                                    <ng-template ngbNavContent>
+                                        <div class="new assiss-checkbox w-100">
+                                            <form>
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="html">
+                                                    <label for="html">{{'View All'|translate}}</label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="accordion_wrapper my-assis-tab-card mb-4" *ngIf="_calculate_tickets(summaryDetails).close >0 ; else elseclosednofound">
+                                            <div class="accordion_row mb-3" *ngFor="let openDeatils of summaryDetails&&summaryDetails?.rows">
+                                                <div class="bg_color_panel col-lg-12 p-0" *ngIf="openDeatils[3] != 'Unresolved' && openDeatils[3] != 'Assigned' && openDeatils[3] != 'In-Progress'">
+                                                    <div class="row m-0">
+                                                        <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                            <div class="row m-0">
+                                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 p-0 d-1">
+                                                                    <label>{{'Ticket Number'|translate}}</label>
+                                                                    <span class="matc-green matc">{{openDeatils[1]}}</span>
+                                                                </div>
+                                                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-12 p-0 d-1">
+                                                                    <label>{{'Seriel'|translate }}#</label>
+                                                                    <span class="matc matc-grey">{{openDeatils[2]}}</span>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                            <div class="row m-0">
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 p-0 d-0">
+                                                                    <label>{{'Subject'|translate}}</label>
+                                                                    <span class="matc">{{openDeatils[4]}}</span>
+                                                                </div>
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 p-0 d-1 c-a-part " style="text-align: right;">
+                                                                    <label>{{'Updated Date'|translate}}</label>
+                                                                    <span class="matc">{{ openDeatils[6] != null?splitdate(openDeatils[6])[0]:'--'}}</span>
+                                                                </div>
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 p-0 d-2">
+                                                                    <label>{{'Closed Date'|translate}}</label>
+                                                                    <span class="matc">{{  openDeatils[7] != null?splitdate(openDeatils[7])[0]: '--'}}</span>
+                                                                </div>
+                                                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-6 col-12 p-0 des-part">
+                                                                    <label>{{'Status'|translate}}</label>
+                                                                    <span class="des-part-span">{{openDeatils[3]}}.</span>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-descrip-section">
+                                                        <div class="row m-0">
+                                                            <div class=" p-0 des-part">
+                                                                <!-- <label>{{'Description'|translate}}</label>
+                                <span class="des-part-span">{{openDeatils[4]}}.</span> -->
+                                                            </div>
+
+                                                            <div class="col-xl-12 col-12 p-0 tab-anchor-section">
+                                                                <a routerLink="/customer/ticket-details/{{openDeatils[1]}}">{{'See More Detail'|translate}} <img
+                                    src="../../assets/images/arrow-right.png" /></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <!-- <div class="accordion_row mb-3">
+                                        <div class="bg_color_panel col-lg-12 p-0">
+                                            <div class="row m-0">
+                                                <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                    <div class="row m-0">
+                                                    <div class="col-xl-6 col-12 p-0 d-1">
+                                                        <label>Ticket Number</label>
+                                                        <span class="matc-green matc">TICK124686</span>
+                                                    </div>
+                                                    <div class="col-xl-6 col-12 p-0 d-2">
+                                                        <label>Seriel #</label>
+                                                        <span class="matc matc-grey">K7C01126</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                    <div class="row m-0">
+                                                    <div class="col-xl-6 col-12 p-0 d-1">
+                                                        <label>Subject</label>
+                                                        <span class="matc">Breakdown Help</span>
+                                                    </div>
+                                                    <div class="col-xl-6 col-12 p-0 d-2">
+                                                        <label>Updated Date</label>
+                                                        <span class="matc">09 Jan 2021</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <div class="card-descrip-section">
+                                                <div class="row m-0">
+                                                    <div class="col-xl-7 col-12 p-0 des-part">
+                                                        <label>Description</label>
+                                                        <span class="des-part-span">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</span>
+                                                    </div>
+                                                    <div class="col-xl-5 col-12 p-0 tab-anchor-section">
+                                                        <a href="#">See More Detail <img src="../../assets/images/arrow-right.png"/></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion_row mb-3">
+                                        <div class="bg_color_panel col-lg-12 p-0">
+                                            <div class="row m-0">
+                                                <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                    <div class="row m-0">
+                                                    <div class="col-xl-6 col-12 p-0 d-1">
+                                                        <label>Ticket Number</label>
+                                                        <span class="matc-green matc">TICK124686</span>
+                                                    </div>
+                                                    <div class="col-xl-6 col-12 p-0 d-2">
+                                                        <label>Seriel #</label>
+                                                        <span class="matc matc-grey">K7C01126</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                    <div class="row m-0">
+                                                    <div class="col-xl-6 col-12 p-0 d-1">
+                                                        <label>Subject</label>
+                                                        <span class="matc">Parts Delivery Issue</span>
+                                                    </div>
+                                                    <div class="col-xl-6 col-12 p-0 d-2">
+                                                        <label>Updated Date</label>
+                                                        <span class="matc">09 Jan 2021</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <div class="card-descrip-section">
+                                                <div class="row m-0">
+                                                    <div class="col-xl-7 col-12 p-0 des-part">
+                                                        <label>Description</label>
+                                                        <span class="des-part-span">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</span>
+                                                    </div>
+                                                    <div class="col-xl-5 col-12 p-0 tab-anchor-section">
+                                                        <a href="#">See More Detail <img src="../../assets/images/arrow-right.png"/></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion_row">
+                                        <div class="bg_color_panel col-lg-12 p-0">
+                                            <div class="row m-0">
+                                                <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                    <div class="row m-0">
+                                                    <div class="col-xl-6 col-12 p-0 d-1">
+                                                        <label>Ticket Number</label>
+                                                        <span class="matc-green matc">TICK124686</span>
+                                                    </div>
+                                                    <div class="col-xl-6 col-12 p-0 d-2">
+                                                        <label>Seriel #</label>
+                                                        <span class="matc matc-grey">K7C01126</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                                <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                    <div class="row m-0">
+                                                    <div class="col-xl-6 col-12 p-0 d-1">
+                                                        <label>Subject</label>
+                                                        <span class="matc">Breakdown Help</span>
+                                                    </div>
+                                                    <div class="col-xl-6 col-12 p-0 d-2">
+                                                        <label>Updated Date</label>
+                                                        <span class="matc">09 Jan 2021</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <div class="card-descrip-section">
+                                                <div class="row m-0">
+                                                    <div class="col-xl-7 col-12 p-0 des-part">
+                                                        <label>Description</label>
+                                                        <span class="des-part-span">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</span>
+                                                    </div>
+                                                    <div class="col-xl-5 col-12 p-0 tab-anchor-section">
+                                                        <a href="#">See More Detail <img src="../../assets/images/arrow-right.png"/></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                        </div>
+                                        <ng-template #elseclosednofound>
+
+                                            <div class="accordion_wrapper my-assis-tab-card mb-4">
+
+                                                <div class="accordion_row mb-3"><span style="color: aliceblue;">{{'No Data Found'|translate}} !!</span></div>
+                                            </div>
+                                        </ng-template>
+                                    </ng-template>
+                                </li>
+                            </ul>
+                            <div [ngbNavOutlet]="nav"></div>
+                        </div>
+                        <!--End tab -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<app-footer></app-footer>

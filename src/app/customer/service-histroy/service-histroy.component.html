@@ -1,0 +1,131 @@
+<app-header></app-header>
+<div class="pg-wrp">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="src-sec">
+                    <div class="sec-txt">
+                        <a routerLink="/customer/health-alert-detail"><img src="../../../assets/images/Back Arrow.png"></a>
+                        <li><a routerLink="/customer/home">Home  > </a><a routerLink="/customer/my-plan-upcoming"> My Plan  ></a> <a routerLink="/customer/health-alert-detail">My Plan Detail  ></a> <a>History</a></li>
+                    </div>
+                    <!-- <div class="inp-sec">
+               <input type="text" placeholder="Search Parts Here..." value="">
+               <div class="src-div">
+                   <a><img src="../../../assets/images/search-img.png"></a>
+               </div>
+            </div> -->
+                    <!-- div  (click)="open(mymodal)" class="fit-sec">
+              <img src="../../../assets/images/filter-img.png">
+              <p>Filter</p>
+            </div>< -->
+
+
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h3 class="pay-sec">Service History</h3>
+                <div *ngIf="serviceDetails.length > 0 ; else elsenodata">
+                    <div class="lod-sec ds-bk " *ngFor="let servicelist of serviceDetails">
+                        <div class="ds-bk-sec row mb-3">
+                            <div class="ds-txt ds-co col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <label>Order Number </label>
+                                <p class="color-class">{{servicelist.order_Number}}</p>
+                            </div>
+
+                            <div class="ds-txt2 ds-co col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <label>Description</label>
+                                <p class="color-class">{{servicelist.description}}</p>
+                            </div>
+                            <div class="ds-txt3 ds-co col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <label>Updated Date</label>
+                                <p class="color-class">{{servicelist.order_Open_Date | date:'dd/MM/yyyy'}}</p>
+                            </div>
+                        </div>
+                        <div class="ad-fix-sec history">
+                            <div class="ds-tol">
+                                <label>Value</label>
+                                <span class="color-class">{{servicelist.smu | currency:'INR'}}</span>
+                            </div>
+                        </div>
+                        <div class="ad-fix-sec history" *ngIf="servicelist.order_Status == 'INVOICED'">
+                            <div class="ds-tol">
+                                <label>Invoice Number</label>
+                                <span class="color-class">{{servicelist.invoice_Number}}</span>
+                            </div>
+                        </div>
+                        <div class="ad-fix-sec history" *ngIf="servicelist.order_Status == 'INVOICED'">
+                            <div class="ds-tol">
+                                <label>Invoice Value</label>
+                                <span class="color-class">{{servicelist.invoice_Value}}</span>
+                            </div>
+                        </div>
+                        <div class="ad-fix-sec history" *ngIf="servicelist.order_Status == 'INVOICED'">
+                            <div class="ds-tol">
+                                <label>Invoice Date</label>
+                                <span class="color-class">{{servicelist.invoice_Date | date: 'dd/MM/yyyy'}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ng-template #elsenodata>
+                    <div style="color: white;color: white;
+          padding: 65px 0 0 3px;
+          font-size: 33px;">You have No Service History Records !</div>
+                </ng-template>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<ng-template #mymodal let-modal frame_10_main>
+
+    <div class="modal-body align-items-center justify-content-center p-0 ">
+        <div class="frame_10">
+            <img class="frame_10_top" src="../../../assets/images/frame10_top.png">
+            <h1>Filter</h1>
+            <h2>Reset</h2>
+        </div>
+        <div class="frame_10_content">
+            <h1>Default Period</h1>
+            <div class="boxes">
+                <input type="checkbox" id="box-1">
+                <label for="box-1">last 30 days</label>
+            </div>
+            <h1 class="mt-2">Select Period</h1>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="boxes">
+                        <input type="checkbox" id="box-2">
+                        <label for="box-2">3 months</label>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="boxes">
+                        <input type="checkbox" id="box-3">
+                        <label for="box-3">6 months</label>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="boxes">
+                        <input type="checkbox" id="box-4">
+                        <label for="box-4">< 1 year</label>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="boxes">
+                        <input type="checkbox" id="box-5">
+                        <label for="box-5">a year</label>
+                    </div>
+                </div>
+            </div>
+            <div class="frame_10_button">
+                <button class="btn cancel_btn">Cancel</button>
+                <button class="btn apply_btn">Apply</button>
+            </div>
+        </div>
+    </div>
+
+</ng-template>
+<app-footer></app-footer>

@@ -1,0 +1,51 @@
+<button class="btn btn-lg btn-outline-primary" (click)="open(mymodal)">{{'Open My Modal'|translate}}</button>
+
+<ng-template #mymodal let-modal frame_10_main>
+
+  <div class="modal-body align-items-center justify-content-center p-0 ">
+    <div class="frame_10">
+        <img class="frame_10_top" src="../../../assets/images/frame10_top.png">
+        <h1>{{'Filter'|translate}}</h1>
+        <h2>{{'Reset'|translate}}</h2>
+    </div>
+    <div class="frame_10_content">
+        <h1>{{'Default Period'|translate}}</h1>
+        <div class="boxes">
+            <input type="checkbox" id="box-1">
+            <label for="box-1">last 30 days</label>
+        </div>
+        <h1 class="mt-2">{{'Select Period'|translate}}</h1>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="boxes">
+                    <input type="checkbox" id="box-2">
+                    <label for="box-2">3 months</label>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="boxes">
+                    <input type="checkbox" id="box-3">
+                    <label for="box-3">6 months</label>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="boxes">
+                    <input type="checkbox" id="box-4">
+                    <label for="box-4">< 1 year</label>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="boxes">
+                    <input type="checkbox" id="box-5">
+                    <label for="box-5">a year</label>
+                </div>
+            </div>
+        </div>
+        <div class="frame_10_button">
+            <button class="btn cancel_btn">Cancel</button>
+            <button class="btn apply_btn">Apply</button>
+        </div>
+    </div>
+  </div>
+
+</ng-template>

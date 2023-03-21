@@ -1,0 +1,100 @@
+<app-header (valueChange)='displayCounter($event)'></app-header>
+<div class="pg-wrp">
+    <div class="container">
+        <div class="row m-0">
+            <div class="col-lg-12 p-0">
+                <div class="src-sec">
+                    <div class="sec-txt">
+                        <a routerLink="/customer/home"><img src="../../../assets/images/Back Arrow.png"></a>
+                        <li><a routerLink="/customer/home">{{"Home"|translate}} ></a> <a routerLink="/customer/my-assistant"> {{"Assistant"|translate}}  > </a> <a>{{"Ticket Detail"|translate}}</a></li>
+                    </div>
+                </div>
+            </div>
+            <h3 class="pay-sec p-0">{{"Ticket Detail"|translate}}</h3>
+            <div class="tic-de  w-100 d-block">
+                <div class="tic-sec d-flex justify-content-between w-100">
+                    <div class="tic-sc-txt">
+                        <label>{{"Incident Request (IR) Number"|translate}}</label>
+                        <h1>{{ticketDetails?.incidentReferenceNumber}}</h1>
+                    </div>
+                    <div class="tic-sc-txt">
+                        <label>{{"Incident Type"|translate}}</label>
+                        <h2>{{ticketDetails?.incidentType || '--'}}</h2>
+                    </div>
+                    <div class="tic-sc-txt">
+                        <label>{{"Subject"|translate}}</label>
+                        <h2>{{ticketDetails?.subject || '--'}}</h2>
+                    </div>
+                    <div class="tic-sc-txt">
+                        <label>{{"Updated Date"|translate}}</label>
+                        <h2>{{convertDate(ticketDetails?.dateUpdated)}}</h2>
+
+                        <!-- date: 'dd/MM/yyyy' -->
+                    </div>
+
+                    <div class="tic-sc-txt">
+                        <label>{{"Closed Date"|translate}}</label>
+                        <h2>{{ticketDetails?.ticketClosedDate}}</h2>
+                    </div>
+                    <div class="tic-sc-txt">
+                        <label>{{"Task Status"|translate}}</label>
+                        <h2>{{ticketDetails?.taskStatus || '--'}}</h2>
+                    </div>
+                </div>
+                <!-- <div class="tic-job d-flex justify-content-between w-100">
+                <div class="jb-cd">
+                  <label class="mb-0">Task Name</label>
+                  <span>{{ticketDetails?.rows[0][5] || '--'}}</span>
+                </div>
+                <div class="jb-st">
+                  <label class="mb-0">Status</label>
+                  <button type="button" class="btn cl-bn" ><a>{{ticketDetails?.rows[0][4]}}</a></button>
+                </div>
+            </div> -->
+                <div class="jb-cd mt-4">
+                    <label class="mb-0">{{"Task Type"|translate}}</label>
+                    <span>{{ticketDetails?.taskType }}</span>
+                </div>
+
+                <div class="jb-cd txt-pre">
+                    <label class="mb-0">{{"Description"|translate}}</label>
+                    <p>{{ticketDetails?.description|| '--'}}</p>
+                </div>
+
+                <div class="jb-cd txt-pre">
+                    <label class="mb-0">{{"Incident Status"|translate}}</label>
+                    <p>{{ticketDetails?.status || '--'}}</p>
+
+                </div>
+
+                <div class="req-bck-inp">
+                    <!-- <label>Request Invoice</label> -->
+                    <div class="inp-sub">
+
+                        <button type="submit" (click)="mailtoservice(ticketDetails?.incidentID)"><a>{{"Request Inspection Report"|translate}}</a></button>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<ng-template #mymodal let-modal>
+
+    <div class="modal-body text-align-center">
+        <div class="tik-pop">
+            <img src="../../../assets/images/msg-tick.png" alt="">
+        </div>
+        <div class="cre-sec-txt msg-txt">
+            <p>Service Inspection Report sent to your email id <span> Successfully</span></p>
+            <div class="cre-btn">
+                <button class="no-btn"><a>Continue</a></button>
+            </div>
+        </div>
+    </div>
+
+</ng-template>
+<app-footer></app-footer>

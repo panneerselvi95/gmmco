@@ -1,0 +1,232 @@
+<header [ngClass]="{'tamil-class': langname == 'tamil', 'hindhi-class':  langname == 'hindhi' }">
+
+    <div [ngClass]="pathhome === true ? 'highlight' : 'none-hightlight'" class="header-wrapper">
+        <div class="header-wrapper-part">
+            <nav class="navbar navbar-expand-lg navbar-dark default-color">
+                <a class="navbar-brand" routerLink="/customer/home"><img src="../../../assets/images/logo1.png"></a>
+                <button class="navbar-toggler" type="button">
+          <img src="../../../assets/images/nav-icon.png">
+        </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav menu-navbar-nav">
+                        <li [ngClass]="currentUrl == 'home' ? 'active' : ''" class="nav-item" *ngIf="screens['home']  != false">
+                            <a class="c-pointer nav-link" routerLink="/customer/home">{{'HOME' | translate}} <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li [ngClass]="currentUrl == 'order-listings' ? 'active' : ''" class="nav-item" *ngIf="screens['myfleet']  != false">
+                            <a class="c-pointer nav-link" routerLink="/customer/order-listings">{{'ORDER PARTS' | translate}}</a>
+                        </li>
+                        <li [ngClass]="currentUrl == 'myfleets-listings' ? 'active' : ''" class="nav-item" *ngIf="screens['myfleet']  != false">
+                            <a class="c-pointer nav-link" routerLink="/customer/myfleets-listings">{{'MY FLEET' | translate}}</a>
+                        </li>
+                        <li [ngClass]="currentUrl == 'my-plan-upcoming' ? 'active' : ''" class="nav-item" *ngIf="screens['assisstance']  != false">
+                            <a class="c-pointer nav-link" routerLink="/customer/my-plan-upcoming">{{'MY PLAN' | translate}} </a>
+                        </li>
+                        <!-- <li  class="nav-item">
+              <a class="c-pointer nav-link"  (click)="gototabs()">{{'REPORT A BUG' | translate}}</a>
+            </li> -->
+                        <li [ngClass]="currentUrl == 'my-assistant' ? 'active' : ''" class="nav-item" *ngIf="screens['myplan']  != false">
+                            <a class="c-pointer nav-link" routerLink="/customer/my-assistant">{{'ASSISTANT' | translate}}</a>
+                        </li>
+                        <!-- <li [ngClass]="currentUrl == '' ? 'active' : ''" class="nav-item">
+              <a class="c-pointer nav-link" routerLink="/customer/payment-gateway">My payment</a>
+            </li> -->
+                        <!-- <li [ngClass]="currentUrl == '' ? 'active' : ''" class="nav-item">
+              <a class="c-pointer nav-link" routerLink="/customer/my-equipment">My Equipment</a>
+            </li> -->
+                    </ul>
+                    <ul class="navbar-nav nav-flex-icons">
+
+                        <li class="cart-icn pointer" id="cart-img" routerLink="/customer/my-cart" *ngIf="screens['cart']  != false"><img src="../../../assets/images/cart.png"></li>
+                        <li>
+                            <div class="dropdown">
+                                <button class="btn btn-primary btn-lg dropdown-toggle dropdown-bn" type="button" data-toggle="dropdown">
+                  <img src="../../../assets/images/cnct.png"> {{'MY PROFILE' | translate}}
+                </button>
+
+                                <div class="dropdown-menu">
+                                    <a class="acc-caption" routerLink="/customer/my-profile">
+                                        <p>
+                                            <!-- <img src="../../../assets/images/account-person.png"> -->
+                                            <span><b>{{currentCustomerId}}-{{currentCustomerName}}</b><b>{{'Customer'|translate}}</b></span>
+                                            <span><img src="../../../assets/images/right-arw.png"></span>
+                                        </p>
+                                    </a>
+                                    <a class="dropdown-item" routerLink="/customer/my-orders" *ngIf="screens['myorder']  != false">
+                                        <caption><img src="../../../assets/images/order.png"></caption> {{'My Orders'|translate}}
+                                    </a>
+                                    <a class="dropdown-item" routerLink="/customer/my-quote" *ngIf="screens['quote']  != false">
+                                        <caption><img src="../../../assets/images/order.png"></caption> {{'My Quotes'|translate}}
+                                    </a>
+                                    <a class="dropdown-item" routerLink="/customer/valid-foc">
+                                        <caption><img src="../../../assets/images/order.png"></caption> {{'Valid FOC'|translate}}
+                                    </a>
+                                    <a class="dropdown-item" routerLink="/customer/my-outstanding">
+                                        <caption><img src="../../../assets/images/outstanding.png"></caption> {{'My Pending Payments'|translate}}
+                                    </a>
+                                    <a class="dropdown-item" routerLink="/customer/manage-rights" *ngIf="screens['isAdmin'][0]['isAdmin']">
+                                        <caption><img src="../../../assets/images/outstanding.png"></caption> {{'Manage Users'|translate}}
+                                    </a>
+                                    <!-- <a (click)="open(mymodallng)" class="dropdown-item">
+                    <caption><img src="../../../assets/images/lang.png"></caption> {{'Language Preference'|translate}}
+                  </a> -->
+                                    <!-- <a class="dropdown-item" routerLink="/customer/shipping-address-quote">
+                    <caption><img src="../../../assets/images/sav-address.png"></caption> {{'My Address'|translate}}
+
+                  </a>
+                  <a class="dropdown-item" routerLink="/customer/all-contacts">
+                    <caption><img src="../../../assets/images/sav-address.png"></caption> {{'My contact'|translate}}
+                  </a>
+                  <a class="dropdown-item" routerLink="/customer/my-equipment">
+                    <caption><img src="../../../assets/images/sav-address.png"></caption> {{'My Equipment'|translate}}
+
+                  </a> -->
+                                    <a class="dropdown-item logout-link" (click)='_log_out()'>
+                                        <span class="lgt">
+                      <caption>
+                        <img src="../../../assets/images/logout.png">
+                      </caption> {{'Logout'|translate}}
+                      <img class="lgt-arrw" src="../../../assets/images/lg-rgt-arrow.png">
+                    </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="dropdown language-btn">
+                                <button class="btn btn-primary btn-lg dropdown-toggle dropdown-bn" type="button" data-toggle="dropdown">
+                  <img src="../../../assets/images/flag-for-india.png"> {{languageName}}
+                </button>
+                                <div class="dropdown-menu">
+                                    <a class="acc-caption">
+                                        <p>
+                                            <span><b>{{'Choose Language'|translate}}</b></span>
+                                        </p>
+                                    </a>
+                                    <!-- new BY Seeni -->
+                                    <a class="dropdown-item" (click)="translate.use('en');translate_change('en','English')">
+                                        <caption><img src="../../../assets/images/eng.png"></caption> English
+                                    </a>
+                                    <a id="gm-tamil-lang" class="dropdown-item" (click)="translate.use('tamil');translate_change('tamil','Tamil')">
+                                        <caption><img src="../../../assets/images/tam.png"></caption> தமிழ்
+                                    </a>
+                                    <a class="dropdown-item" (click)="translate.use('hindhi');translate_change('hindhi','Hindi')">
+                                        <caption><img src="../../../assets/images/hindi.png"></caption> हिन्दी
+                                    </a>
+                                </div>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="prim-header d-flex">
+                <div class="header-search col pl-0">
+                    <div class="search-bar-divison" *ngIf="screens['cart']  != false">
+                        <input class="sbd-sec" type="text" placeholder="{{'Search Parts Here...'| translate}}" #val (input)="search_data(val.value)" />
+                        <!-- <select > -->
+                        <div class="filter_search">
+                            <div style="border: 1px solid;
+                border-top: transparent;" *ngFor="let list of searchlist" (click)="route_parts(list)"><a>{{list.part_Description}}-{{list.material_No}}</a></div>
+                            <!-- <div *ngIf="searchlist.length==0">Noddd</div> -->
+                        </div>
+                        <!-- </select> -->
+
+                    </div>
+                </div>
+
+                <div class="header-address row m-0">
+                    <div class="header-address-select col-lg-3 col-md-6 col-12">
+                        <!-- new BY Seeni -->
+                        <p class="address-sec-first">{{'Default Contact'| translate}}</p>
+                        <div class="v-nagar" routerLink="/customer/all-contacts" *ngIf="defaultContacts" title="{{_splitChar(defaultContacts)[0]}} | {{_splitChar(defaultContacts)[1]}}">
+                            <a>{{_splitChar(defaultContacts)[0]}} | {{_splitChar(defaultContacts)[1]}} </a>
+                        </div>
+                    </div>
+                    <div class="header-address-select col-lg-3 col-md-6 col-12">
+                        <!-- new BY Seeni -->
+                        <p class="address-sec-first">{{'Default Equipment'| translate}}</p>
+                        <div class="v-nagar" routerLink="/customer/myfleets-listings" *ngIf="defaultEquip" title="{{defaultEquip}}">
+                            <a>{{defaultEquip }}</a>
+                        </div>
+                    </div>
+                    <div class="header-address-select col-lg-3 col-md-6 col-12">
+                        <!-- new BY Seeni -->
+                        <p class="address-sec-first">{{'Default Shipping Address'| translate}}</p>
+                        <div class="v-nagar" routerLink="/customer/shipping-address-quote" *ngIf="defaultShipAdr && defaultShipAdr.length > 0" title="{{defaultShipAdr[0].address }}">
+                            <a>{{defaultShipAdr[0].address }}</a>
+                        </div>
+                    </div>
+                    <div class="header-address-select col-lg-3 col-md-6 col-12">
+                        <!-- new BY Seeni -->
+                        <p class="address-sec-first">{{'Default Billing Address'| translate}}</p>
+                        <div class="v-nagar" routerLink="/customer/shipping-address-quote" *ngIf="defaultBillAdr && defaultBillAdr.length > 0" title="{{defaultBillAdr[0].address }}">
+                            <a>{{defaultBillAdr[0].address}}</a>
+                        </div>
+                    </div>
+                    <!-- <div class="header-address-ph">
+            <p class="address-sec-first">Default Equipment</p>
+            <span>424B2 - K7C01126 <img src="../../../assets/images/info.png">
+              <span class="tool-tip">
+                <h6>All parts purchase made will be attributed to <b>K7C01126.</b>Please click to change if needed or
+                  choose from list below</h6>
+              </span>
+            </span>
+          </div> -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <ng-template #mymodal let-modal>
+        <div class="modal-header mod-img">
+            <img src="../../../assets/images/adr-img.png">
+        </div>
+        <div class="modal-body md-ar-txt">
+            <p>You are trying to change your default shipping address of<span>Vitesco Nagar, Pune, Maharashtra</span>to another address. Do you wish to continue</p>
+        </div>
+        <div class="modal-footer md-bt-sc">
+            <div class="btn-sec jc-wi">
+                <button type="button" (click)="modal.close('Save click')"><a>{{'No'|translate}}</a></button>
+                <button><a>{{'Yes'|translate}}</a></button>
+            </div>
+        </div>
+    </ng-template>
+    <ng-template #mymodallng let-modal>
+        <div class="modal-header mod-txt-bg">
+            <h4 class="modal-title" id="modal-basic-title">{{'Language Preference'|translate}}</h4>
+            <button type="button" class="x-mar" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true"><img src="../../../assets/images/x-mar-img.png"> </span>
+      </button>
+        </div>
+        <div class="modal-body md-mn-sc">
+            <div class="row">
+                <div class="col-lg-6 col-xs-12">
+                    <div class="lod-sec dx-fc">
+                        <h6>E</h6>
+                        <p class="lg-txt">ENGLISH</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="lod-sec dx-fc">
+                        <h6>ह</h6>
+                        <p class="lg-txt">हिन्दी</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xs-12">
+                    <div class="lod-sec dx-fc">
+                        <h6>த</h6>
+                        <p class="lg-txt">தமிழ்</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer md-bt-sc">
+            <div class="btn-sec">
+                <button type="button" (click)="modal.close('Save click')"><a>{{'Cancel'|translate}}</a></button>
+                <button><a>{{'Apply Changes'|translate}}</a></button>
+            </div>
+        </div>
+
+    </ng-template>
+
+</header>

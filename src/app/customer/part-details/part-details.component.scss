@@ -1,0 +1,53 @@
+.save_part_content {
+    font-family: Arial;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 135.4%;
+    color: #FF2600;
+}
+
+// .cre-btn{
+//     display: flex;
+// }
+.up-img {
+    width: 45px;
+    height: 45px;
+    background: #EB1C23;
+    border-radius: 100%;
+    top: 13px;
+    position: absolute;
+    z-index: 99;
+    box-shadow: 2px 2px 12px -2px;
+    right: 65px;
+}
+
+.inner-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    font-weight: 900;
+    font-size: 17px;
+    line-height: 24px;
+    color: #FFFFFF;
+    margin-bottom: 0;
+}
+
+.text-off {
+    font-weight: 900;
+    font-size: 16px;
+    line-height: 18px;
+    color: #EB1C23;
+    position: absolute;
+    z-index: 99;
+    top: 25px;
+    right: 31px;
+}
+
+@media only screen and (max-width:576px) {
+    .cre-btn button {
+        margin-top: 10px;
+    }
+}

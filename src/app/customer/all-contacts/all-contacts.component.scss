@@ -1,0 +1,29 @@
+.modal-content {
+    background-color: #FCBA13 !important;
+    background: #FCBA13 !important;
+}
+// form.ng-pristine.ng-invalid.ng-touched, .modal-header.mod-img {
+//     background: #ffcd11 ;
+// }
+// .modal-header.mod-img {
+//     border-bottom: 1px solid #ffcd11 ;
+// }
+
+
+// 22/12/21
+.form-group.float-right.black_tick {
+    padding: 0;
+}
+
+@media only screen and (max-width:576px){
+.ship_headding {
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+h4.wrapper_title{
+    font-size: 16px !important;
+}
+.form-group.float-right.black_tick i {
+    padding: 0 !important;
+}
+}

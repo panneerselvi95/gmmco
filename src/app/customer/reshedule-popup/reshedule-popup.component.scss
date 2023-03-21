@@ -1,0 +1,15 @@
+// 22/12
+.reschedule_btn .btn:not(:disabled):not(.disabled) {
+      cursor: pointer;
+      margin-top: 20px;
+  }
+  .reschedule_btn .canc_btn{
+    margin-right: 0;
+  }
+  .reschedule_btn {
+     
+       margin-top: 0px; 
+      justify-content: space-around;
+      display: flex;
+      flex-wrap: wrap;
+  }

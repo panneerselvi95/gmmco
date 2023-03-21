@@ -1,0 +1,184 @@
+<app-header></app-header>
+<!-- <img class="fixed-msg-icon" src="../../assets/images/fixed-msg.png" /> -->
+
+<div class="content_section">
+    <div class="container">
+        <div class="row">
+            <div class="homepage-body">
+                <h2 class="homepage-caption mb-0" *ngIf="FleetsList && FleetsList.length>0">{{'ORDER PARTS' | translate}} ({{FleetsList.length}})
+                </h2>
+                <div class="hp-conatiner-parent col-xl-12 p-0">
+                    <div class="row m-0">
+                        <div class="hp-conatiner col-xl-9 col-lg-8 col-12 p-0">
+                            <div id="style-3" class="hp-content-base w-100">
+                                <div class="row m-0">
+                                    <div class="hp-conatiner-card col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12 mb-1 " *ngFor="let fleets of FleetsList">
+                                        <div class="hp-conatiner-inner">
+                                            <div class="hci-common">
+                                                <div class="hp-conatiner-inner-img">
+                                                    <!-- <img src="../../../assets/images/bulldowser-1.png"> -->
+                                                    <a (click)="_goTo_FleetDetails(fleets)"><img [src]=fleets.imageWeb [alt]=fleets.assetName onerror="this.src='../../../assets/images/no-image.png'" style="width: 120px;"></a>
+                                                </div>
+                                                <div class="hp-conatiner-inner-contents">
+                                                    <p><span>{{fleets.modelOfAsset}}</span> {{fleets.assetName}}</p>
+                                                    <p><label>{{'Serial' | translate}}:</label> {{fleets.serialNumber}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="hci-common-btn">
+                                                <!-- <button style="width: 110px !important; padding: 5px 4px;" class="btn req-ser"
+                          routerLink="/customer/create-new-ticket/{{fleets.modelOfAsset}}/{{fleets.assetName}}/ {{fleets.serialNumber}}">{{'Request Service' | translate}}</button> -->
+                                                <!-- <button style="width: 83px !important; margin: 0 4px; padding: 5px 4px;" class="btn ord-part req-ser" (click)="_goTo_FleetDetails(fleets)">{{'Order Parts' | translate}}</button> -->
+                                                <!-- <button style="width: 65px !important; padding: 5px 4px;" class="btn my-plan req-ser" (click)="gotohealthalert(fleets)">{{'My Plan' | translate}}</button> -->
+                                                <!-- <button style="width: 103px !important; padding: 5px 4px;" class="btn my-plan req-ser" (click)="gototabs()">Report a Bug</button> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- routerLink="/customer/my-fleet-details"  [state]="{ example: fleets }" -->
+                                </div>
+                            </div>
+
+                            <!-- Tabs -->
+                            <!-- <div class="hm-pg-tab">
+                <span class="tab-caption">My Plan</span>
+                <ul ngbNav #nav="ngbNav" class="nav-tabs homepage-tab">
+                  <li ngbNavItem>
+                    <a ngbNavLink>UPCOMING PM</a>
+                    <ng-template ngbNavContent>
+                      <section class="tabs-container">
+                        <ul *ngFor="let tab of tabs; let i=index" class="tabs" [ngStyle]="{'transform': abc }">
+                          <li class="tab" [class.active]="selectedIndex===i" (click)="selectTab(i)">
+                            <div class="plan-card">
+                              <div class="plan-card-holder">
+                                <div class="plan-card-section">
+                                  <label> Model #: <strong>B487594454</strong></label>
+                                  <span>Feb 20,2021</span>
+                                </div>
+                                <div class="plan-card-section">
+                                  <label>SL#: K7C01125</label>
+                                  <span>&nbsp;</span>
+                                </div>
+                                <div class="plan-card-section">
+                                  <label>5/10 Visits</label>
+                                  <span>&nbsp;</span>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </section>
+                      <div class="t-right nav-arrow">
+                        <span class="change-btn prev" (click)="scrollTab(-1)" [class.hide]="atStart">
+                          <img src="../../../assets/images/left-arrow.png">
+                        </span>
+                        <span class="change-btn next" [class.hide]="atEnd" (click)="scrollTab(1)">
+                          <img src="../../../assets/images/right-arrow.png">
+                        </span>
+                      </div>
+                    </ng-template>
+                  </li>
+                  <li ngbNavItem>
+                    <a ngbNavLink>HEALTH ALERTS</a>
+                    <ng-template ngbNavContent>Second content</ng-template>
+                  </li>
+                </ul>
+              </div> -->
+                            <!-- <div [ngbNavOutlet]="nav"></div> -->
+
+                            <!-- ./Tabs -->
+
+                        </div>
+                        <div class="hp-conatiner-right col-xl-3 col-lg-4 col-12 col-md-6 col-12 p-0">
+                            <!-- <div class="reminder-msg">
+                <h6>{{'Reminder' | translate}}</h6>
+                <div class="reminder-details">
+                  <p>{{OutStandingValue <=0 ?'You have made an Advanced Payment of': 'You have an outstanding amount of' | translate}}   ₹{{OutStandingValue<=0?'0':OutStandingValue}} </p>
+                  
+                  <button *ngIf="OutStandingValue>0" (click)="open(modalData2)" class="btn pay-btn">{{'Pay Now' | translate}}</button>
+                </div>
+              </div> -->
+
+                            <!-- <div class="track-order-details">
+                <div class="tod-caption">
+                  <h6>Track Order</h6>
+                </div>
+                <div class="tod-information">
+                  <div class="tod-info-part">
+                    <div class="tod-facts">
+                      <label>Arriving</label>
+                      <span>10 March 2021</span>
+                    </div>
+                    <div class="tod-facts">
+                      <label>Invoice No</label>
+                      <span>#GMM254549687</span>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+
+                            <!-- <div class="service-details">
+                <div class="tod-caption">
+                  <h6> {{'Service Request' | translate}}<span>{{'Recent' | translate}}</span></h6>
+                </div>
+                <div class="tod-information" *ngIf="summaryDetails ; else elsenodatainprogress">
+                  <div class="tod-info-part">
+                    <div class="tod-facts">
+                      <p class="tf-prgf"><label>{{'TicketNo'|translate}}:   {{summaryDetails && summaryDetails[1]}}</label><strong></strong></p>
+                      <p class="tf-prgf"><label>{{'Date'|translate}}:     {{summaryDetails && convertDate(summaryDetails[5])}}</label><strong></strong></p>
+                      <p class="tf-prgf tf-pgrf-duo"><label>{{'Serial'|translate}} : {{summaryDetails && summaryDetails[2]}}<b></b></label></p>
+                    </div>
+
+                    <div class="paragraph-cont">
+                      <h5>{{'Subject'|translate}} : {{summaryDetails && summaryDetails[4]}}</h5>
+                      <p></p>
+                    </div>
+                  </div>
+            
+
+                </div>
+                <ng-template #elsenodatainprogress>
+                  <div class="tod-info-part">
+                    <div class="tod-facts">
+                      <p class="tf-prgf"><label>{{'No Recent Records'|translate}}</label><strong></strong></p>
+                     
+
+                    </div>
+
+                   
+                  </div>
+                </ng-template>
+               
+              </div> -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #modalData2 let-modal>
+
+        <div class="modal-body">
+            <div class="login-popup-pnt lpp-hmpg-popup">
+                <div class="login-popup-pnt-left">
+                    <img src="../../assets/images/hmpg-popup-logo.png" />
+                </div>
+                <div class="login-popup-pnt-right">
+                    <p>You have an Pending Payment of {{OutStandingValue | currency:'INR'}}
+                    </p>
+                    <div class="login-popup-pnt-right-btns">
+                        <button class="btn btn-later" (click)="close()"><a>Later</a></button>
+                        <button class="btn btn-pay-now" (click)="goOutstand()">Pay Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+
+
+
+
+
+
+</div>
+
+<app-footer></app-footer>

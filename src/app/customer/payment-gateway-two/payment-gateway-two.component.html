@@ -1,0 +1,237 @@
+<app-header></app-header>
+<!-- <div class="pg-wrp float-left w-100">
+<div class="w-100 float-left">
+    <div class="row m-0">
+       <div class="container">
+          <h4 class="wrapper_title text-white mt-4 mb-4">Payment Type</h4>
+          <div class="accordion_wrapper mb-4">
+              <div class="gateway_main">
+                  <div class="row">
+                      <div class="col-lg-8 col-md-12">
+                        <div class="total_payment">
+                            <h1>Total Payable Amount</h1>
+                            <h2>₹5835.00</h2>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="form-control checkbox-division patment_radio">
+                    <p>
+                      <input type="radio" id="test1" name="radio-group" >
+                      <label for="test1">Net Banking</label>
+                    </p>
+                    <p>
+                      <input type="radio" id="test2" name="radio-group">
+                      <label for="test2">Wallet</label>
+                    </p>
+                    <p>
+                        <input type="radio" id="test3" name="radio-group">
+                        <label for="test3">Credit/Debit Card</label>
+                      </p>
+                  </div>
+                    
+              </div>
+              <div class="gateway_form">
+                  <div class="row">
+                      <div class="col-lg-8 col-md-12 gateway_form_back">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 payment_input">
+                                <label>Name on Card</label>
+                                <input type="text" placeholder="Enter Name" value="Bharanidharan V">
+                            </div>
+                            <div class="col-lg-6 col-md-6 payment_input">
+                                <label>Card Number</label>
+                                <input type="password" placeholder="Enter Card Number">
+                            </div>
+                            <div class="col-lg-6 col-md-6 payment_input">
+                                <label>EXPIRATION DATE</label>
+                                <select>
+                                    <option>MM/YY</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-6 col-md-6 payment_input">
+                                <label>CVV</label>
+                                <input type="password" placeholder="Enter CVV">
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+            </div>
+            <button class="btn-get_price mt-3">Confirm Payment</button>
+
+          </div>
+        </div>
+    </div>
+</div>
+</div> -->
+
+<div class="pg-wrp">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="src-sec">
+                    <div class="sec-txt pd-sec">
+                        <a routerLink="/customer/home"><img src="../../../assets/images/Back Arrow.png"></a>
+                        <li><a routerLink="/customer/home">Home > <a routerLink="/customer/my-cart">Cart List</a> > Payment Section</a>
+                        </li>
+                    </div>
+                </div>
+            </div>
+
+            <!-- payment selection 2 -->
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <h3 class="pay-sec pb-2">Payment Selection</h3>
+
+                <div class="it-qt">
+                    <p>Equipment Serial<span>{{ this.selectedAddress['deafultdatas']['cartEquipSerial'] && this.selectedAddress['deafultdatas']['cartEquipModel'] ?this.selectedAddress['deafultdatas']['cartEquipSerial']  : this.selectedAddress['deafultdatas']['defEquipSerial']}}</span></p>
+                    <p>Equipment Model<span>{{ this.selectedAddress['deafultdatas']['cartEquipModel'] && this.selectedAddress['deafultdatas']['cartEquipSerial'] ? this.selectedAddress['deafultdatas']['cartEquipModel']  : this.selectedAddress['deafultdatas']['defEquipModel']}}</span></p>
+                    <p>Contact:<span>{{ this.selectedAddress['deafultdatas']['defMobile']}} | {{ this.selectedAddress['deafultdatas']['defEmail']}}</span></p>
+
+                    <p> Payment Mode: <span>Free Of Cost (FOC)</span></p>
+                    <div class="shipping_info">
+                        <h1>Shipping Info</h1>
+                        <p>Shipping Address:<span>{{ this.selectedAddress['deafultdatas']['shipAdd1']}}</span></p>
+                        <p>Shipping State:<span>{{ this.selectedAddress['deafultdatas']['shipStateName']}}</span></p>
+                        <p>Shipping City:<span>{{ this.selectedAddress['deafultdatas']['shipCity']}}</span></p>
+                        <p>Shipping Pincode:<span>{{ this.selectedAddress['deafultdatas']['shipPin']}}</span></p>
+                    </div>
+
+
+                    <div class="shipping_info">
+                        <h1>Billing Info</h1>
+                        <p>Billing Address:<span>{{ this.selectedAddress['deafultdatas']['billAdd1']}}</span></p>
+                        <p>Billing State:<span>{{ this.selectedAddress['deafultdatas']['billStateName']}}</span></p>
+                        <p>Billing City:<span>{{ this.selectedAddress['deafultdatas']['billCity']}}</span></p>
+                        <p>Billing Pincode:<span>{{ this.selectedAddress['deafultdatas']['billPin']}}</span></p>
+                    </div>
+
+
+
+                </div>
+                <div class="lod-sec">
+
+                    <div class="it-qt">
+                        <p>Item<span>{{split(getTotalValues["item/quantity"])[0] }}</span></p>
+                        <p>Quantity<span>{{split(getTotalValues["item/quantity"])[1] || 0}}</span></p>
+                        <!-- <p>Total price(Excl. tax)<span>₹11,42,330.30</span></p>
+                        <p>Discount<span>(-) ₹78,281</span></p>
+                        <p class="texable_amt">Taxable Amount <span class="texable_amt">{{numberWithCommas(getTotalValues["taxable"])|| 0}}</span></p>
+                        <p *ngIf="getTotalValues['cgst'] > 0">CGST<span>{{numberWithCommas(getTotalValues["cgst"] )|| 0}}</span></p>
+                        <p *ngIf="getTotalValues['sgst'] > 0">SGST<span>{{numberWithCommas(getTotalValues["sgst"]) || 0}}</span></p>
+                        <p *ngIf="getTotalValues['igst'] > 0">IGST<span>{{numberWithCommas(getTotalValues["igst"])|| 0}}</span></p>
+                        <p *ngIf="tcscredit">SubTotal<span>{{numberWithCommas(getTotalValues["subtotal"]) || 0}}</span></p>
+
+                        <p *ngIf="tcscredit">TCS<span>{{numberWithCommas(getTotalValues["tcs"])|| 0}}</span></p> -->
+
+                        <!-- <p>Total Amount<span>{{getTotalValues["total"]| currency:'INR' || 0}}</span></p> -->
+                        <!-- <p>Credit Value<span>-₹540.00</span></p> -->
+                        <p>Total Amount<span>{{numberWithCommas(tcscredit? getTotalValues["total"] : getTotalValues["subtotal"])
+                         }}</span></p>
+                        <!-- <p>Total Amount<span>₹12,55,578.17</span></p> -->
+
+                    </div>
+
+
+                </div>
+                <!-- <button (click)="getValidFoc()">hiii payment</button> -->
+                <div class="lod-sec d-block">
+                    <h2 class="lod_sec_foc">Choose FOC contract to be used for this order</h2>
+                    <div class="table-responsive">
+                        <table class="table lod_sec_table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Contract Reference Number</th>
+                                    <th scope="col">Contract Value</th>
+                                    <th scope="col">Contract Expiry Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr *ngFor="let myvalidFoc of myvalidFocs ; let myvalidId=index">
+                                    <td scope="row">
+                                        <div class="checkbox d-flex align-items-center">
+                                            <input id="check_{{myvalidId}}" type="radio" name="check" value="check1" (click)="focValidchk(myvalidFoc.valueContract)">
+                                            <label for="check_{{myvalidId}}"></label>
+                                            <span class="text-white">{{ myvalidFoc.valueContract }}</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-white">{{ myvalidFoc.balanceValue | currency:'INR':'symbol-narrow':'1.2-2' }}</td>
+                                    <td class="text-white">{{ myvalidFoc.cvalidTo | date:'dd-MM-yyyy' }}</td>
+                                </tr>
+                                <!-- <tr>
+                                <td scope="row">
+                                    <div class="checkbox">
+                                        <input id="check2" type="checkbox" name="check" value="check2">
+                                        <label for="check2"></label>
+                                        <span class="text-white">170738681</span>
+                                    </div>
+                                </td>
+                                <td class="text-white">₹14,786.00</td>
+                                <td class="text-white">15-12-2022</td>
+                            </tr>
+                            <tr>
+                                <td scope="row">
+                                    <div class="checkbox">
+                                        <input id="check3" type="checkbox" name="check" value="check3">
+                                        <label for="check3"></label>
+                                        <span class="text-white">170738681</span>
+                                    </div>
+                                </td>
+                                <td class="text-white">₹14,786.00</td>
+                                <td class="text-white">15-12-2022</td>
+                            </tr> -->
+
+
+
+                            </tbody>
+
+                        </table>
+                    </div>
+
+                </div>
+                <div class="disclaimer_para">
+                    <h3 class="mt-4 text-white">Terms and Conditions</h3>
+                    <p class="disclaimer_text mt-3">
+                        Only valid FOC that can be used for this order is listed above. To see all, go to My FOC screen Only value equivalent cart value will be redeemed from chosen contract. Remaining value can be used for future purchase. Only one FOC can be redeemed at a
+                        time
+                    </p>
+                </div>
+                <!-- <p style="color: orange;" *ngIf="tcscredit"><span style="color: white;">Disclaimer - </span> You have been charged TCS as your sum of purchase in the current FY crosses INR 50 Lakhs. Any excess TCS amount paid will be refunded/ adjusted to your account</p> -->
+
+                <div class="ord-sc fx-di">
+                    <!-- <button (click)="checkout()" [title]="tcscredit?'You have been charged TCS as your sum of purchase in the current FY crosses INR 50 Lakhs. Any excess TCS amount paid will be refunded/ adjusted to your account':''"><a>Proceed</a></button> -->
+
+                    <button (click)="get_forCreateOrder()">Proceed</button>
+                    <!-- <p (click)="open(mymodal)"><img src="../../../assets/images/odr-img.png">From Credit</p> -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #mymodal let-modal>
+
+    <div class="modal-body d-fl-wr d-flex align-items-center justify-content-center">
+        <div class="cre-vale">
+            <h2>{{ this.creditValue | currency :'INR'}}</h2>
+            <p *ngIf="this.creditValue > getTotalValues['total']">Credit Value</p>
+        </div>
+        <div class="cre-sec-txt">
+            <p>Are you sure you want to use this<span>Credit value</span>?</p>
+            <div class="cre-btn">
+                <button class="no-btn"><a>NO</a></button>
+                <button class="yes-btn" (click)="_dedcreditAmt()"><a>Yes</a></button>
+            </div>
+        </div>
+    </div>
+
+</ng-template>
+
+
+<!-- <button mat-button (click)="checkout()">Checkout Payment Gateway</button> -->
+
+<form #form ngNoForm id="nonseamless" method="post" name="redirect" action="{{envVar.ccAUrl}}transaction/transaction.do?command=initiateTransaction">
+    <input type="hidden" id="encRequest" name="encRequest" value="{{encRequestRes}}">
+    <input type="hidden" name="access_code" id="access_code" value="{{accessCode}}">
+</form>
+
+<app-footer></app-footer>

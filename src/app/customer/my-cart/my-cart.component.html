@@ -1,0 +1,294 @@
+<app-header></app-header>
+<div class="pg-wrp">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="src-sec">
+                    <div class="sec-txt">
+                        <a routerLink="/customer/home"><img src="../../../assets/images/Back Arrow.png"></a>
+                        <li>
+                            <a routerLink="/customer/home">{{'Home'|translate}}</a>
+                            <a class="ml-0"> > {{'Cart List'|translate}}</a>
+                        </li>
+                    </div>
+                </div>
+            </div>
+            <!-- <button>{{ foc_getmaterial_update.extendedPrice }}</button> -->
+            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                <div *ngFor="let item of my_cart; let i =index" class="lod-sec">
+                    <div class="lod-sec-img">
+                        <img [src]=item.partsImageWindow alt='No Image' onerror="this.src='../../../assets/images/no-image.png'">
+                        <!-- <img src="../../../assets/images/whe-img.png"> -->
+                    </div>
+                    <div class="cart-sec">
+                        <div class="cart-txt">
+
+                            <h4 style="text-transform: capitalize;">{{item.partNumber}}:{{item.partDesc || '-'}} <span *ngIf="item.mode =='Parts'">Availability</span></h4>
+                            <p class="cart-text-right mb-2" *ngIf="item.mode =='Parts'"> <span></span><b>{{split(compute_eta(item))[0]}} <br>{{split(compute_eta(item))[1]}} </b></p>
+                            <!-- <p class="cart-text-right" *ngIf="item.mode =='Parts'"> <span></span><b>15 QTY , 15-20 DAYS <br>{{split(compute_eta(item))[1]}} </b></p> -->
+
+                            <p>{{'SerialNo'|translate}} <span> {{item.serialNumber || '--' }}</span></p>
+
+                            <p>{{'Unit Price'|translate}} <span> {{numberWithCommas(item.unitPrice)}}</span></p>
+                            <p *ngIf="item.discount != 0">Unit Discount ( {{item.discount}} %)<span>  (-) {{numberWithCommas(item.discountValue/item.qty)}} </span></p>
+                            <p *ngIf="item.orderType != 'ZFOC'">{{'Taxable Amount ( For'|translate}} {{item.qty}} {{'Qty'|translate}} )<span> {{numberWithCommas(item.taxableValue)}}</span></p>
+                            <!-- <p>Unit Discount 7% <span> (-) ₹3914.05</span></p>
+                            <p>Taxable Amount (For 20 Qty) <span> ₹10,40,019.00</span></p> -->
+                            <!-- <p>{{'Taxable Amount'|translate}} <span> {{numberWithCommas(item.unitPrice * item.qty)}}</span></p> -->
+
+                            <!-- <p>{{'Tax Amount'|translate}}<span>{{numberWithCommas(item.cgstValue + item.igstValue + item.sgstValue)}}</span></p> -->
+                            <span class="float_right"></span>
+                            <!-- <p *ngIf="get_cumulative('discountValue')">Discount <span>{{numberWithCommas(get_cumulative('discountValue'))}}</span></p> -->
+                            <!-- <p *ngIf="item.discount != 0">Discount <span>{{numberWithCommas(item.discountValue/item.qty)}}</span></p> -->
+                            <p *ngIf="item.igst != 0">IGST({{item.igst}} %)<span>  {{numberWithCommas(item.igstValue)}}</span><b> </b></p>
+                            <p *ngIf="item.cgst != 0">CGST ({{item.cgst}} %)<span> {{numberWithCommas(item.cgstValue)}}</span><b>  </b></p>
+                            <p *ngIf="item.sgst != 0">SGST ({{item.sgst}} %)<span> {{numberWithCommas(item.sgstValue)}}</span><b>  </b></p>
+
+
+                            <p>{{'Total Price'|translate}} <span> {{numberWithCommas(item.subTotal)}} </span></p>
+                            <p>HSN {{'Code'|translate}} <span> {{item.hsnCode}}</span></p>
+                        </div>
+                        <div class="in-dt">
+                            <div class="quantity-block">
+                                <!-- <button class="quantity-arrow-minus" (click)="_update_cart(item,'minus')"> - </button>
+                <input class="quantity-num" type="number" [(value)]=item.qty readonly/>
+                <button class="quantity-arrow-plus" (click)="_update_cart(item,'plus')"> + </button> -->
+                                <!--  item.orderType == 'ZFOC' -->
+                                <!-- <select class="form-control ml-2" id="5" (change)="_update_cart(item,$event)" [disabled]="item.orderType == 'ZFPQ' || item.orderType == 'ZFOC'"> -->
+                                <select class="form-control " id="5" (change)="_update_cart(item,$event)" [disabled]="item.orderType == 'ZFPQ'">
+                                    <ng-container *ngFor="let item of quantityList" >
+                    <option [value]=item [selected]="item == my_cart[i]['qty']">{{item}}</option>
+                  </ng-container>
+                </select>
+
+                            </div>
+                            <div *ngIf="item.isExclude == true">
+                                <p class="mb-0 pl-5" style="color: #FFCD11;">Cannot redeem with FOC</p>
+                            </div>
+                            <!-- <div class="dt-im c-pointer" *ngIf="item.orderType != 'ZFPQ' || item.orderType == 'ZFOC'"> -->
+                            <div class="dt-im c-pointer" *ngIf="item.orderType != 'ZFPQ'">
+                                <a (click)="_remove_from_cart(item,'single')"><img src="../../../assets/images/det-img.png"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <button (click)="get_payload_cart()">get_payload_cart</button> -->
+                <div class="my_c" *ngIf="my_cart?.length > 0">
+                    <!-- <div class="select_view d-flex align-items-center pt-3"> -->
+                    <div class="select_view d-flex align-items-center pt-3" *ngIf="myCart.countOfValidFOC && myCart.countOfValidFOC>0 ">
+                        <p class="pr-5">Choose Payment Mode</p>
+                        <select id="choose_mtod" name='choose_mtod' [(ngModel)]="selectedVal" (ngModelChange)="MyCartpopup()">
+                        <!-- <option value="0">Select</option> -->
+                        <option value="1" >Free of Cost (FOC)</option>
+                        <option value="2">Online</option>
+                      </select>
+                    </div>
+                    <ul *ngIf="myCart.countOfValidFOC && myCart.countOfValidFOC>0 ">
+                        <li style="color: #FCBA13; list-style: circle;">
+                            <p class="text-foc pt-4">Choosing online payment mode will provide you various payment options such as credit card, debit card, net banking, UPI etc in the next screens.</p>
+                        </li>
+                        <li style="color: #FCBA13; list-style: circle;">
+                            <p class="text-foc pt-2">Choosing FOC(Free of Cost) will provide you options to redeem your FOC contract and use it for this transaction in the next screen. When you select FOC please note the cart will refresh with updated prices</p>
+                        </li>
+                    </ul>
+
+
+                    <!-- <p class="text-foc pt-2" *ngIf="selectedVal == 1">FOC Description : FOC is Free of Charge contract that you have available to use against Parts purchase. <br> These were provided to you during equipment purchase</p> -->
+
+                </div>
+                <!--  (click)="ChangeOnline()" -->
+                <!-- <button>{{ myCart | json }}</button> -->
+                <div class="ord-sc">
+                    <button class="mr-3" (click)="get_credit_check()" *ngIf="my_cart?.length > 0"><a>{{'Confirm Order'|translate}}</a></button>
+                    <button (click)="_remove_from_cart('item','multi')" *ngIf="my_cart?.length > 0"><a>{{'Delete All'|translate}}</a></button>
+                    <!-- <p class="col-3" *ngIf="my_cart?.length > 0"><input type="checkbox" (click)="deliverFull($event)" #deliverInFull>{{'Deliver in full'|translate}}</p> -->
+                    <p *ngIf="my_cart?.length == 0">{{'Your Cart is Empty'|translate}} !!!!!</p>
+                </div>
+
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12" *ngIf="my_cart?.length > 0">
+                <div class="lod-sec d-block">
+                    <div class="it-qt">
+                        <p>{{'Item'|translate}}<span title="{{get_cumulative('item/quantity')}}">{{split(get_cumulative('item/quantity'))[0]}}</span></p>
+                        <p>{{'Quantity'|translate}}<span title="{{get_cumulative('item/quantity')}}">{{split(get_cumulative('item/quantity'))[1]}}</span></p>
+
+
+
+
+
+                        <p *ngIf="get_cumulative('disCountValue') != 0">Total price(Excl. tax)<span title="{{get_cumulative('item/quantity')}}">{{ get_cumulative('extendedPrice') | currency:'INR':'symbol-narrow':'1.0-2' }}</span></p>
+                        <!-- extended field -->
+
+                        <!-- <p>Discount<span title="{{get_cumulative('item/quantity')}}">(-) ₹78,281.00</span></p> -->
+                        <!-- <p *ngIf="get_cumulative('discountValue')">Discount <span>{{numberWithCommas(get_cumulative('discountValue'))}}</span></p> -->
+                        <p *ngIf="get_cumulative('disCountValue') != 0">Discount <span title="{{get_cumulative('item/quantity')}}"> (-) {{get_cumulative('disCountValue') | currency:'INR':'symbol-narrow':'1.0-2'}}</span></p>
+                        <p *ngIf="my_cart[0].orderType != 'ZFOC'" class="texable_amt">{{'Taxable Amount'|translate}}<span class="texable_amt" title="{{get_cumulative('item/quantity')}}">{{numberWithCommas(get_cumulative('taxable_amount') )}} </span></p>
+
+
+
+
+                        <div class="bg_cost">
+                            <p *ngIf="get_cumulative('cgst')">CGST <span>{{numberWithCommas(get_cumulative('cgst'))}}</span>
+                            </p>
+
+                            <p *ngIf="get_cumulative('sgst')">SGST <span>{{numberWithCommas(get_cumulative('sgst') )}}</span>
+                            </p>
+                            <p *ngIf="get_cumulative('igst')">IGST <span>{{numberWithCommas(get_cumulative('igst') )}}</span>
+                            </p>
+
+                            <!-- <p>Tax Value<span>₹{{get_cumulative('tax')}}</span></p> -->
+                            <!-- <p>TCS <span>{{get_cumulative('tcs')) }}</span></p> -->
+                            <!-- {{get_cumulative('tcs%')}} -->
+                            <p>{{'Total Amount'|translate}}<span>{{numberWithCommas(get_cumulative('subtotal') )}}</span></p>
+                        </div>
+                    </div>
+
+                    <!-- <p class="text-center save_part_content mb-2 mt-5 pt-5">You will save Rs 78,281.00 on this Part</p> -->
+                    <p class="text-center save_part_content mb-3 mt-4 pt-4" *ngIf="get_cumulative('disCountValue') != 0">You will save <span>{{get_cumulative('disCountValue') | currency:'INR':'symbol-narrow':'1.0-2'}}</span> on this order </p>
+
+                    <!-- <p *ngIf="get_cumulative('discountValue')">Discount <span>{{numberWithCommas(get_cumulative('discountValue'))}}</span></p> -->
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #modalData2 let-modal>
+
+    <div class="modal-body">
+        <button (click)="close()" type="button" class="close cst-modal-clos" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+        <div class="login-popup-pnt lpp-hmpg-popup">
+            <!-- <div class="login-popup-pnt-left">
+        <img src="../../assets/images/hmpg-popup-logo.png" />
+      </div> -->
+            <div class="login-popup-pnt-right">
+                <p>You have chosen Deliver in Full and your parts will be delivered in one shot with the longest ETA from the Cart
+
+                </p>
+                <div class="login-popup-pnt-right-btns">
+                    <button class="btn btn-later" (click)="close()"><a>Ok</a></button>
+                    <button class="btn btn-pay-now" (click)="deliverFull($event);">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<form #form ngNoForm id="nonseamless" method="post" name="redirect" action="https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction">
+    <input type="hidden" id="encRequest" name="encRequest" value="{{encRequestRes}}">
+    <input type="hidden" name="access_code" id="access_code" value="{{accessCode}}">
+</form>
+<app-footer></app-footer>
+
+
+<!-- modal popup -->
+<ng-template #mymodal1 let-modal1>
+
+    <div class="modal-body d-fl-wr d-flex align-items-center justify-content-center">
+        <!-- <button (click)="close()" type="button" class="close cst-modal-clos" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button> -->
+        <div class="d-md-flex align-items-center py-4">
+            <div class="col-md-3">
+                <img src="../../../assets/images/hmpg-popup-logo.png" alt="popup-img" class="w-100">
+            </div>
+            <div class="col-md-9">
+                <p class="text-center redeem-foc" *ngIf="get_cumulative('extendedPrice') < myCart.maxofBalanceValue">The cart will now be refreshed with the price updates for the FOC payment mode.</p>
+                <!-- <p class="text-center redeem-foc" *ngIf="totalValueAmt > myCart.maxofBalanceValue">Sorry! Your Cart value is more than Eligible FOC value, you can redeem only upto a cart value of {{ myCart.maxofBalanceValue | currency:'INR':'symbol-narrow':'1.0-2' }}</p> -->
+                <p class="text-center redeem-foc" *ngIf="get_cumulative('extendedPrice') > myCart.maxofBalanceValue">You can redeem only up to {{ myCart.maxofBalanceValue | currency:'INR':'symbol-narrow':'1.0-2' }} for a transaction. You can choose to adjust the cart to a value less than this redeemable value or you can make an only online payment for
+                    the chosen cart. </p>
+                <div class="d-flex align-items-center justify-content-center">
+                    <button class="cancel-btn mr-3" (click)="close()" *ngIf="get_cumulative('extendedPrice') < myCart.maxofBalanceValue">Cancel</button>
+                    <button class="continue-btn" *ngIf="get_cumulative('extendedPrice') < myCart.maxofBalanceValue" (click)="_get_getmaterial_foc()">Continue</button>
+                    <button class="continue-btn" (click)="close()" *ngIf=" get_cumulative('extendedPrice')> myCart.maxofBalanceValue">Ok</button>
+                </div>
+                <!-- <p class="text-center price-foc" *ngIf="get_cumulative('extendedPrice') < myCart.maxofBalanceValue">The cart will now be refreshed with the price updates for the FOC payment mode.</p> -->
+            </div>
+        </div>
+        <!-- selectedVal==2 -->
+        <!-- <div class="cre-sec-txt cst-modal">
+            <p>{{'You have Parts compatible with'| translate}}({{getFleetsdetails}}) {{'in your Cart already'| translate}} {{'Do you want to Continue or Clear Cart?'| translate}}</p>
+            <div class="cre-btn">
+                <button class="no-btn" (click)="clearAllcart()"><a>{{'Clear Cart'| translate}}</a></button>
+                <button class="yes-btn" (click)="ItemAddedCart(true)"><a>{{'Continue'| translate}}</a></button>
+            </div>
+
+        </div> -->
+    </div>
+
+</ng-template>
+
+
+<ng-template #mymodal2 let-modal2>
+
+    <div class="modal-body d-fl-wr d-flex align-items-center justify-content-center">
+        <div class="d-md-flex align-items-center py-4">
+            <div class="col-md-3">
+                <img src="../../../assets/images/hmpg-popup-logo.png" alt="popup-img" class="w-100">
+            </div>
+            <div class="col-md-9">
+                <p class="text-center redeem-foc">You are trying to change your Payment Mode, price may get refreshed</p>
+                <div class="d-flex align-items-center justify-content-center">
+                    <button class="cancel-btn mr-3" (click)="close()">Cancel</button>
+                    <button class="continue-btn" (click)="get_nonFOC_update()">Continue</button>
+                </div>
+                <!-- <p style="color: #FCBA13;
+                margin-top: 12px;">Please choose “Yes” to automatically remove these item/s from cart. <br> Choose “No” to retain the item/s and make payment through Online mode “</p> -->
+
+            </div>
+
+
+
+
+        </div>
+
+
+        <!-- <div class="d-md-flex align-items-center py-4">
+            <div class="col-md-3">
+                <img src="../../../assets/images/hmpg-popup-logo.png" alt="popup-img" class="w-100">
+            </div>
+            <div class="col-md-9 p-0">
+                <p class="text-center redeem-foc">3 FOC Exclusion Parts are Present in Cart,Please remove to Choose FOC</p>
+                <div class="d-flex align-items-center justify-content-center">
+                    <button class="cancel-btn mr-3" (click)="close()">Remove EXC Parts</button>
+                    <button class="continue-btn" (click)="get_nonFOC_update()">Change Payment Mode</button>
+                </div>
+            </div>
+
+
+        </div> -->
+    </div>
+
+</ng-template>
+
+
+<ng-template #mymodal3 let-modal3>
+
+    <div class="modal-body modal_open d-fl-wr d-flex align-items-center justify-content-center">
+        <div class="d-md-flex align-items-center py-4">
+            <div class="col-md-3">
+                <img src="../../../assets/images/hmpg-popup-logo.png" alt="popup-img" class="w-100">
+            </div>
+            <div class="col-md-9">
+                <p class="redeem-foc">Items not available under Free of cost (FOC) payment mode is highlighted in the cart. <br> Please choose “Yes” to automatically remove these item/s from cart. <br> Choose “No” to retain the item/s and make payment through Online mode “</p>
+                <div class="d-flex align-items-center justify-content-center">
+                    <button class="continue-btn mr-3" (click)="cartExclusion()">Yes</button>
+                    <button class="cancel-btn" (click)="close()">No</button>
+                </div>
+
+                <!-- <p style="color: #FCBA13;
+                margin-top: 12px;">Please choose “Yes” to automatically remove these item/s from cart. <br> Choose “No” to retain the item/s and make payment through Online mode “</p> -->
+
+            </div>
+
+
+
+        </div>
+    </div>
+
+</ng-template>

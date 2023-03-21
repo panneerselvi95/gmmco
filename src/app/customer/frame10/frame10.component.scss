@@ -1,0 +1,10 @@
+// 22/12
+.frame_10_button {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+  }
+  .frame_10_button button{
+        margin: 10px 0;
+  }

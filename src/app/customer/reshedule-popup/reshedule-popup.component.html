@@ -1,0 +1,21 @@
+<button class="btn btn-lg btn-outline-primary" (click)="open(mymodal)">Open My Modal</button>
+
+<ng-template #mymodal let-modal frame_10_main>
+
+  <div class="modal-body align-items-center justify-content-center p-0 ">
+   
+    <div class="reshedule_main">
+        <h1>Request a Reschedule</h1>
+        <label>Select Date</label>
+        <input type="date">
+        <label>Description</label>
+        <textarea></textarea>
+        <div class="reschedule_btn">
+            <button class="btn canc_btn">Cancel</button>
+            <button class="btn sub_btn">Submit</button>
+        </div>
+    </div>
+
+  </div>
+
+</ng-template>

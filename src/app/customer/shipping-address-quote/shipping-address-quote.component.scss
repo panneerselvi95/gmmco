@@ -1,0 +1,79 @@
+::ng-deep .modal-dialog {
+    background-color: #ffcd11;
+    padding:1rem;
+    top: 0% !important;
+}
+::ng-deep .modal-content {
+    background-color: #ffcd11!important;
+}  
+::ng-deep .modal-header {
+    border-bottom: 0px !important;
+}  
+
+.fr-ad-sc{ margin: 10px 0px; }
+.fr-ad-sc label { margin-bottom: 0px; }
+.fr-ad-sc span {
+    top: 46%;
+    left: 20px;
+}
+.fr-ad-sc select {
+padding: 10px 20px 10px 49px;
+}
+.fr-ad-sc label {
+    color: black;
+}
+.ad-fr-sec h3 {
+    color: black;
+}
+.white{
+    color: white;
+}
+// 21/12/21
+.top-row{
+    width: 100%;
+}
+.ship_headding {
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+}
+.ship_headding p{
+    display: none;
+}
+.nav-tabs li{
+    margin: 15px !important;
+}
+.check-box-sec {
+    max-width: 100%;
+}
+.gst{
+    padding: 10px !important;
+}
+.btn-sec.pad-btm {
+    padding-top: 35px;
+}
+.mail{
+    max-width: 100%;
+}
+.form-group.float-right.black_tick{
+    padding: 0;
+}
+@media only screen and (max-width:767px){
+    .fr-ad-sc input,.fr-ad-sc select{
+        width: 100%;
+        max-width: 100%;
+    }
+    .my_modal{
+        width: 90%;
+        margin: auto;
+    }
+
+}
+@media only screen and (max-width:567px){
+    .fr-ad-sc select{
+       font-size: 12px;
+    }
+    .panel.panel-default .panel-heading{
+        padding: 10px !important;
+    }
+
+}

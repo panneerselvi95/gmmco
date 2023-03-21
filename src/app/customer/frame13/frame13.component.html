@@ -1,0 +1,20 @@
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(mymodal)">{{'Open My Modal'|translate}}</button>
+
+<ng-template #mymodal let-modal>
+
+  <div class="modal-body d-fl-wr d-flex align-items-center justify-content-center">
+    <div class="cre-vale">
+            <h2>₹540</h2>
+            <p>{{'Credit Value'|translate}}</p>
+    </div>
+    <div class="cre-sec-txt">
+      <p>{{'Are you sure you want to use this'|translate}}<span>{{'Credit value'|translate}}</span>?</p>
+      <div class="cre-btn">
+        <button class="no-btn"><a>{{'NO'|translate}}</a></button>
+        <button class="yes-btn"><a>{{'Yes'|translate}}</a></button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>

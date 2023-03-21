@@ -1,0 +1,242 @@
+<app-header (valueChange)='displayCounter($event)' [screens]></app-header>
+<!-- <img class="fixed-msg-icon" src="../../assets/images/fixed-msg.png" /> -->
+
+<div class="content_section" [ngClass]="{'tamil-class': parentCount == 'tamil', 'hindhi-class':  parentCount == 'hindhi' }">
+    <div class="container">
+        <div class="row">
+
+            <div class="homepage-body">
+                <h2 class="homepage-caption mb-0" *ngIf="FleetsList && FleetsList.length>0">{{'MY FLEET' | translate}} ({{FleetsList.length}})
+                </h2>
+                <div class="hp-conatiner-parent col-xl-12 p-0">
+                    <div class="row m-0">
+                        <div class="hp-conatiner col-xl-9 col-lg-8 col-12 p-0">
+                            <div id="style-3" class="hp-content-base w-100">
+                                <div class="row m-0">
+                                    <div class="hp-conatiner-card col-xl-4 col-md-6 col-12 mb-1" *ngFor="let fleets of FleetsList">
+                                        <div class="hp-conatiner-inner d-block">
+                                            <div class="hci-common">
+                                                <div class="hp-conatiner-inner-img">
+                                                    <!-- <img src="../../../assets/images/bulldowser-1.png"> -->
+                                                    <img [src]=fleets.imageWeb [alt]=fleets.assetName onerror="this.src='../../../assets/images/no-image.png'" style="width: 120px;">
+                                                </div>
+                                                <div class="hp-conatiner-inner-contents">
+                                                    <p><span>{{fleets.modelOfAsset}}</span> {{fleets.assetName}}</p>
+                                                    <p><label>{{'Serial' | translate}}:</label> {{fleets.serialNumber}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="hci-common-btn d-flex align-items-center">
+                                                <button style="padding: 5px 4px;" class="btn req-ser" (click)=" custDefault(fleets.modelOfAsset,fleets.assetName,fleets.serialNumber,fleets)" *ngIf="child.screens['assisstance'] != false">{{'Request Service' | translate}}</button>
+                                                <button style="padding: 5px 4px;" class="btn ord-part req-ser m" (click)="_goTo_FleetDetails(fleets)" *ngIf="child.screens['cart'] != false">{{'Order Parts' | translate}}</button>
+                                                <button style="padding: 5px 4px;" class="btn my-plan req-ser mt-md-0 mb-md-0" (click)="gotohealthalert(fleets)" *ngIf="child.screens['myplan'] != false">{{'My Plan' | translate}}</button>
+                                                <!-- <button style="width: 103px !important; padding: 5px 4px;" class="btn my-plan req-ser" (click)="gototabs()">Report a Bug</button> -->
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div style="text-align: left;" *ngIf="FleetsList && FleetsList.length==0">{{"No Fleet Found" | translate}}!!!</div>
+                                    <!-- routerLink="/customer/my-fleet-details"  [state]="{ example: fleets }" -->
+                                </div>
+                            </div>
+
+                            <!-- Tabs -->
+                            <!-- <div class="hm-pg-tab">
+                <span class="tab-caption">My Plan</span>
+                <ul ngbNav #nav="ngbNav" class="nav-tabs homepage-tab">
+                  <li ngbNavItem>
+                    <a ngbNavLink>UPCOMING PM</a>
+                    <ng-template ngbNavContent>
+                      <section class="tabs-container">
+                        <ul *ngFor="let tab of tabs; let i=index" class="tabs" [ngStyle]="{'transform': abc }">
+                          <li class="tab" [class.active]="selectedIndex===i" (click)="selectTab(i)">
+                            <div class="plan-card">
+                              <div class="plan-card-holder">
+                                <div class="plan-card-section">
+                                  <label> Model #: <strong>B487594454</strong></label>
+                                  <span>Feb 20,2021</span>
+                                </div>
+                                <div class="plan-card-section">
+                                  <label>SL#: K7C01125</label>
+                                  <span>&nbsp;</span>
+                                </div>
+                                <div class="plan-card-section">
+                                  <label>5/10 Visits</label>
+                                  <span>&nbsp;</span>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </section>
+                      <div class="t-right nav-arrow">
+                        <span class="change-btn prev" (click)="scrollTab(-1)" [class.hide]="atStart">
+                          <img src="../../../assets/images/left-arrow.png">
+                        </span>
+                        <span class="change-btn next" [class.hide]="atEnd" (click)="scrollTab(1)">
+                          <img src="../../../assets/images/right-arrow.png">
+                        </span>
+                      </div>
+                    </ng-template>
+                  </li>
+                  <li ngbNavItem>
+                    <a ngbNavLink>HEALTH ALERTS</a>
+                    <ng-template ngbNavContent>Second content</ng-template>
+                  </li>
+                </ul>
+              </div> -->
+                            <!-- <div [ngbNavOutlet]="nav"></div> -->
+
+                            <!-- ./Tabs -->
+
+                        </div>
+                        <div class="hp-conatiner-right col-xl-3 col-lg-4 col-12 col-md-12 col-12 p-0">
+                            <div class="reminder-msg">
+                                <!-- <h6>{{'Reminder' | translate}} </h6> -->
+
+                                <div class="reminder-details">
+
+                                    <!-- <p>{{'You have made an Advanced Payment of' | translate}}</p>
+                  <p>{{'You have an outstanding amount of' | translate}}</p> -->
+
+                                    <p>{{OutStandingValue?.outstandingBalance
+                                        <=0 ? 'No reminders for today': 'You have pending payments of' | translate}} <span class="balval">{{OutStandingValue?.outstandingBalance
+                                            <=0? '':OutStandingValue?.outstandingBalance | currency: "INR"}}</span>
+                                    </p>
+
+                                    <!-- <p> OutStandingValue <=0 ? {{'You have made an Advanced Payment of' | translate}}'
+                    :{{'You have an outstanding amount of' | translate}} 
+                      ₹{{OutStandingValue<=0?'0':OutStandingValue}} </p> -->
+
+                                    <button *ngIf="OutStandingValue?.outstandingBalance>0" (click)="open(modalData2)" class="btn pay-btn">{{'Pay Now' | translate}}</button>
+                                    <a (click)="goOutstand('reqadmin')" style="color: blue;font-weight: 700;" *ngIf="OutStandingValue?.outstandingBalance>0"><u class="mt-2">Request details</u></a>
+
+
+                                </div>
+                                <p style="color: #FCBA13;" class="mb-0 pt-3" *ngIf="OutStandingValue?.outstandingBalance>0">Please note that it might take up to 72 hours after payment for it to reflect here.</p>
+                            </div>
+                            <div class="reminder-msg" *ngIf="focData?.countOfValidFOC && focData?.countOfValidFOC>0">
+                                <!-- <h6>{{'Reminder' | translate}} </h6> -->
+                                <!-- *ngIf="focData.countOfValidFOC && focData.countOfValidFOC>0" -->
+                                <div class="reminder-details">
+
+                                    <!-- <p>You have <span *ngIf="focData?.countOfValidFOC>0"> {{focData?.countOfValidFOC}}</span> valid FOC <br> redeemable upto a value of <br> <span class="balval">{{ focData.maxofBalanceValue | currency: "INR" }}</span>
+                                    </p> -->
+
+                                    <p>You have <span *ngIf="focData?.countOfValidFOC>0"> {{focData?.countOfValidFOC}}</span> valid FOC worth <span class="balval">{{ focData?.sumoftotal | currency: "INR" }}</span> and redeemable upto
+                                        <span class="balval">{{ focData.maxofBalanceValue | currency: "INR" }} </span>in a single Order.</p>
+
+
+
+                                    <a (click)="goOutstand('reqadmin')" style="color: blue; font-weight: 700;" routerLink="/customer/valid-foc"><u>View details</u></a>
+
+
+                                </div>
+                                <!-- <p style="color: #FCBA13;" class="mb-0 pt-3" *ngIf="OutStandingValue?.outstandingBalance>0">Please note that it might take up to 72 hours after payment for it to reflect here.</p> -->
+                            </div>
+
+                            <!-- <div class="track-order-details">
+                <div class="tod-caption">
+                  <h6>Track Order</h6>
+                </div>
+                <div class="tod-information">
+                  <div class="tod-info-part">
+                    <div class="tod-facts">
+                      <label>Arriving</label>
+                      <span>10 March 2021</span>
+                    </div>
+                    <div class="tod-facts">
+                      <label>Invoice No</label>
+                      <span>#GMM254549687</span>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+
+                            <a>
+                                <div class="service-details" routerLink="/customer/my-assistant">
+                                    <div class="tod-caption">
+                                        <h6> {{'Service Request' | translate}}<span>{{'Recent' | translate}}</span></h6>
+                                    </div>
+                                    <div class="tod-information" *ngIf="summaryDetails ; else elsenodatainprogress">
+                                        <div class="tod-info-part">
+                                            <div class="tod-facts">
+                                                <p class="tf-prgf"><label>{{'TicketNo'|translate}} : {{summaryDetails && summaryDetails[1]}}</label><strong></strong></p>
+                                                <p class="tf-prgf"><label>{{'Date'|translate}} : {{summaryDetails && convertDate(summaryDetails[5])}}</label><strong></strong></p>
+                                                <p class="tf-prgf tf-pgrf-duo"><label>{{'Serial'|translate}} : {{summaryDetails && summaryDetails[2]}}<b></b></label></p>
+                                                <p class="tf-prgf tf-pgrf-duo"><label>{{'Status'|translate}} : {{summaryDetails && summaryDetails[3]}}<b></b></label></p>
+                                            </div>
+
+                                            <div class="paragraph-cont">
+                                                <h5>{{'Subject'|translate}} : {{summaryDetails && summaryDetails[4]}}</h5>
+                                                <p></p>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <ng-template #elsenodatainprogress>
+                                        <div class="tod-info-part">
+                                            <div class="tod-facts">
+                                                <p class="tf-prgf"><label>{{'No Recent Records' |translate}}</label><strong></strong></p>
+
+
+                                            </div>
+
+
+                                        </div>
+                                    </ng-template>
+
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #modalData2 let-modal>
+
+        <div class="modal-body p-0">
+            <!-- <button (click)="close()" type="button" class="close cst-modal-clos" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button> -->
+            <div class="login-popup-pnt lpp-hmpg-popup p-0">
+                <div class="login-popup-pnt-left col-md-3">
+                    <img class="w-100" src="../../assets/images/hmpg-popup-logo.png" />
+                </div>
+                <div class="login-popup-pnt-right col-md-9">
+
+                    <p *ngIf="OutStandingValue?.outstandingBalance > 0 && diffDays == 0">You have already made payment today of {{OutStandingValue['lastOutpayAmt'] | currency:'INR'}} . Hence we are not allowing to pay again.
+
+                    </p>
+                    <p *ngIf="OutStandingValue?.outstandingBalance <=0 ">No reminders for today</p>
+                    <p *ngIf="diffDays>0 && diffDays <= 3">You have already made payment of {{OutStandingValue['lastOutpayAmt'] | currency:'INR'}} . Are you sure you want to continue?
+
+                    </p>
+
+
+
+                    <p *ngIf="OutStandingValue?.outstandingBalance > 0 && (OutStandingValue['lastTranscation'] == null || OutStandingValue['lastTranscation'] == '') ">You have pending payments of {{ OutStandingValue?.outstandingBalance | currency:'INR'}}</p>
+
+
+                    <div class="login-popup-pnt-right-btns">
+                        <button class="btn btn-later" (click)="close()" *ngIf="OutStandingValue?.outstandingBalance > 0 "><a>Pay Later</a></button>
+                        <button class="btn btn-pay-now" (click)="goOutstand('pay')" *ngIf="OutStandingValue?.outstandingBalance >0 ">Pay Now</button>
+                    </div>
+                    <p style="color: #FCBA13;">Please note that it might take up to 72 hours after payment for it to reflect here. {{diffDays}}</p>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+
+
+
+
+
+
+</div>
+<form #form ngNoForm id="nonseamless" method="post" name="redirect" action="{{envVar.ccAUrl}}transaction/transaction.do?command=initiateTransaction">
+    <input type="hidden" id="encRequest" name="encRequest" value="{{encRequestRes}}">
+    <input type="hidden" name="access_code" id="access_code" value="{{accessCode}}">
+</form>
+<app-footer></app-footer>

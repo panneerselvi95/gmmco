@@ -1,0 +1,274 @@
+<div class="login-parent-division col-xl-12 no-padding">
+    <div class="row m-0 login-sec">
+        <div class="login-left-section col-xl-3 col-lg-4 col-md-12 col-12 p-0">
+            <div class="lls-tp_img">
+                <!-- <img src="../../../assets/images/logo1.png"> -->
+            </div>
+            <div class="lls-caption">
+                <h2><strong>Welcome to</strong> <img src="../../../assets/images/logo1.png"></h2>
+                <p>Pushing boundaries to provide the best products and services to you since 1967</p>
+                <div class="arrow_img_section">
+                    <img src="../../assets/images/Poly_1.png">
+                    <img src="../../assets/images/Poly_2.png">
+                    <img src="../../assets/images/Poly_3.png">
+                </div>
+            </div>
+            <div class="lld_img-section">
+                <img src="../../assets/images/login_left_down.png">
+            </div>
+        </div>
+        <div class="login-right-section col-xl-9 col-lg-8 col-md-12 col-12 p-0">
+            <div class="login-base-section register-base">
+                <div class="form-section">
+                    <h4>{{"RegistrATION"}}</h4>
+
+                    <span>{{"Please enter the Company PAN# and Mobile Number (10-digit) used during equipment purchase to register. This is one-time activity."}}</span>
+                    <span style="color: #FCBA13;"> Note: In case of any exceptions, be assured that someone from GMMCO will reach you to verify and complete the registration." </span>
+                    <form #f="ngForm" [formGroup]="registerForm" (ngSubmit)="registerForm.valid && registration()">
+                        <!-- <div class="dual-form-options">
+                <div class="form-control">
+                  <input type="text" placeholder="Enter Name" formControlName="customerName"/>
+                  <span class="icon-span">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="22" viewBox="0 0 20 22" fill="none">
+                        <path d="M13.3167 10.201C14.7244 9.17434 15.6411 7.51283 15.6411 5.64102C15.6411 2.53056 13.1105 0 10.0001 0C6.88959 0 4.35904 2.53056 4.35904 5.64102C4.35904 7.51283 5.27569 9.17434 6.68343 10.201C3.18405 11.5401 0.692383 14.933 0.692383 18.8974C0.692383 20.6082 2.08418 22 3.79494 22H16.2052C17.9159 22 19.3077 20.6082 19.3077 18.8974C19.3077 14.933 16.8161 11.5401 13.3167 10.201ZM6.05136 5.64102C6.05136 3.46371 7.82275 1.69232 10.0001 1.69232C12.1774 1.69232 13.9488 3.46371 13.9488 5.64102C13.9488 7.81834 12.1774 9.58977 10.0001 9.58977C7.82275 9.58977 6.05136 7.81834 6.05136 5.64102ZM16.2052 20.3077H3.79494C3.01734 20.3077 2.38471 19.675 2.38471 18.8974C2.38471 14.6982 5.8009 11.282 10.0001 11.282C14.1993 11.282 17.6155 14.6982 17.6155 18.8974C17.6155 19.675 16.9828 20.3077 16.2052 20.3077Z" fill="#FCBA13"/>
+                        </svg>
+                    </span>
+                </div>
+                <div class="form-control">
+                    <input type="text" placeholder="COMPANY NAME"  formControlName="companyName"/>
+                    <span class="icon-span">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                            <g clip-path="url(#clip0)">
+                            <path d="M21.3983 20.668H19.2056V7.68741L19.8729 7.96167C19.9532 7.99473 20.0361 8.01034 20.1177 8.01034C20.3713 8.01034 20.6118 7.85962 20.7142 7.61053C20.8495 7.28139 20.6922 6.90474 20.363 6.76945L19.2056 6.29377V5.45051L19.8729 5.72477C19.953 5.75767 20.0361 5.77328 20.1177 5.77328C20.3713 5.77328 20.6116 5.62272 20.714 5.37364C20.8495 5.04449 20.6922 4.66784 20.3629 4.53256L9.34925 0.00555988C9.0201 -0.129725 8.64345 0.0275479 8.508 0.356696C8.37272 0.686011 8.52999 1.06249 8.85914 1.19794L9.54362 1.47926V2.32235L9.34925 2.24245C9.0201 2.10734 8.64345 2.26444 8.50817 2.59359C8.37272 2.92291 8.52999 3.29955 8.85931 3.43484L9.54362 3.71615V4.99984L4.06694 7.83226C3.34049 8.2079 2.88932 8.94962 2.88932 9.76787V20.668H0.687502C0.331498 20.668 0.0429688 20.9565 0.0429688 21.3125C0.0429688 21.6685 0.331498 21.9571 0.687502 21.9571H21.3983C21.7543 21.9571 22.0429 21.6685 22.0429 21.3125C22.0429 20.9565 21.7543 20.668 21.3983 20.668ZM10.8327 2.00898L17.9165 4.92062V5.76388L10.8327 2.85224V2.00898ZM7.50545 20.668V18.6178C7.50545 18.2619 7.21692 17.9732 6.86092 17.9732C6.50508 17.9732 6.21639 18.2619 6.21639 18.6178V20.668H4.17839V16.6793H6.86092C7.21692 16.6793 7.50545 16.3906 7.50545 16.0348C7.50545 15.6788 7.21692 15.3902 6.86092 15.3902H4.17839V14.3132H6.86092C7.21692 14.3132 7.50545 14.0246 7.50545 13.6686C7.50545 13.3128 7.21692 13.0241 6.86092 13.0241H4.17839V11.9135H6.86092C7.21692 11.9135 7.50545 11.6249 7.50545 11.2689C7.50545 10.9129 7.21692 10.6244 6.86092 10.6244H4.17839V9.76787C4.17839 9.43352 4.36251 9.13055 4.6591 8.97714L9.54362 6.45105V20.668H7.50545ZM16.3082 20.668V18.6178C16.3082 18.2619 16.0197 17.9732 15.6637 17.9732C15.3077 17.9732 15.0191 18.2619 15.0191 18.6178V20.668H13.7301V18.6178C13.7301 18.2619 13.4415 17.9732 13.0855 17.9732C12.7295 17.9732 12.441 18.2619 12.441 18.6178V20.668H10.8327V4.24587L17.9165 7.15751V20.668H16.3082Z" fill="#A5A5A5"/>
+                            <path d="M13.0752 13.22C13.4312 13.22 13.7197 12.9314 13.7197 12.5754V11.2689C13.7197 10.9129 13.4312 10.6244 13.0752 10.6244C12.7194 10.6244 12.4307 10.9129 12.4307 11.2689V12.5754C12.4307 12.9314 12.7192 13.22 13.0752 13.22Z" fill="#A5A5A5"/>
+                            <path d="M15.665 13.22C16.021 13.22 16.3096 12.9314 16.3096 12.5754V11.2689C16.3096 10.9129 16.021 10.6244 15.665 10.6244C15.309 10.6244 15.0205 10.9129 15.0205 11.2689V12.5754C15.0205 12.9314 15.309 13.22 15.665 13.22Z" fill="#A5A5A5"/>
+                            <path d="M13.084 14.0835C12.728 14.0835 12.4395 14.372 12.4395 14.728V16.0345C12.4395 16.3905 12.728 16.6791 13.084 16.6791C13.44 16.6791 13.7285 16.3905 13.7285 16.0345V14.728C13.7285 14.372 13.44 14.0835 13.084 14.0835Z" fill="#A5A5A5"/>
+                            <path d="M15.6738 14.0835C15.318 14.0835 15.0293 14.372 15.0293 14.728V16.0345C15.0293 16.3905 15.318 16.6791 15.6738 16.6791C16.0298 16.6791 16.3184 16.3905 16.3184 16.0345V14.728C16.3184 14.372 16.0298 14.0835 15.6738 14.0835Z" fill="#A5A5A5"/>
+                            <path d="M13.0801 9.77244C13.4361 9.77244 13.7246 9.48374 13.7246 9.1279V7.82138C13.7246 7.46538 13.4361 7.17685 13.0801 7.17685C12.7241 7.17685 12.4355 7.46538 12.4355 7.82138V9.1279C12.4355 9.48374 12.7241 9.77244 13.0801 9.77244Z" fill="#A5A5A5"/>
+                            <path d="M15.6689 9.77244C16.0248 9.77244 16.3135 9.48374 16.3135 9.1279V7.82138C16.3135 7.46538 16.0248 7.17685 15.6689 7.17685C15.3129 7.17685 15.0244 7.46538 15.0244 7.82138V9.1279C15.0244 9.48374 15.3129 9.77244 15.6689 9.77244Z" fill="#A5A5A5"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0">
+                            <rect width="22" height="22" fill="white"/>
+                            </clipPath>
+                            </defs>
+                            </svg>
+                      </span>
+                  </div>
+            </div>
+            <div class="dual-form-options">
+                <div class="form-control">
+                  <input type="text" placeholder="ADDRESS" formControlName="address"/>
+                  <span class="icon-span">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                        <g clip-path="url(#clip0)">
+                        <path d="M11 10.5382C12.9886 10.5382 14.6065 8.92054 14.6065 6.9322C14.6065 4.94386 12.9886 3.32626 11 3.32626C9.01141 3.32626 7.39355 4.94386 7.39355 6.9322C7.39355 8.92054 9.01141 10.5382 11 10.5382ZM11 4.61515C12.2778 4.61515 13.3174 5.65461 13.3174 6.9322C13.3174 8.20983 12.2779 9.24929 11 9.24929C9.72216 9.24929 8.68262 8.20983 8.68262 6.9322C8.68262 5.65461 9.7222 4.61515 11 4.61515Z" fill="#A5A5A5"/>
+                        <path d="M7.07363 13.4119C8.05052 14.7343 7.65805 14.22 10.4719 18.2374C10.7276 18.604 11.2715 18.6057 11.5287 18.238C14.3552 14.2015 13.9663 14.7128 14.9273 13.4118C15.9007 12.0939 16.9074 10.7311 17.459 9.13413C18.2575 6.82236 17.9123 4.53501 16.4874 2.69337C16.4873 2.69337 16.4873 2.69332 16.4873 2.69332C15.182 1.00684 13.1308 0 11.0005 0C8.87011 0 6.81895 1.00684 5.51361 2.69341C4.08863 4.53505 3.74351 6.82245 4.54195 9.13421C5.0935 10.7311 6.10017 12.0939 7.07363 13.4119ZM6.53308 3.48214C7.59604 2.10882 9.26611 1.28889 11.0005 1.28889C12.7348 1.28889 14.4049 2.10882 15.4678 3.48214L15.4677 3.4821C16.6179 4.96848 16.8923 6.82636 16.2405 8.71346C15.7533 10.124 14.8062 11.4062 13.8904 12.6461C13.1773 13.6115 13.3907 13.3162 11.0005 16.7425C8.61273 13.3197 8.82345 13.6112 8.11055 12.6461C7.19467 11.4062 6.2476 10.124 5.76038 8.71346C5.10863 6.82632 5.38302 4.96848 6.53308 3.48214Z" fill="#A5A5A5"/>
+                        <path d="M7.60276 16.2063C7.41267 15.9055 7.01461 15.8155 6.71365 16.0057L4.88104 17.1631C4.48125 17.4156 4.48087 18.0001 4.88104 18.2528L10.656 21.9004C10.8663 22.0332 11.1342 22.0331 11.3444 21.9004L17.1194 18.2528C17.5193 18.0003 17.5196 17.4159 17.1194 17.1631L15.2868 16.0057C14.9858 15.8156 14.5878 15.9055 14.3977 16.2063C14.2076 16.5073 14.2975 16.9053 14.5984 17.0954L15.5684 17.708L11.0002 20.5932L6.43208 17.708L7.40206 17.0954C7.70301 16.9053 7.79286 16.5073 7.60276 16.2063Z" fill="#A5A5A5"/>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0">
+                        <rect width="22" height="22" fill="white"/>
+                        </clipPath>
+                        </defs>
+                        </svg>
+                    </span>
+                </div>
+                <div class="form-control">
+                    <input type="text"  placeholder="Pincode" formControlName="pincode"/>
+                    <span class="icon-span">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                            <path d="M16.1562 5.15642V3.86719H19.3789C19.7348 3.86719 20.0234 3.57861 20.0234 3.22266V0.644531C20.0234 0.288578 19.7348 0 19.3789 0H15.5117C15.1557 0 14.8671 0.288578 14.8671 0.644531V5.15642H5.80078C2.95763 5.15642 0.644531 7.46952 0.644531 10.3127V16.1135C0.644531 16.4695 0.933109 16.7581 1.28906 16.7581H7.7773V18.6917C7.7773 19.0476 8.06588 19.3362 8.42183 19.3362H9.06649V21.3554C9.06649 21.7114 9.35507 22 9.71102 22H12.2889C12.6448 22 12.9334 21.7114 12.9334 21.3554V19.3362H13.5781C13.934 19.3362 14.2226 19.0476 14.2226 18.6917V16.7581H20.7109C21.0668 16.7581 21.3554 16.4695 21.3554 16.1135V10.3127C21.3554 7.5344 19.1235 5.15642 16.1562 5.15642ZM16.1562 1.28906H18.7343V2.57812H16.1562V1.28906ZM1.93359 10.3127C1.93359 8.1803 3.66841 6.44548 5.80078 6.44548C7.93315 6.44548 9.66797 8.1803 9.66797 10.3127V15.469H1.93359V10.3127ZM11.6444 20.7109H10.3556V19.3362H11.6444V20.7109ZM12.9336 18.0471H9.06636V16.7581H12.9336V18.0471ZM20.0663 15.469H10.957V10.3127C10.957 8.77413 10.2795 7.39105 9.20726 6.44548H14.8671V9.13451C14.117 9.40057 13.5781 10.117 13.5781 10.9572C13.5781 12.0234 14.4454 12.8908 15.5117 12.8908C16.5779 12.8908 17.4453 12.0234 17.4453 10.9572C17.4453 10.117 16.9064 9.40057 16.1562 9.13451V6.44548C18.4074 6.44548 20.0663 8.23943 20.0663 10.3127V15.469ZM15.5117 10.3127C15.8671 10.3127 16.1562 10.6019 16.1562 10.9572C16.1562 11.3126 15.8671 11.6018 15.5117 11.6018C15.1562 11.6018 14.8671 11.3126 14.8671 10.9572C14.8671 10.6019 15.1562 10.3127 15.5117 10.3127Z" fill="#A5A5A5"/>
+                            <path d="M7.19391 9.02393H4.40723C4.05127 9.02393 3.7627 9.3125 3.7627 9.66846C3.7627 10.0244 4.05127 10.313 4.40723 10.313H7.19391C7.54987 10.313 7.83844 10.0244 7.83844 9.66846C7.83844 9.3125 7.54987 9.02393 7.19391 9.02393Z" fill="#A5A5A5"/>
+                            </svg>
+                      </span>
+                  </div>
+            </div> -->
+
+
+
+
+                        <div class="dual-form-options">
+                            <div class="form-control">
+                                <input type="text" placeholder="{{'Mobile Number *'}}" formControlName="mobile" oninput="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="10" />
+                                <div class="er-msg" *ngIf="registerForm.controls.mobile.errors?.minlength"> Mobile Number Must be 10 Digits</div>
+                                <div class="er-msg" *ngIf="submitted && registerForm.controls.mobile.errors?.required">Mobile Number Required</div>
+
+                                <span class="icon-span">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                        <path d="M21.9978 17.7269C21.9672 16.8759 21.6127 16.0817 20.9997 15.4907C19.7996 14.3334 18.794 13.6653 17.8352 13.3883C16.5141 13.0065 15.2904 13.3537 14.1983 14.4202C14.1967 14.4218 14.195 14.4234 14.1934 14.4251L13.0315 15.5783C12.3054 15.169 10.8934 14.2702 9.36795 12.7447L9.25486 12.6317C7.72912 11.106 6.83043 9.69383 6.4215 8.96852L7.57478 7.8066C7.57641 7.80497 7.57805 7.80334 7.57968 7.80166C8.6462 6.70965 8.99339 5.48599 8.61162 4.16474C8.33451 3.20598 7.66647 2.20043 6.50915 1.00027C5.91816 0.387403 5.12406 0.0329105 4.27306 0.0022308C3.42155 -0.0284919 2.60446 0.267907 1.97075 0.836727L1.94609 0.858899C1.93466 0.869168 1.92349 0.879782 1.91257 0.890653C0.651053 2.15217 -0.0102357 3.91823 0.000119779 5.99796C0.0177799 9.53094 1.95949 13.5712 5.19414 16.8058C5.80408 17.4157 6.4973 18.0194 7.25449 18.6C7.63111 18.8887 8.17054 18.8176 8.45933 18.4409C8.74817 18.0642 8.67693 17.5248 8.30026 17.236C7.60267 16.7011 6.96651 16.1475 6.40947 15.5906C3.48776 12.6689 1.73425 9.07968 1.71883 5.98941C1.71088 4.38771 2.19269 3.05082 3.11235 2.12158L3.11892 2.11565C3.74356 1.55495 4.68926 1.58907 5.272 2.19334C7.49688 4.50067 7.33579 5.58997 6.35266 6.59811L4.75964 8.20308C4.50982 8.45479 4.44025 8.83411 4.5845 9.1581C4.62493 9.24893 5.60329 11.4108 8.03983 13.8474L8.15297 13.9603C10.5892 16.3966 12.7511 17.3749 12.842 17.4154C13.1659 17.5597 13.5453 17.4901 13.797 17.2403L15.402 15.6472C16.4102 14.664 17.4995 14.503 19.8067 16.7279C20.411 17.3106 20.4451 18.2563 19.8846 18.8809L19.8785 18.8876C18.9568 19.7998 17.6342 20.2812 16.0499 20.2812C16.0368 20.2812 16.0238 20.2812 16.0107 20.2811C14.7443 20.2748 13.2779 19.9277 11.7701 19.2773C11.3344 19.0893 10.8286 19.2902 10.6407 19.726C10.4527 20.1618 10.6536 20.6675 11.0894 20.8555C12.8323 21.6073 14.4851 21.9923 16.0021 21.9999C16.0182 21.9999 16.0342 22 16.0503 22C18.1091 22 19.8577 21.3391 21.1094 20.0874C21.1203 20.0765 21.1309 20.0654 21.1411 20.0539L21.1634 20.0291C21.7322 19.3954 22.0286 18.5778 21.9978 17.7269Z" fill="#A5A5A5"/>
+                        </svg>
+                               </span>
+                            </div>
+                            <div class="form-control">
+                                <input type="text" placeholder="{{'PAN Number *'}}" (input)="panValidation($event)" formControlName="panNumber" maxlength="10" />
+                                <!-- <input type="text" placeholder="{{'PAN Number *'}}" oninput="this.value=this.value.replace(/[^a-zA-Z0-9]/g,'');" formControlName="panNumber" maxlength="10" /> -->
+                                <div class="er-msg" *ngIf="submitted && registerForm.controls.panNumber.errors?.required">PAN Number Required</div>
+                                <div class="er-msg" *ngIf="registerForm.controls.panNumber.errors?.pattern">Invalid PAN Number Format </div>
+
+                                <!-- <div class="er-msg" *ngIf="submitted && registerForm.controls.panNumber.errors?.required"> PAN Number Required</div> -->
+
+                                <span class="icon-span">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="28" viewBox="0 0 20 28" fill="none">
+                                        <path d="M12.727 10.1212C12.727 8.61738 11.5036 7.39392 9.99973 7.39392C8.49592 7.39392 7.27246 8.61738 7.27246 10.1212C7.27246 11.625 8.49592 12.8485 9.99973 12.8485C11.5036 12.8485 12.727 11.625 12.727 10.1212ZM9.99973 11.0303C9.49846 11.0303 9.09064 10.6225 9.09064 10.1212C9.09064 9.61992 9.49846 9.2121 9.99973 9.2121C10.501 9.2121 10.9088 9.61992 10.9088 10.1212C10.9088 10.6225 10.501 11.0303 9.99973 11.0303Z" fill="#A5A5A5"/>
+                                        <path d="M9.99956 12.8485C7.49319 12.8485 5.4541 14.8876 5.4541 17.394V20.1212H14.545V17.394C14.545 14.8876 12.5059 12.8485 9.99956 12.8485ZM12.7268 18.3031H7.27228V17.394C7.27228 15.8901 8.49574 14.6667 9.99956 14.6667C11.5034 14.6667 12.7268 15.8901 12.7268 17.394V18.3031Z" fill="#A5A5A5"/>
+                                        <path d="M5.4541 21.9395H14.545V23.7576H5.4541V21.9395Z" fill="#A5A5A5"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M0 27.2121V0H20V27.2121H0ZM1.81818 25.3939V1.75758H7.27273V5.39394H12.7273V1.75758H18.1818V25.3939H1.81818Z" fill="#A5A5A5"/>
+                                    </svg>
+                              </span>
+                            </div>
+                        </div>
+                        <div class="dual-form-options">
+                            <div class="form-control">
+                                <button (click)="clicktooglePassword('pass')" type="button" class="toggle-password-button">
+                    <i class="fa fa-eye" aria-hidden="true" *ngIf="eyeIcon.show"></i>
+                    <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="!eyeIcon.show"></i>
+                  </button>
+                                <input (keydown.space)="$event.preventDefault()" [type]="eyeIcon.password" placeholder="{{'Password *'}}" formControlName="password" />
+                                <div class="er-msg" *ngIf="submitted && registerForm.controls.password.errors?.required">Password Required</div>
+                                <div class="er-msg" *ngIf="registerForm.controls.password.errors?.minlength">Enter atleast 8 characters</div>
+                                <div class="er-msg" *ngIf="registerForm.controls.password.errors?.maxlength">Maximum 16 characters</div>
+                                <div class="er-msg" *ngIf="registerForm.controls.password.errors?.pattern">Enter atleast One Lowercase , One Uppercase , One Number and One Special Character</div>
+                                <!-- <div class="er-msg" *ngIf="registerForm.controls.password.errors?.required">Password Required</div> -->
+
+                                <span class="icon-span">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                        <g clip-path="url(#clip0)">
+                        <path d="M17.1875 22H4.8125C3.67583 22 2.75 21.0751 2.75 19.9375V10.3125C2.75 9.17492 3.67583 8.25 4.8125 8.25H17.1875C18.3242 8.25 19.25 9.17492 19.25 10.3125V19.9375C19.25 21.0751 18.3242 22 17.1875 22ZM4.8125 9.625C4.43392 9.625 4.125 9.933 4.125 10.3125V19.9375C4.125 20.317 4.43392 20.625 4.8125 20.625H17.1875C17.5661 20.625 17.875 20.317 17.875 19.9375V10.3125C17.875 9.933 17.5661 9.625 17.1875 9.625H4.8125Z" fill="#A5A5A5"/>
+                        <path d="M15.8125 9.625C15.433 9.625 15.125 9.317 15.125 8.9375V5.5C15.125 3.22575 13.2743 1.375 11 1.375C8.72575 1.375 6.875 3.22575 6.875 5.5V8.9375C6.875 9.317 6.567 9.625 6.1875 9.625C5.808 9.625 5.5 9.317 5.5 8.9375V5.5C5.5 2.46675 7.96675 0 11 0C14.0332 0 16.5 2.46675 16.5 5.5V8.9375C16.5 9.317 16.192 9.625 15.8125 9.625Z" fill="#A5A5A5"/>
+                        <path d="M11.0003 15.5833C9.98924 15.5833 9.16699 14.761 9.16699 13.75C9.16699 12.7389 9.98924 11.9166 11.0003 11.9166C12.0114 11.9166 12.8337 12.7389 12.8337 13.75C12.8337 14.761 12.0114 15.5833 11.0003 15.5833ZM11.0003 13.2916C10.7482 13.2916 10.542 13.497 10.542 13.75C10.542 14.003 10.7482 14.2083 11.0003 14.2083C11.2524 14.2083 11.4587 14.003 11.4587 13.75C11.4587 13.497 11.2524 13.2916 11.0003 13.2916Z" fill="#A5A5A5"/>
+                        <path d="M11 18.3333C10.6205 18.3333 10.3125 18.0253 10.3125 17.6458V15.125C10.3125 14.7455 10.6205 14.4375 11 14.4375C11.3795 14.4375 11.6875 14.7455 11.6875 15.125V17.6458C11.6875 18.0253 11.3795 18.3333 11 18.3333Z" fill="#A5A5A5"/>
+                        </g>
+                        <defs>
+                        <clipPath id="clip0">
+                        <rect width="22" height="22" rx="5" fill="white"/>
+                        </clipPath>
+                        </defs>
+                        </svg>
+                    </span>
+                            </div>
+                            <div class="form-control">
+                                <button (click)="clicktooglePassword('pass1')" type="button" class="toggle-password-button">
+                    <i class="fa fa-eye" aria-hidden="true" *ngIf="eyeIcon.show1"></i>
+                    <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="!eyeIcon.show1"></i>
+                  </button>
+                                <input [type]="eyeIcon.password1" (keydown.space)="$event.preventDefault()" placeholder="{{'Confirm Password *'}}" formControlName="passwordConfirm" />
+                                <span class="icon-span">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+                            <g clip-path="url(#clip0)">
+                            <path d="M17.1875 22H4.8125C3.67583 22 2.75 21.0751 2.75 19.9375V10.3125C2.75 9.17492 3.67583 8.25 4.8125 8.25H17.1875C18.3242 8.25 19.25 9.17492 19.25 10.3125V19.9375C19.25 21.0751 18.3242 22 17.1875 22ZM4.8125 9.625C4.43392 9.625 4.125 9.933 4.125 10.3125V19.9375C4.125 20.317 4.43392 20.625 4.8125 20.625H17.1875C17.5661 20.625 17.875 20.317 17.875 19.9375V10.3125C17.875 9.933 17.5661 9.625 17.1875 9.625H4.8125Z" fill="#A5A5A5"/>
+                            <path d="M15.8125 9.625C15.433 9.625 15.125 9.317 15.125 8.9375V5.5C15.125 3.22575 13.2743 1.375 11 1.375C8.72575 1.375 6.875 3.22575 6.875 5.5V8.9375C6.875 9.317 6.567 9.625 6.1875 9.625C5.808 9.625 5.5 9.317 5.5 8.9375V5.5C5.5 2.46675 7.96675 0 11 0C14.0332 0 16.5 2.46675 16.5 5.5V8.9375C16.5 9.317 16.192 9.625 15.8125 9.625Z" fill="#A5A5A5"/>
+                            <path d="M11.0003 15.5833C9.98924 15.5833 9.16699 14.761 9.16699 13.75C9.16699 12.7389 9.98924 11.9166 11.0003 11.9166C12.0114 11.9166 12.8337 12.7389 12.8337 13.75C12.8337 14.761 12.0114 15.5833 11.0003 15.5833ZM11.0003 13.2916C10.7482 13.2916 10.542 13.497 10.542 13.75C10.542 14.003 10.7482 14.2083 11.0003 14.2083C11.2524 14.2083 11.4587 14.003 11.4587 13.75C11.4587 13.497 11.2524 13.2916 11.0003 13.2916Z" fill="#A5A5A5"/>
+                            <path d="M11 18.3333C10.6205 18.3333 10.3125 18.0253 10.3125 17.6458V15.125C10.3125 14.7455 10.6205 14.4375 11 14.4375C11.3795 14.4375 11.6875 14.7455 11.6875 15.125V17.6458C11.6875 18.0253 11.3795 18.3333 11 18.3333Z" fill="#A5A5A5"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0">
+                            <rect width="22" height="22" rx="5" fill="white"/>
+                            </clipPath>
+                            </defs>
+                            </svg>
+                      </span>
+                            </div>
+                        </div>
+                        <div class="er-msg" *ngIf="registerForm.controls.passwordConfirm.errors?.confirmPasswordValidator">Password and Confirm Password Does not Match </div>
+                        <!-- <div class="form-control checkbox-division chx-bx">
+                  <div class="new">
+                    <form>
+                      <div class="form-group cus-chx">
+                        <input type="checkbox" id="res">
+                        <label class="uder-line" for="res"><b _ngcontent-mcy-c104="">I ACCEPT</b>TERMS & CONDITION</label>
+                      </div>
+                    </form>
+                  </div>
+                </div> -->
+                        <div class="form-control">
+                            <span><b><input style="position: relative;
+                  left: -99px;
+                  bottom: -23px;" type="checkbox"  formControlName="tC">I Agree to GMMCO's <a href="{{envVar.baseUrl}}RegHelp/Privacy%20Policy%20for%20GmmcoAssist.pdf" target="_blank">{{"Privacy Policy  "}}</a>&<a  href="{{envVar.baseUrl}}RegHelp/Cancellation%20Return%20Replacement%20Terms.pdf" target="_blank" style="padding:0 0 0 6px">Return Policy</a></b> </span>
+                            <div class="er-msg" *ngIf="submitted && (registerForm.controls.tC.errors?.required || registerForm.controls.tC.value == '' || registerForm.controls.tC.value == false)"> T&C Agreement Required</div>
+                            <!-- (click)="open(modalData2,$event)" -->
+                        </div>
+
+                        <div class="form-control login-btn">
+                            <button type="submit" class="btn-login-btn btn " [disabled]="registerForm.invalid">{{'Register Now'}}</button>
+                        </div>
+                        <div class="form-control final-reg-btn">
+                            <!-- <span><b><input type="checkbox">I Agree Terms & Conditions</b> </span> -->
+                            <span><b>{{"Already have an account?"}} <a href="" routerLink="/login">{{"Login"}}</a></b> </span>
+                        </div>
+                        <!-- <div class="form-control final-reg-btn">
+                    
+                      <span><b><input type="checkbox">I Agree Terms & Conditions</b> </span>
+                         </div> -->
+                    </form>
+                </div>
+            </div>
+
+
+
+            <div class="lrs-footer">
+
+                <div class="lrs-footer-sec-one">
+                    <div class="mobile-app text-center text-white">
+                        Download Mobile APP for Better Experience
+                    </div>
+                    <div class="app-play-img-sec">
+                        <a href="https://apps.apple.com/in/app/gmmcoassist/id1580235771" target="_blank"><img src="../../assets/images/app-store.png"></a>
+                        <a href="https://play.google.com/store/apps/details?id=com.app.gmmcoassist" target="_blank"><img src="../../assets/images/google-play.png"></a>
+                    </div>
+
+                </div>
+                <div class="foot-cont">
+                    <!-- <h4>{{'Follow Us On'|translate}}</h4> -->
+                    <ul class="list-inline mt-1">
+                        <li class="list-inline-item"><a href="https://www.facebook.com/gmmcoproducts" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                        <li class="list-inline-item"><a href="https://twitter.com/gmmco_cat" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="https://www.linkedin.com/company/gmmco-ltd" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCN7EyeQ1qjmft1Jc2GtH7xw" target="_blank"><i class="fab fa-youtube" style="color: white;"></i></a></li>
+                        <li class="list-inline-item">
+                            <a href="https://www.gmmco.in/gmmco-cat/" target="_blank"> <i class="fas fa-globe"></i></a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="lrs-footer-sec-three">
+                    <div class="app-play-img-sec">
+                        <a href="tel:123-456-7890p123"><i class="fa fa-phone" aria-hidden="true"></i> 1800-425-2546 |</a>
+                        <span>Chat 16*7</span>
+                    </div>
+                    <a class="hr-link" href="{{envVar.baseUrl}}RegHelp/HowtoRegister2.pdf" target="_blank">How to Register ?</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #modalData2 let-modal>
+
+    <div class="modal-body">
+        <div class="modal-header">
+            <h5 class="modal-title">Terms & Conditions</h5>
+            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          </button> -->
+
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="login-popup-pnt lpp-hmpg-popup">
+            <div class="login-popup-pnt-left">
+                <!-- <img src="../../assets/images/hmpg-popup-logo.png" /> -->
+            </div>
+            <div class="login-popup-pnt-right">
+                <p>GMMCO India reserves the right to suspend or terminate your login if you breach these terms and conditions, with or without notice and without further obligation to you. We may also suspend or terminate your registration if we are prevented
+                    from providing services to you by circumstances beyond our control. If we terminate your registration for any reason and/or permanently cease publishing GMMCO, or cease to provide subscription services then, unless there are exceptional
+                    circumstances, we will provide you with a pro rata refund to your credit card. This means that we will refund you with any amounts that you have paid us in advance that relate to any remaining and unexpired period of your subscription.
+                </p>
+
+            </div>
+
+        </div>
+        <div class="form-control acept_btn">
+            <button type="submit" data-dismiss="modal" aria-label="Close" (click)="close()" class="close acept_btn">Accept</button>
+        </div>
+    </div>
+</ng-template>

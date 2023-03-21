@@ -1,0 +1,39 @@
+.status_check {
+    width: max-content; 
+    padding: 0 20px;
+    margin-left: 0px;
+}
+.flex_buttons {
+    justify-content: flex-end;
+}
+.align-right-area {
+    text-align: right;
+}
+.form-group.qunty-padding {
+    text-align: center;
+}
+.form-group.my-order-value {
+    text-align: right !important;
+}
+div.form-group.my-order-value label.text-grey {
+    text-align: right !important;
+}
+
+button.text-white.showmore {
+    background: #282a2d !important;
+    border: none !important;
+    font-size: 18px !important;
+}
+// 22/12/21
+@media only screen and (max-width:576px){
+.order-part .order-details .form-group{
+    text-align: left;
+}
+.accordion_btn button{
+        float: left !important;
+        display: block;
+        text-align: left;
+        width: 100%;
+        padding: 10px 0 !important;
+}
+}

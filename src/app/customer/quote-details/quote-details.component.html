@@ -1,0 +1,248 @@
+<app-header></app-header>
+<div class="content_section w-100 float-left">
+    <div class="container">
+        <div class="header_float">
+            <div class="bread_crumb">
+                <h1 class="mb-0">
+                    <img routerLink="/customer/my-quote" class="mr-2 c-pointer" width="30" src="../../../../assets/images/back-arrow.png" alt="">
+                    <!-- My Account > -->
+                    <span routerLink="/customer/my-quote" class="c-pointer"> My Quotes </span>
+                    <span> > <b></b>Quote Detail</span>
+                </h1>
+            </div>
+            <div class="tabs_wrapper">
+
+            </div>
+        </div>
+        <div class="row custom_row m-0">
+            <div class="w-100 float-left p-0">
+                <div class="row m-0">
+                    <div class="container p-0">
+                        <h4 class="wrapper_title text-white mt-4 mb-4">My Quote</h4>
+                        <div class="accordion_wrapper mb-4 order_details">
+                            <div class="accordion_row mb-3">
+                                <div class="bg_color_panel col-lg-12 p-0">
+                                    <!-- <div class="row m-0 p-2">
+                    <div class="col-lg-2 col-md-2 col-sm-6">
+                      <div class="form-group">
+                        <label class="text-grey">Quote Number</label>
+                        <p class="text-white">O1212121</p>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6">
+                      <div class="form-group">
+                        <label class="text-grey">Sales Order Number</label>
+                        <p class="text-white">S2312312</p>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-6">
+                      <div class="form-group">
+                        <label class="text-grey">Order Value</label>
+                        <p class="text-white">₹1,222</p>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-6">
+                      <div class="form-group">
+                        <label class="text-grey">Quantity</label>
+                        <p class="text-white">2</p>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6">
+                      <div class="form-group float-right">
+                        <label class="text-grey">Order Placed</label>
+                        <p class="text-white">12-02-2021</p>
+                      </div>
+                    </div>
+                  </div> -->
+
+                                    <!-- <accordion> 
+                    <accordion-group [isOpened]="true">
+                      <div class="accordion_content mt-4 mb-3">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                          <div class="row m-0">
+
+                            <div class="qd-divide">
+                              <div class="form-group">
+                                <label class="text-grey">Material Number</label>
+                                <p class="text-white"></p>
+                              </div>
+                            </div>
+                            <div class="qd-divide">
+                              <div class="form-group">
+                                <label class="text-grey">Unit Price</label>
+                                <p class="text-white"></p>
+                              </div>
+                            </div>
+                            <div class="qd-divide">
+                              <div class="form-group">
+                                <label class="text-grey">Quantity</label>
+                                <p class="text-white"></p>
+                              </div>
+                            </div>
+                            <div class="qd-divide">
+                              <div class="form-group">
+                                <label class="text-grey">Extended Price</label>
+                                <p class="text-white"></p>
+                              </div>
+                            </div>
+                            <div class="qd-divide">
+                              <div class="form-group">
+                                <label class="text-grey ">Description</label>
+                                <p class="text-white"></p>
+                              </div>
+                            </div>
+                            <div
+                              class="col-lg-3 col-md-3 col-sm-6 d-flex justify-content-end align-items-center justify-content-mob-end">
+                              <div class="form-group st-ord-invoice d-flex align-items-center mb-0">
+                                <label class="wt-unset">Status</label>
+                                <button class="status_check btn-track"></button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <ng-container >
+                        <div  class="accordion_content bg-white mb-3 p-0">
+                           <div class="row m-0 p-3" *ngFor="let quotes of quoteDetails; let i = index">
+                             <div class="qd-divide">
+                               <div class="form-group material-prnt d-flex">
+                                 <label class="text-grey">{{quotes.materialNumber}}</label>
+                                 <p class="text-white"></p>
+                               </div>
+                             </div>
+                             <div class="qd-divide">
+                              <div class="form-group material-prnt d-flex">
+                                <label class="text-grey">{{quotes.unitPrice}}</label>
+                                <p class="text-white"></p>
+                              </div>
+                            </div>
+                             <div class="qd-divide">
+                               <div class="form-group material-prnt d-flex">
+                                 <label class="text-grey">{{quotes.quantity}}</label>
+                                 <p class="text-white"></p>
+                               </div>
+                             </div>
+
+                             <div class="qd-divide">
+                              <div class="form-group material-prnt d-flex">
+                                <label class="text-grey">{{quotes.extendedPrice}}</label>
+                                <p class="text-white"></p>
+                              </div>
+                            </div>
+
+
+                             
+                             <div class="qd-divide">
+                              <div class="form-group ">
+                                <label class="text-grey">{{quotes.description}}</label>
+                                <p class="description"></p>
+                              </div>
+                            </div>
+                            
+                             <div class="col-lg-3 col-md-3 col-sm-12">
+                               <div class="form-group material-prnt mb-0 d-flex align-items-center mp-end-value">
+                                 <label class="text-grey wt-unset for-label-shw">Active</label>
+                                 <button class="status_check btn-values"></button>
+                               </div>
+                             </div>
+                             
+                           </div>
+                         </div>
+                      </ng-container>
+                      <accordion-heading>
+                        <div class="flex_footer_accordion">
+                          <div class="form-group ">
+                            <label class="text-grey ">Status</label>
+                            <button class="status_check btn-track">ON TRACK</button>
+                          </div>
+                          <span class="text-white showmore">More Detail <img
+                              src="../../../../assets/images/arrow-right.png" alt=""></span>
+                          <span class="text-white showless">Less Detail <img
+                              src="../../../../assets/images/arrow-down.png" alt=""></span>
+                        </div>
+                      </accordion-heading>
+                     
+                    </accordion-group>
+                  </accordion>  -->
+
+                                    <div class="table-responsive">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <td class="qd-divide">
+                                                        <div class="form-group mb-0">
+                                                            <label class="text-grey">Material Number</label>
+                                                            <p class="text-white"></p>
+                                                        </div>
+                                                    </td>
+                                                    <td class="qd-divide">
+                                                        <div class="form-group mb-0">
+                                                            <label class="text-grey">Unit Price</label>
+                                                            <p class="text-white"></p>
+                                                        </div>
+                                                    </td>
+                                                    <td class="qd-divide">
+                                                        <div class="form-group mb-0">
+                                                            <label class="text-grey">Quantity</label>
+                                                            <p class="text-white"></p>
+                                                        </div>
+                                                    </td>
+                                                    <td class="qd-divide">
+                                                        <div class="form-group mb-0">
+                                                            <label class="text-grey">Extended Price</label>
+                                                            <p class="text-white"></p>
+                                                        </div>
+                                                    </td>
+                                                    <td class="qd-divide">
+                                                        <div class="form-group mb-0">
+                                                            <label class="text-grey ">Description</label>
+                                                            <p class="text-white"></p>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let quotes of quoteDetails; let i = index" style="border-bottom: 1px solid #70707036;">
+                                                    <td class="qd-divide">
+                                                        <div class="form-group material-prnt d-flex mb-0">
+                                                            <label class="text-grey">{{quotes.materialNumber}}</label>
+                                                            <p class="text-white"></p>
+                                                        </div>
+                                                    </td>
+                                                    <td class="qd-divide">
+                                                        <div class="form-group material-prnt d-flex mb-0">
+                                                            <label class="text-grey">{{quotes.unitPrice}}</label>
+                                                            <p class="text-white"></p>
+                                                        </div>
+                                                    </td>
+                                                    <td class="qd-divide">
+                                                        <div class="form-group material-prnt d-flex mb-0">
+                                                            <label class="text-grey">{{quotes.quantity}}</label>
+                                                            <p class="text-white"></p>
+                                                        </div>
+                                                    </td>
+                                                    <td class="qd-divide">
+                                                        <div class="form-group material-prnt d-flex mb-0">
+                                                            <label class="text-grey">{{quotes.extendedPrice}}</label>
+                                                            <p class="text-white"></p>
+                                                        </div>
+                                                    </td>
+                                                    <td class="qd-divide">
+                                                        <div class="form-group ">
+                                                            <label class="text-grey">{{quotes.description}}</label>
+                                                            <p class="description"></p>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>

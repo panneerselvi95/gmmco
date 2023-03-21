@@ -1,0 +1,285 @@
+<app-header></app-header>
+<div class="content_section w-100 float-left">
+  <div class="container">
+    <div class="header_float">
+      <div class="bread_crumb">
+        <h1 class="mb-0"><img class="mr-2" width="30" src="../../../assets/images/back-arrow.png" alt=""> My Account >
+          My Orders <span><b>Return Detail</b></span> </h1>
+      </div>
+      <div class="tabs_wrapper">
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="w-100 float-left">
+        <div class="row m-0">
+          <div class="container initial_orders">
+            <h4 class="wrapper_title text-white mt-4 mb-4">My Orders</h4>
+            <div class="accordion_wrapper mb-4 order_details" *ngFor="let orders of orderDetails;let i=index">
+              <div class="accordion_row mb-3">
+                <div class="bg_color_panel col-lg-12 p-0">
+                  <div class="row m-0 p-2">
+                    <div class="col-lg-3 col-md-3 col-sm-6">
+                      <div class="form-group">
+                        <label class="text-grey">Order Number</label>
+                        <p class="text-white">{{orders.salesOrderNo}}</p>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6">
+                      <div class="form-group">
+                        <label class="text-grey">Order Value</label>
+                        <p class="text-white">₹ {{orders.totalValue}}</p>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6">
+                      <div class="form-group">
+                        <label class="text-grey">Quantity</label>
+                        <p class="text-white">{{orders.quantity}}</p>
+                      </div>
+                    </div>
+                    <div
+                      class="col-lg-3 col-md-3 col-sm-6 d-flex justify-content-end align-items-center justify-content-mob-end">
+                      <div class="form-group d-flex align-items-center mb-0">
+                        <!-- <label class="wt-unset">Status</label>
+                           <button class="status_check btn-track">Delivered</button> -->
+                        <label class="wt-unset">Returned Quantity</label>
+                        <button class="status_check btn-values btn-higlight">{{orders.returnedQty}}</button>
+
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <accordion>
+                    <accordion-group [isOpened]="true">
+
+                      <div class="accordion_content  bdt-0 mb-3 p-0">
+                        <div class="row m-0 pt-3 pb-3">
+                          <div class="col-lg-3 col-md-3 col-sm-12">
+                            <div class="form-group ">
+                              <label class="text-grey">Material</label>
+                              <p class="text-white">{{split(orders.material)[0] || '--'}}</p>
+                            </div>
+                          </div>
+                          <div class="col-lg-3 col-md-3 col-sm-12">
+                            <div class="form-group ">
+                              <label class="text-grey">Quantity</label>
+                              <p class="text-white">{{orders.quantity}}</p>
+                            </div>
+                          </div>
+                          <div class="col-lg-3 col-md-3 col-sm-12">
+                            <div class="form-group ">
+                              <label class="text-grey">Date</label>
+                              <p class="text-white">{{orders.createdOn | date:'dd/MM/yyyy'}}</p>
+                            </div>
+                          </div>
+                          <div class="col-lg-3 col-md-3 col-sm-12">
+                            <div
+                              class="form-group mb-0 d-flex align-items-center justify-content-end justify-content-mob-end">
+                              <label class="text-grey">Return Order Value (exclusive tax value):</label>
+                              <p class="text-white">{{convertToNum(orders.returnedQty1) * convertToNum(orders.unitPrice)
+                                | currency:'INR'}}</p>
+                              <!-- <button class="">₹ 900.00</button> -->
+                            </div>
+                          </div>
+                          <div class="col-lg-12 col-md-12 col-sm-12 p-0 bd-top">
+
+                            <div class="row m-0 ">
+                              <div class="col-lg-6 col-md-5 col-sm-12">
+                                <label class="text-grey">Description</label>
+                                <p class="text-white">{{orders.custMaterial}}</p>
+                              </div>
+                              <div class="col-lg-6 col-md-7 col-sm-12 custom-groups">
+                                <div
+                                  class="input-group d-flex align-items-center justify-content-end justify-content-mob-end">
+                                  <label class="text-grey mr-4">Return Quantity</label>
+                                  <div class="input-group-append d-flex">
+                                    <button class="btn btn-outline-secondary" type="button"
+                                      (click)="increment('minus',i ,orders)" [disabled]="orders.returnedQty1 <1  "><i
+                                        class="fa fa-minus" aria-hidden="true"></i>
+                                    </button>
+                                    <input class="form-control" type="number" [(value)]='orders.returnedQty1' readonly>
+                                    <button class="btn btn-outline-secondary" type="button"
+                                      (click)="increment('plus',i,orders)"
+                                      [disabled]="(convertToNum(orders.quantity) - convertToNum(orders.returnedQty) ) <= convertToNum(orders.returnedQty1) "><i
+                                        class="fa fa-plus" aria-hidden="true"></i></button>
+
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <div class="accordion_content  bdt-0 mb-3 p-0">
+                                <div class="row m-0 pt-3 pb-3">
+                                   <div class="col-lg-3 col-md-3 col-sm-12">
+                                      <div class="form-group ">
+                                         <label class="text-grey">Material</label>
+                                         <p class="text-white">T264F54</p>
+                                      </div>
+                                   </div>
+                                   <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <div class="form-group ">
+                                      <label class="text-grey">Quantity</label>
+                                      <p class="text-white">3</p>
+                                   </div>
+                                 </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-12">
+                                  <div class="form-group ">
+                                    <label class="text-grey">Date</label>
+                                    <p class="text-white">8 Mar 2021</p>
+                                 </div>
+                               </div>
+                                 <div class="col-lg-3 col-md-3 col-sm-12">
+                                    <div class="form-group mb-0 d-flex align-items-center justify-content-end justify-content-mob-end">
+                                      <label class="text-grey wt-unset">Value</label>
+                                      <button class="status_check btn-values btn-higlight">₹ 1000.00</button>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 p-0 bd-top">
+
+                                    <div class="row m-0 ">
+                                      <div class="col-lg-6 col-md-5 col-sm-12">
+                                        <label class="text-grey">Order Detail</label>
+                                        <p class="text-white">Filter</p>
+                                      </div>
+                                      <div class="col-lg-6 col-md-7 col-sm-12 custom-groups">
+                                        <div class="input-group d-flex align-items-center justify-content-end justify-content-mob-end">
+                                          <label class="text-grey mr-4">Return Quantity</label>
+                                          <div class="input-group-append d-flex">
+                                            <button class="btn btn-outline-secondary" type="button"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                                <input type="text" class="form-control" value="2" placeholder="" >
+                                            <button class="btn btn-outline-secondary" type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                  </div>
+
+                              </div>
+                                </div>
+                          </div>
+                          <div class="accordion_content  bdt-0 mb-3 p-0">
+                            <div class="row m-0 pt-3 pb-3">
+                               <div class="col-lg-3 col-md-3 col-sm-12">
+                                  <div class="form-group ">
+                                     <label class="text-grey">Part Number</label>
+                                     <p class="text-white">T264F54</p>
+                                  </div>
+                               </div>
+                               <div class="col-lg-3 col-md-3 col-sm-12">
+                                <div class="form-group ">
+                                  <label class="text-grey">Quantity</label>
+                                  <p class="text-white">3</p>
+                               </div>
+                             </div>
+                             <div class="col-lg-3 col-md-3 col-sm-12">
+                              <div class="form-group ">
+                                <label class="text-grey">Date</label>
+                                <p class="text-white">8 Mar 2021</p>
+                             </div>
+                           </div>
+                             <div class="col-lg-3 col-md-3 col-sm-12">
+                                <div class="form-group mb-0 d-flex align-items-center justify-content-end justify-content-mob-end">
+                                  <label class="text-grey wt-unset">Value</label>
+                                  <button class="status_check btn-values btn-higlight">₹ 3000.00</button>
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 p-0 bd-top">
+
+                                <div class="row m-0 ">
+                                  <div class="col-lg-6 col-md-5 col-sm-12">
+                                    <label class="text-grey">Order Detail</label>
+                                    <p class="text-white">Engine Oil</p>
+                                  </div>
+                                  <div class="col-lg-6 col-md-7 col-sm-12 custom-groups">
+                                    <div class="input-group d-flex align-items-center justify-content-end justify-content-mob-end">
+                                      <label class="text-grey mr-4">Return Quantity</label>
+                                      <div class="input-group-append d-flex">
+                                        <button class="btn btn-outline-secondary" type="button"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                            <input type="text" class="form-control" value="0" placeholder="" >
+                                        <button class="btn btn-outline-secondary" type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                      </div>
+                                    </div>
+                                  </div>
+                              </div>
+
+                          </div>
+                            </div>
+                      </div> -->
+                    </accordion-group>
+                  </accordion>
+                </div>
+              </div>
+              <div class="accordion_wrapper mb-4 order_details">
+                <div class="accordion_row mb-3">
+                  <div class="bg_color_panel col-lg-12 p-0">
+                    <div class="row m-0 p-2">
+                      <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                          <label class="text-grey w-100 mb-2">Reason for Return</label>
+                          <select style="width: 22%;" [(ngModel)]="selectedReason">
+                            <option value="" disabled>-----------------Select----------------------</option>
+                            <option [value]=opts.code *ngFor="let opts of defectDetails">{{opts.description}}</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <accordion>
+                      <accordion-group [isOpened]="true">
+
+                        <div class="accordion_content  bdt-0 mb-3 p-0">
+                          <div class="row m-0 pt-3 pb-3">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                              <!-- <angular-file-uploader
+                                              [config]="afuConfig"   >
+                                         </angular-file-uploader> -->
+                              <!-- <div class="file_uploader_wrapper">
+                                            <div class="form-group">
+                                              <label class="text-grey w-100 mb-2 text-center">Business Registration Document</label>
+                                           </div>
+                                            <div class="customupload">
+                                              <input type="file" id="file" multiple
+                                              (change)="getFileDetails($event)">
+                                              <img src="../../../assets/images/upload.png" alt="">
+                                              <label for="">Upload Proof</label>
+                                            </div>
+    
+                                                <div class="name_loop" *ngFor="let file of myFiles">
+                                                  <ul class="p-0">
+                                                    <li>
+                                                      <img class="default_docs" src="../../../assets/images/documents.png" alt="">
+                                                      {{file.name}}
+                                                      <img class="remove_upload" src="../../../assets/images/remove.png" alt="">
+                                                    </li>
+                                                  </ul>
+                                                  <div>  </div>
+                                                </div>
+                                          </div> -->
+                            </div>
+                          </div>
+                        </div>
+                        <div class="flex_buttons initial-orders-btn mb-4 mt-4">
+                          <button class="btn-return" routerLink="/customer/my-orders">Cancel</button>
+                          <button class="btn-invoice" (click)="returnReason(orders)"
+                            [disabled]="convertToNum(orders.returnedQty) == convertToNum(orders.quantity)  || convertToNum(orders.returnedQty1) == 0">Submit</button>
+                        </div>
+
+                      </accordion-group>
+                    </accordion>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>

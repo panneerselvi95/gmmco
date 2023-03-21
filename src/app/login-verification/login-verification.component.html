@@ -1,0 +1,84 @@
+<div class="login-parent-division col-xl-12 no-padding">
+    <div class="row m-0">
+    <div class="login-left-section col-xl-3 col-lg-4 col-md-12 col-12 p-0">
+      <div class="lls-tp_img"> 
+      <img src="../../assets/images/logo.png">
+        </div>
+        <div class="lls-caption"> 
+          <h2><strong>Welcome to</strong>GmmcoAssist</h2>
+          <p>Pushing boundaries to provide the 
+            best products and services to you since 1967</p>
+          <div class="arrow_img_section">
+            <img src="../../assets/images/Poly_1.png">
+            <img src="../../assets/images/Poly_2.png">
+            <img src="../../assets/images/Poly_3.png">
+          </div>    
+            </div>
+            <div class="lld_img-section">
+              <img src="../../assets/images/login_left_down.png">
+              </div>
+    </div>
+    <div class="login-right-section col-xl-9 col-lg-8 col-md-12 col-12 p-0">
+        <div class="login-base-section">
+            <div class="form-section verify-form-sec">
+            <h4><img src="../../assets/images/left-arrow-vfy.png"/> OTP Verification</h4> 
+            <span>For the security of your account, please enter the
+                security code</span> 
+              <form>
+                <div class="form-control verify-section">
+                  <input type="text" placeholder="" value=""/>
+                  <input type="text" placeholder="" value=""/>
+                  <input type="text" placeholder="" value=""/>
+                  <input type="text" placeholder="" value=""/>
+                  <input type="text" placeholder="" value=""/>
+                </div>
+                <div class="form-control final-reg-btn otp-link">
+                    <span><b>Don’t receive the OTP?</b> <a href="#">Resend OTP</a></span>
+                </div>
+                <div class="form-control login-btn">
+                  <button type="button" (click)="triggerModal(modalData)" class="btn-login-btn btn">Verify</button>
+                  </div>
+                  <div class="form-control login-btn">
+                    <button type="button" (click)="triggerModal1(modalData1)" class="btn-login-btn btn">Verify</button>
+                    </div>
+                  <div class="form-control otp-dummy-content">
+                    <p>OTP has been sent to your mobile number XXXX XX 9867
+                        registered with Gmmco Cat</p>
+                    </div>
+            </form>
+            <!-- <button class="btn btn-danger" >Open Modal</button> -->
+            </div>  
+        </div>
+        <!-- modal popup -->
+    <ng-template #modalData let-modal>
+        <!-- <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button> -->
+      <div class="modal-body">
+        <div class="login-popup-pnt">
+          <img src="../../assets/images/popup-check.png"/>
+          <p>Login <strong>Successfully</strong></p>
+          <button type="button" class="btn btn-danger cnt-log-pop" (click)="modal.close('Save click')">Continue</button>
+      </div>
+    </div>
+      
+    </ng-template>
+
+    <ng-template #modalData1 let-modal>
+      
+        <div class="modal-body">
+            <div class="login-popup-pnt">
+              <img src="../../assets/images/key-img.png"/>
+              <p>Password changed <strong>Successfully</strong></p>
+              <button type="button" class="btn btn-danger cnt-log-pop" (click)="modal.close('Save click')">Continue</button>
+          </div>
+        </div>
+    </ng-template>
+ 
+   <!--End modal popup -->
+    </div>
+  </div>
+    </div>
+  
+
+    

@@ -1,0 +1,16 @@
+<button class="btn btn-lg btn-outline-primary" (click)="open(mymodal)">Open My Modal</button>
+<ng-template #mymodal let-modal>
+
+  <div class="modal-body text-align-center">
+    <div class="tik-pop">
+            <img src="../../../assets/images/msg-tick.png" alt="">
+    </div>
+    <div class="cre-sec-txt msg-txt">
+      <p>Service Inspection Report sent to your email id <span> Successfully</span></p>
+      <div class="cre-btn">
+        <button class="no-btn"><a>Continue</a></button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>

@@ -1,0 +1,101 @@
+.lod_sec_foc {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 29px;
+    color: #FFFFFF;
+}
+
+.lod_sec_table .checkbox label {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    padding-left: 25px;
+    /* 10 px padding right + 15px input type*/
+    margin-right: 10px;
+    /* margin between inputs types */
+}
+
+.lod_sec_table .checkbox label:before {
+    content: "";
+    width: 22px;
+    height: 24px;
+    position: absolute;
+    left: 0;
+    background: url('../../../assets/images/before-yellow.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    top: -8px;
+}
+
+.lod_sec_table .checkbox input[type=radio] {
+    display: none;
+}
+
+.lod_sec_table .checkbox .checkbox label:before {
+    background: url('../../../assets/images/before-yellow.png');
+    margin-top: 2px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.lod_sec_table .checkbox input[type=radio]:checked+label:before {
+    background: url('../../../assets/images/after-yellow.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+table.table.lod_sec_table thead th {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 21px;
+    color: #888888;
+    padding-left: 0;
+    border: 0 !important;
+}
+
+table.table.lod_sec_table tbody td {
+    padding-left: 0;
+    border: 0 !important;
+}
+
+.disclaimer_para h3 {
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 20px;
+    text-transform: uppercase;
+    color: #B5B5B5;
+}
+
+.disclaimer_para .disclaimer_text {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 135.4%;
+    text-align: justify;
+    color: #FFFFFF;
+}
+
+.lod-sec.d-block .table-responsive {
+    overflow-y: auto;
+    height: auto;
+    max-height: 239px;
+}
+
+.lod-sec.d-block .table-responsive::-webkit-scrollbar {
+    width: 3px;
+}
+
+.lod-sec.d-block .table-responsive::-webkit-scrollbar-track {
+    background-color: #6d6d6d;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.lod-sec.d-block .table-responsive::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #fff;
+}
+
+// table.table.lod_sec_table tbody tr td:nth-child(2) {
+//     text-align: end;
+// }

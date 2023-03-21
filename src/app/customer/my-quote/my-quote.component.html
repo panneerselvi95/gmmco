@@ -1,0 +1,179 @@
+<app-header></app-header>
+<div class="pg-wrp">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h3 class="pay-sec">{{'My Quotes'|translate}}</h3>
+
+                <div *ngIf="quotesList?.length > 0; else nodatafnd">
+                    <div class="lod-sec ds-bk" *ngFor="let quotes of quotesList;let i = index">
+                        <div class="ds-bk-sec">
+                            <div class="ds-txt ds-co">
+                                <label>{{'Quote Number'|translate}}</label>
+                                <p>{{quotes.quotationNumber}}</p>
+                            </div>
+
+
+                            <div class="ds-txt2 ds-co ds-co-right">
+                                <label>{{'Total Quantity'  |translate }}</label>
+                                <p style="text-align: unset !important;" class="pr-5 mr-4">{{quotes.quantity | number: '1.0-0'}}</p>
+                            </div>
+                            <div class="ds-txt2 ds-co ds-co-right">
+                                <label>{{'Total Value'|translate}}</label>
+                                <p>{{convertToIntegerValue(quotes.totalValue1)+convertToIntegerValue(quotes.totalTax1) | currency:'INR' }}</p>
+                            </div>
+                            <div class="ds-txt3 ds-co">
+                                <label>{{'Valid From'|translate}}</label>
+                                <p>{{quotes.validFrom}}</p>
+                            </div>
+                            <div class="ds-txt3 ds-co">
+                                <label>{{'Valid till'|translate}}</label>
+                                <p>{{quotes.validTo | date:"dd-MM-yyyy"}}</p>
+                            </div>
+                        </div>
+                        <div class="ad-fix-sec pt-4">
+                            <div class="ds-tol">
+                                <label>{{'Mode'|translate}}</label>
+                                <button [ngClass]="quotes.orderType=='ZAPQ'?'edit-btn':'fix-btn'" class="cursor_none"><a [title]="quotes.orderType=='ZAPQ'?'Editable':'Fixed'">{{quotes.orderType=='ZAPQ'?'Editable':'Fixed'}}</a></button>
+                                <!-- <button fix-btn class="edit-btn"><a>Editable</a></button> -->
+
+                            </div>
+                            <div class="ds-tol">
+                                <label>{{'Status'|translate}}</label>
+                                <button class="edit-btn cursor_none"><a  [title]="finddiffdays(quotes.validTo,i)==true?'Active':'Expired'">{{finddiffdays(quotes.validTo,i)==true?'Active':'Expired'}}</a></button>
+                                <!-- <button fix-btn class="edit-btn"><a>Editable</a></button> -->
+
+                            </div>
+
+                            <div class="ad-cd-sc">
+                                <p><a (click)="add_Quotes(quotes)" [class.disabled]="finddiffdays(quotes.validTo,i)==false?true:null">{{'Load to cart'|translate}}<img src="../../../assets/images/ad-arrow.png" alt=""></a></p>
+                                <p><a routerLink="/customer/quote-details/{{quotes.quotationNumber}}">{{'Quote Detail'|translate}}<img src="../../../assets/images/ad-arrow.png" alt=""></a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <ng-template #nodatafnd>
+                    <div class="lod-sec ds-bk">
+                        <span style="color:aliceblue">{{'NO QUOTES FOUND'|translate}} !!!</span>
+                    </div>
+
+                </ng-template>
+
+                <!-- <div class="lod-sec ds-bk">
+                <div class="ds-bk-sec">
+                      <div class="ds-txt ds-co">
+                          <label>Invoice Number</label>
+                          <p>QUO0124686</p>
+                      </div>
+
+                      <div class="ds-txt2 ds-co">
+                          <label>Order Value</label>
+                          <p>₹ 2000</p>
+                      </div>
+                      <div class="ds-txt3 ds-co">
+                        <label>Valid till</label>
+                        <p>09 Jan 2021</p>
+                      </div>
+                </div>
+                    <div class="ad-fix-sec">
+                        <div class="ds-tol">
+                          <label>Status</label>
+                          <button class="edit-btn"><a>Editable</a></button>
+                        </div>
+                      <div class="ad-cd-sc">
+                        <p>Add to Cart<img src="../../../assets/images/ad-arrow.png" alt=""></p>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="lod-sec ds-bk">
+                <div class="ds-bk-sec">
+                      <div class="ds-txt ds-co">
+                          <label>Invoice Number</label>
+                          <p>QUO0124686</p>
+                      </div>
+
+                      <div class="ds-txt2 ds-co">
+                          <label>Order Value</label>
+                          <p>₹ 2000</p>
+                      </div>
+                      <div class="ds-txt3 ds-co">
+                        <label>Valid till</label>
+                        <p>09 Jan 2021</p>
+                      </div>
+                </div>
+                    <div class="ad-fix-sec">
+                        <div class="ds-tol">
+                          <label>Status</label>
+                          <button class="edit-btn"><a>Editable</a></button>
+                        </div>
+                      <div class="ad-cd-sc">
+                        <p>Add to Cart<img src="../../../assets/images/ad-arrow.png" alt=""></p>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="lod-sec ds-bk">
+                <div class="ds-bk-sec">
+                      <div class="ds-txt ds-co">
+                          <label>Invoice Number</label>
+                          <p>QUO0124686</p>
+                      </div>
+
+                      <div class="ds-txt2 ds-co">
+                          <label>Order Value</label>
+                          <p>₹ 2000</p>
+                      </div>
+                      <div class="ds-txt3 ds-co">
+                        <label>Valid till</label>
+                        <p>09 Jan 2021</p>
+                      </div>
+                </div>
+                    <div class="ad-fix-sec">
+                        <div class="ds-tol">
+                          <label>Status</label>
+                          <button class="edit-btn"><a>Editable</a></button>
+                        </div>
+                      <div class="ad-cd-sc">
+                        <p>Add to Cart<img src="../../../assets/images/ad-arrow.png" alt=""></p>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="lod-sec ds-bk">
+                <div class="ds-bk-sec">
+                      <div class="ds-txt ds-co">
+                          <label>Invoice Number</label>
+                          <p>QUO0124686</p>
+                      </div>
+
+                      <div class="ds-txt2 ds-co">
+                          <label>Order Value</label>
+                          <p>₹ 2000</p>
+                      </div>
+                      <div class="ds-txt3 ds-co">
+                        <label>Valid till</label>
+                        <p>09 Jan 2021</p>
+                      </div>
+                </div>
+                    <div class="ad-fix-sec">
+                        <div class="ds-tol">
+                          <label>Status</label>
+                          <button class="edit-btn"><a>Editable</a></button>
+                        </div>
+                      <div class="ad-cd-sc">
+                        <p>Add to Cart<img src="../../../assets/images/ad-arrow.png" alt=""></p>
+                      </div>
+                  </div>
+              </div> -->
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

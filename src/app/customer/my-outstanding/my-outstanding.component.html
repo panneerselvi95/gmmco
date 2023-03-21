@@ -1,0 +1,739 @@
+<app-header></app-header>
+<div class="content_section w-100 float-left">
+<div class="container">
+  <!-- <div class="header_float">
+      <div class="bread_crumb">
+        <h1 class="mb-0"><img class="mr-2" width="30" src="../../../../assets/images/back-arrow.png" alt=""> My Account   >  My Orders > <span><b>My Outstanding</b></span> </h1>
+      </div>
+      <div class="tabs_wrapper">
+
+      </div>
+  </div> -->
+   <div class="row">
+      <div class="w-100 float-left">
+         <div class="row m-0">
+            <div class="container Outstanding bg-tab-sec">
+               
+               <ul ngbNav #nav="ngbNav" class="nav-tabs">
+                  <div class="bread_crumb">
+                     <h1 class="mb-0"><a><img routerLink="/customer/home" class="mr-2" width="30" src="../../../../assets/images/back-arrow.png" alt=""></a> {{'Home'|translate}}   >  <span><b>{{'Pending Payment History'|translate}}</b></span> </h1>
+                   </div>
+                  <!-- <li class="frst-list" ngbNavItem>
+                    <a ngbNavLink>My Orders</a>
+                    <ng-template ngbNavContent>First content</ng-template>
+                  </li> -->
+                  <li ngbNavItem>
+                    <a ngbNavLink>{{'Pending Payment History'|translate}}</a>
+                    <ng-template ngbNavContent>
+                     <div class="ots-section w-100">
+                        <div class="flex_headers">
+                          <h4 class="wrapper_title text-white mt-4 mb-4"> {{'Pending Payments - Payment History'|translate}}</h4>
+                          <!-- <button  routerLink="/customer/shipping-address-quote" class="btn-invoice">Make Payment for All</button> -->
+                        </div>
+          
+                       <div *ngIf="outstandlist?.length > 0 ; else nodatafound">
+                        <div class="accordion_wrapper mb-4" *ngFor="let outlist of outstandlist">
+                           <!-- <div class="accordion_row mb-3">
+                             <div class="bg_color_panel col-lg-12 p-0">
+                              <div class="row m-0 p-2">
+                                 <div class="col-lg-3 col-md-3 col-sm-6">
+                                   <div class="custom_checks">
+                                       <input type="checkbox" id="fruit1" name="fruit-1" value="Apple" checked>
+                                       <label for="fruit1"> </label>
+                                   </div>
+                                   <div class="form-group">
+                                      <label class="text-grey">Order Number</label>
+                                      <p class="text-white">GMMC124686</p>
+                                   </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                   <div class="form-group">
+                                      <label class="text-grey">Order Value</label>
+                                      <p class="text-white">₹ 2000</p>
+                                   </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                   <div class="form-group">
+                                      <label class="text-grey">Total Invoice</label>
+                                      <p class="text-white">3</p>
+                                   </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                   <div class="form-group float-right">
+                                      <label class="text-grey">Due Date</label>
+                                      <p class="text-white">09 Jan 2021</p>
+                                   </div>
+                                </div>
+                               </div>
+         
+                                 <accordion [showArrows]="true">
+                                    <accordion-group [isOpened]="true"  >
+                                       <div class="accordion_content mt-4 mb-3">
+                                          <div class="col-lg-12 col-md-12 col-sm-12">
+                                             <div class="row m-0">
+                                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                                 <div class="custom_checks">
+                                                   <input type="checkbox" id="fruit2" name="fruit-1" value="Apple" checked>
+                                                   <label for="fruit2"> </label>
+                                               </div>
+                                                   <div class="form-group">
+                                                      <label class="text-grey">Invoice</label>
+                                                      <p class="text-white">INV001</p>
+                                                   </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                                   <div class="form-group">
+                                                      <label class="text-grey">Quantity</label>
+                                                      <p class="text-white">5</p>
+                                                   </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                                   <div class="form-group">
+                                                      <label class="text-grey"> Date</label>
+                                                      <p class="text-white">8 Mar 2021</p>
+                                                   </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-6 d-flex justify-content-end align-items-center">
+                                                   <div class="form-group d-flex align-items-center mb-0">
+                                                      <button class="status_check btn-pending">Pending</button>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="accordion_content mt-4 mb-3">
+                                         <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="row m-0">
+                                               <div class="col-lg-3 col-md-3 col-sm-6">
+                                                 <div class="custom_checks">
+                                                   <input type="checkbox" id="fruit3" name="fruit-1" value="Apple" checked>
+                                                   <label for="fruit3"> </label>
+                                               </div>
+                                                  <div class="form-group">
+                                                     <label class="text-grey">Invoice</label>
+                                                     <p class="text-white">INV001</p>
+                                                  </div>
+                                               </div>
+                                               <div class="col-lg-3 col-md-3 col-sm-6">
+                                                  <div class="form-group">
+                                                     <label class="text-grey">Quantity</label>
+                                                     <p class="text-white">5</p>
+                                                  </div>
+                                               </div>
+                                               <div class="col-lg-3 col-md-3 col-sm-6">
+                                                  <div class="form-group">
+                                                     <label class="text-grey"> Date</label>
+                                                     <p class="text-white">8 Mar 2021</p>
+                                                  </div>
+                                               </div>
+                                               <div class="col-lg-3 col-md-3 col-sm-6 d-flex justify-content-end align-items-center">
+                                                  <div class="form-group d-flex align-items-center mb-0">
+                                                     <button class="status_check btn-pending">Pending</button>
+                                                  </div>
+                                               </div>
+                                            </div>
+                                         </div>
+                                      </div>
+                                      <div class="accordion_content mt-4 mb-3">
+                                       <div class="col-lg-12 col-md-12 col-sm-12">
+                                          <div class="row m-0">
+                                             <div class="col-lg-3 col-md-3 col-sm-6">
+                                               <div class="custom_checks">
+                                                 <input type="checkbox" id="fruit4" name="fruit-1" value="Apple" checked>
+                                                 <label for="fruit4"> </label>
+                                             </div>
+                                                <div class="form-group">
+                                                   <label class="text-grey">Invoice</label>
+                                                   <p class="text-white">INV001</p>
+                                                </div>
+                                             </div>
+                                             <div class="col-lg-3 col-md-3 col-sm-6">
+                                                <div class="form-group">
+                                                   <label class="text-grey">Quantity</label>
+                                                   <p class="text-white">5</p>
+                                                </div>
+                                             </div>
+                                             <div class="col-lg-3 col-md-3 col-sm-6">
+                                                <div class="form-group">
+                                                   <label class="text-grey"> Date</label>
+                                                   <p class="text-white">8 Mar 2021</p>
+                                                </div>
+                                             </div>
+                                             <div class="col-lg-3 col-md-3 col-sm-6 d-flex justify-content-end align-items-center">
+                                                <div class="form-group d-flex align-items-center mb-0">
+                                                   <button class="status_check btn-pending">Pending</button>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="accordion_content mt-4 mb-3">
+                                     <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="row m-0">
+                                           <div class="col-lg-3 col-md-3 col-sm-6">
+                                             <div class="custom_checks">
+                                               <input type="checkbox" id="fruit6" name="fruit-1" value="Apple" checked>
+                                               <label for="fruit6"> </label>
+                                           </div>
+                                              <div class="form-group">
+                                                 <label class="text-grey">Invoice</label>
+                                                 <p class="text-white">INV001</p>
+                                              </div>
+                                           </div>
+                                           <div class="col-lg-3 col-md-3 col-sm-6">
+                                              <div class="form-group">
+                                                 <label class="text-grey">Quantity</label>
+                                                 <p class="text-white">5</p>
+                                              </div>
+                                           </div>
+                                           <div class="col-lg-3 col-md-3 col-sm-6">
+                                              <div class="form-group">
+                                                 <label class="text-grey"> Date</label>
+                                                 <p class="text-white">8 Mar 2021</p>
+                                              </div>
+                                           </div>
+                                           <div class="col-lg-3 col-md-3 col-sm-6 d-flex justify-content-end align-items-center">
+                                              <div class="form-group d-flex align-items-center mb-0">
+                                                 <button class="status_check btn-pending">Pending</button>
+                                              </div>
+                                           </div>
+                                        </div>
+                                     </div>
+                                  </div>
+                                  <div class="accordion_content mt-4 mb-3">
+                                   <div class="col-lg-12 col-md-12 col-sm-12">
+                                      <div class="row m-0">
+                                         <div class="col-lg-3 col-md-3 col-sm-6">
+                                           <div class="custom_checks">
+                                             <input type="checkbox" id="fruit7" name="fruit-1" value="Apple" checked>
+                                             <label for="fruit7"> </label>
+                                         </div>
+                                            <div class="form-group">
+                                               <label class="text-grey">Invoice</label>
+                                               <p class="text-white">INV001</p>
+                                            </div>
+                                         </div>
+                                         <div class="col-lg-3 col-md-3 col-sm-6">
+                                            <div class="form-group">
+                                               <label class="text-grey">Quantity</label>
+                                               <p class="text-white">5</p>
+                                            </div>
+                                         </div>
+                                         <div class="col-lg-3 col-md-3 col-sm-6">
+                                            <div class="form-group">
+                                               <label class="text-grey"> Date</label>
+                                               <p class="text-white">8 Mar 2021</p>
+                                            </div>
+                                         </div>
+                                         <div class="col-lg-3 col-md-3 col-sm-6 d-flex justify-content-end align-items-center">
+                                            <div class="form-group d-flex align-items-center mb-0">
+                                               <button class="status_check btn-pending">Pending</button>
+                                            </div>
+                                         </div>
+                                      </div>
+                                   </div>
+                                </div>
+         
+                                       <div class="flex_buttons mb-4">
+                                         <button class="btn-invoice">Make Payment Now</button>
+                                       </div>
+                                       <accordion-heading >
+                                         <div class="flex_footer_accordion">
+                                            <div class="form-group ">
+                                               <label class="text-grey">Status</label>
+                                               <button class="status_check btn-pending">Pending</button>
+                                            </div>
+                                            <span class="text-white showmore">More Detail <img src="../../../../assets/images/arrow-right.png" alt=""></span>
+                                            <span class="text-white showless">Less Detail <img src="../../../../assets/images/arrow-down.png" alt=""></span>
+                                         </div>
+                                      </accordion-heading>
+                                    </accordion-group>
+                                 </accordion>
+                              </div>
+                           </div> -->
+         
+                           <div class="accordion_row mb-3">
+                             <div class="bg_color_panel col-lg-12 p-0">
+                              <div class="row m-0 p-2">
+                                 <div class="col-lg-2 col-md-2 col-sm-6 col-12">
+                                   <!-- <div class="custom_checks">
+                                       <input type="checkbox" id="fruit10" name="fruit-1" value="Apple"  >
+                                       <label for="fruit10"> </label>
+                                   </div> -->
+                                   <div class="form-group">
+                                      <label class="text-grey">{{'Customer Code'|translate}}</label>
+                                      <p class="text-white">{{outlist.iCustomerCode || 'NA'}}</p>
+                                   </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-12" >
+                                   <div class="form-group">
+                                      <label class="text-grey">{{'Payment Date'|translate}}</label>
+                                      <p class="text-white">{{outlist.createdon  | date:'dd/MM/yyyy'}}</p>
+                                   </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-12">
+                                   <div class="form-group">
+                                      <label class="text-grey">{{'Payment Amount'|translate}}</label>
+                                      <p class="text-white">{{ outlist.iPaymentAmount  | currency:'INR'}}</p>
+                                   </div>
+                                </div>
+                                <div class="col-lg-2 col-md-2 col-sm-6 col-12">
+                                   <div class="form-group float-right">
+                                      <label class="text-grey">{{'Payment Mode'|translate}}</label>
+                                      <p class="text-white">{{outlist.iPaymentBank  }}</p>
+                                   </div>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-12">
+                                   <div class="form-group float-right">
+                                      <label class="text-grey">{{'Payment Reference ID'|translate}}</label>
+                                      <p class="text-white">{{outlist.iCcAvenueRefId }}</p>
+                                   </div>
+                                </div>
+                                <!-- <div class="col-lg-3 col-md-3 col-sm-6" >
+                                   <div class="form-group float-right">
+                                      <button class="btn-invoice" (click)="checkout(outlist)">{{'Make Payment Now'|translate}}</button>
+                                      <label class="text-grey">Due Date</label>
+                                      <p class="text-white">{{outlist.postingDate | date:'dd/MM/yyyy'}}</p>
+                                   </div>
+                                </div> -->
+                               </div>
+         
+                                 <!-- <accordion [showArrows]="true">
+                                    <accordion-group   >
+                                       <div class="accordion_content mt-4 mb-3">
+                                          <div class="col-lg-12 col-md-12 col-sm-12">
+                                             <div class="row m-0">
+                                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                                 <div class="custom_checks">
+                                                   <input type="checkbox" id="fruit111" name="fruit-111" value=" "   >
+                                                   <label for="fruit111"> </label>
+                                               </div>
+                                                   <div class="form-group">
+                                                      <label class="text-grey">Invoice</label>
+                                                      <p class="text-white">INV001</p>
+                                                   </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                                   <div class="form-group">
+                                                      <label class="text-grey">Quantity</label>
+                                                      <p class="text-white">5</p>
+                                                   </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                                   <div class="form-group">
+                                                      <label class="text-grey"> Date</label>
+                                                      <p class="text-white">8 Mar 2021</p>
+                                                   </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-6 d-flex justify-content-end align-items-center">
+                                                   <div class="form-group d-flex align-items-center mb-0">
+                                                      <button class="status_check btn-override">Override</button>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="accordion_content mt-4 mb-3">
+                                         <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="row m-0">
+                                               <div class="col-lg-3 col-md-3 col-sm-6">
+                                                 <div class="custom_checks">
+                                                   <input type="checkbox" id="fruit1" name="fruit-1" value="Apple" checked>
+                                                   <label for="fruit1"> </label>
+                                               </div>
+                                                  <div class="form-group">
+                                                     <label class="text-grey">Invoice</label>
+                                                     <p class="text-white">INV001</p>
+                                                  </div>
+                                               </div>
+                                               <div class="col-lg-3 col-md-3 col-sm-6">
+                                                  <div class="form-group">
+                                                     <label class="text-grey">Quantity</label>
+                                                     <p class="text-white">5</p>
+                                                  </div>
+                                               </div>
+                                               <div class="col-lg-3 col-md-3 col-sm-6">
+                                                  <div class="form-group">
+                                                     <label class="text-grey"> Date</label>
+                                                     <p class="text-white">8 Mar 2021</p>
+                                                  </div>
+                                               </div>
+                                               <div class="col-lg-3 col-md-3 col-sm-6 d-flex justify-content-end align-items-center">
+                                                  <div class="form-group d-flex align-items-center mb-0">
+                                                     <button class="status_check btn-override">Override</button>
+                                                  </div>
+                                               </div>
+                                            </div>
+                                         </div>
+                                      </div>
+                                      <div class="accordion_content mt-4 mb-3">
+                                       <div class="col-lg-12 col-md-12 col-sm-12">
+                                          <div class="row m-0">
+                                             <div class="col-lg-3 col-md-3 col-sm-6">
+                                               <div class="custom_checks">
+                                                 <input type="checkbox" id="fruit1" name="fruit-1" value="Apple" checked>
+                                                 <label for="fruit1"> </label>
+                                             </div>
+                                                <div class="form-group">
+                                                   <label class="text-grey">Invoice</label>
+                                                   <p class="text-white">INV001</p>
+                                                </div>
+                                             </div>
+                                             <div class="col-lg-3 col-md-3 col-sm-6">
+                                                <div class="form-group">
+                                                   <label class="text-grey">Quantity</label>
+                                                   <p class="text-white">5</p>
+                                                </div>
+                                             </div>
+                                             <div class="col-lg-3 col-md-3 col-sm-6">
+                                                <div class="form-group">
+                                                   <label class="text-grey"> Date</label>
+                                                   <p class="text-white">8 Mar 2021</p>
+                                                </div>
+                                             </div>
+                                             <div class="col-lg-3 col-md-3 col-sm-6 d-flex justify-content-end align-items-center">
+                                                <div class="form-group d-flex align-items-center mb-0">
+                                                   <button class="status_check btn-override">Override</button>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="accordion_content mt-4 mb-3">
+                                     <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="row m-0">
+                                           <div class="col-lg-3 col-md-3 col-sm-6">
+                                             <div class="custom_checks">
+                                               <input type="checkbox" id="fruit1" name="fruit-1" value="Apple" checked>
+                                               <label for="fruit1"> </label>
+                                           </div>
+                                              <div class="form-group">
+                                                 <label class="text-grey">Invoice</label>
+                                                 <p class="text-white">INV001</p>
+                                              </div>
+                                           </div>
+                                           <div class="col-lg-3 col-md-3 col-sm-6">
+                                              <div class="form-group">
+                                                 <label class="text-grey">Quantity</label>
+                                                 <p class="text-white">5</p>
+                                              </div>
+                                           </div>
+                                           <div class="col-lg-3 col-md-3 col-sm-6">
+                                              <div class="form-group">
+                                                 <label class="text-grey"> Date</label>
+                                                 <p class="text-white">8 Mar 2021</p>
+                                              </div>
+                                           </div>
+                                           <div class="col-lg-3 col-md-3 col-sm-6 d-flex justify-content-end align-items-center">
+                                              <div class="form-group d-flex align-items-center mb-0">
+                                                 <button class="status_check btn-override">Override</button>
+                                              </div>
+                                           </div>
+                                        </div>
+                                     </div>
+                                  </div>
+                                  <div class="accordion_content mt-4 mb-3">
+                                   <div class="col-lg-12 col-md-12 col-sm-12">
+                                      <div class="row m-0">
+                                         <div class="col-lg-3 col-md-3 col-sm-6">
+                                           <div class="custom_checks">
+                                             <input type="checkbox" id="fruit1" name="fruit-1" value="Apple" checked>
+                                             <label for="fruit1"> </label>
+                                         </div>
+                                            <div class="form-group">
+                                               <label class="text-grey">Invoice</label>
+                                               <p class="text-white">INV001</p>
+                                            </div>
+                                         </div>
+                                         <div class="col-lg-3 col-md-3 col-sm-6">
+                                            <div class="form-group">
+                                               <label class="text-grey">Quantity</label>
+                                               <p class="text-white">5</p>
+                                            </div>
+                                         </div>
+                                         <div class="col-lg-3 col-md-3 col-sm-6">
+                                            <div class="form-group">
+                                               <label class="text-grey"> Date</label>
+                                               <p class="text-white">8 Mar 2021</p>
+                                            </div>
+                                         </div>
+                                         <div class="col-lg-3 col-md-3 col-sm-6 d-flex justify-content-end align-items-center">
+                                            <div class="form-group d-flex align-items-center mb-0">
+                                               <button class="status_check btn-override">Override</button>
+                                            </div>
+                                         </div>
+                                      </div>
+                                   </div>
+                                </div>
+         
+                                       <div class="flex_buttons mb-4">
+                                         <button class="btn-invoice">Make Payment Now</button>
+                                       </div>
+                                       <accordion-heading >
+                                         <div class="flex_footer_accordion">
+                                            <div class="form-group ">
+                                               <label class="text-grey">Status</label>
+                                               <button class="status_check btn-override">Override</button>
+                                            </div>
+                                            <span class="text-white showmore">More Detail <img src="../../../../assets/images/arrow-right.png" alt=""></span>
+                                            <span class="text-white showless">Less Detail <img src="../../../../assets/images/arrow-down.png" alt=""></span>
+                                         </div>
+                                      </accordion-heading>
+                                    </accordion-group>
+                                 </accordion> -->
+                              </div>
+                           </div>
+         
+                           <!-- <div class="accordion_row mb-3">
+                             <div class="bg_color_panel col-lg-12 p-0">
+                              <div class="row m-0 p-2">
+                                 <div class="col-lg-3 col-md-3 col-sm-6">
+                                   <div class="custom_checks">
+                                       <input type="checkbox" id="fruit12" name="fruit-1" value="Apple"  >
+                                       <label for="fruit12"> </label>
+                                   </div>
+                                   <div class="form-group">
+                                      <label class="text-grey">Order Number</label>
+                                      <p class="text-white">GMMC124686</p>
+                                   </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                   <div class="form-group">
+                                      <label class="text-grey">Order Value</label>
+                                      <p class="text-white">₹ 2000</p>
+                                   </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                   <div class="form-group">
+                                      <label class="text-grey">Total Invoice</label>
+                                      <p class="text-white">3</p>
+                                   </div>
+                                </div>
+                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                   <div class="form-group float-right">
+                                      <label class="text-grey">Due Date</label>
+                                      <p class="text-white">09 Jan 2021</p>
+                                   </div>
+                                </div>
+                               </div>
+         
+                                 <accordion [showArrows]="true">
+                                    <accordion-group  >
+                                       <div class="accordion_content mt-4 mb-3">
+                                          <div class="col-lg-12 col-md-12 col-sm-12">
+                                             <div class="row m-0">
+                                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                                 <div class="custom_checks">
+                                                   <input type="checkbox" id="fruit11" name="fruit-1" value="Apple"  >
+                                                   <label for="fruit11"> </label>
+                                               </div>
+                                                   <div class="form-group">
+                                                      <label class="text-grey">Invoice</label>
+                                                      <p class="text-white">INV001</p>
+                                                   </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                                   <div class="form-group">
+                                                      <label class="text-grey">Quantity</label>
+                                                      <p class="text-white">5</p>
+                                                   </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                                   <div class="form-group">
+                                                      <label class="text-grey"> Date</label>
+                                                      <p class="text-white">8 Mar 2021</p>
+                                                   </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-6 d-flex justify-content-end align-items-center">
+                                                   <div class="form-group d-flex align-items-center mb-0">
+                                                      <button class="status_check btn-pending">Pending</button>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                       <div class="accordion_content mt-4 mb-3">
+                                         <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="row m-0">
+                                               <div class="col-lg-3 col-md-3 col-sm-6">
+                                                 <div class="custom_checks">
+                                                   <input type="checkbox" id="fruit3" name="fruit-1" value="Apple" checked>
+                                                   <label for="fruit3"> </label>
+                                               </div>
+                                                  <div class="form-group">
+                                                     <label class="text-grey">Invoice</label>
+                                                     <p class="text-white">INV001</p>
+                                                  </div>
+                                               </div>
+                                               <div class="col-lg-3 col-md-3 col-sm-6">
+                                                  <div class="form-group">
+                                                     <label class="text-grey">Quantity</label>
+                                                     <p class="text-white">5</p>
+                                                  </div>
+                                               </div>
+                                               <div class="col-lg-3 col-md-3 col-sm-6">
+                                                  <div class="form-group">
+                                                     <label class="text-grey"> Date</label>
+                                                     <p class="text-white">8 Mar 2021</p>
+                                                  </div>
+                                               </div>
+                                               <div class="col-lg-3 col-md-3 col-sm-6 d-flex justify-content-end align-items-center">
+                                                  <div class="form-group d-flex align-items-center mb-0">
+                                                     <button class="status_check btn-pending">Pending</button>
+                                                  </div>
+                                               </div>
+                                            </div>
+                                         </div>
+                                      </div>
+                                      <div class="accordion_content mt-4 mb-3">
+                                       <div class="col-lg-12 col-md-12 col-sm-12">
+                                          <div class="row m-0">
+                                             <div class="col-lg-3 col-md-3 col-sm-6">
+                                               <div class="custom_checks">
+                                                 <input type="checkbox" id="fruit4" name="fruit-1" value="Apple" checked>
+                                                 <label for="fruit4"> </label>
+                                             </div>
+                                                <div class="form-group">
+                                                   <label class="text-grey">Invoice</label>
+                                                   <p class="text-white">INV001</p>
+                                                </div>
+                                             </div>
+                                             <div class="col-lg-3 col-md-3 col-sm-6">
+                                                <div class="form-group">
+                                                   <label class="text-grey">Quantity</label>
+                                                   <p class="text-white">5</p>
+                                                </div>
+                                             </div>
+                                             <div class="col-lg-3 col-md-3 col-sm-6">
+                                                <div class="form-group">
+                                                   <label class="text-grey"> Date</label>
+                                                   <p class="text-white">8 Mar 2021</p>
+                                                </div>
+                                             </div>
+                                             <div class="col-lg-3 col-md-3 col-sm-6 d-flex justify-content-end align-items-center">
+                                                <div class="form-group d-flex align-items-center mb-0">
+                                                   <button class="status_check btn-pending">Pending</button>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="accordion_content mt-4 mb-3">
+                                     <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="row m-0">
+                                           <div class="col-lg-3 col-md-3 col-sm-6">
+                                             <div class="custom_checks">
+                                               <input type="checkbox" id="fruit6" name="fruit-1" value="Apple" checked>
+                                               <label for="fruit6"> </label>
+                                           </div>
+                                              <div class="form-group">
+                                                 <label class="text-grey">Invoice</label>
+                                                 <p class="text-white">INV001</p>
+                                              </div>
+                                           </div>
+                                           <div class="col-lg-3 col-md-3 col-sm-6">
+                                              <div class="form-group">
+                                                 <label class="text-grey">Quantity</label>
+                                                 <p class="text-white">5</p>
+                                              </div>
+                                           </div>
+                                           <div class="col-lg-3 col-md-3 col-sm-6">
+                                              <div class="form-group">
+                                                 <label class="text-grey"> Date</label>
+                                                 <p class="text-white">8 Mar 2021</p>
+                                              </div>
+                                           </div>
+                                           <div class="col-lg-3 col-md-3 col-sm-6 d-flex justify-content-end align-items-center">
+                                              <div class="form-group d-flex align-items-center mb-0">
+                                                 <button class="status_check btn-pending">Pending</button>
+                                              </div>
+                                           </div>
+                                        </div>
+                                     </div>
+                                  </div>
+                                  <div class="accordion_content mt-4 mb-3">
+                                   <div class="col-lg-12 col-md-12 col-sm-12">
+                                      <div class="row m-0">
+                                         <div class="col-lg-3 col-md-3 col-sm-6">
+                                           <div class="custom_checks">
+                                             <input type="checkbox" id="fruit7" name="fruit-1" value="Apple" checked>
+                                             <label for="fruit7"> </label>
+                                         </div>
+                                            <div class="form-group">
+                                               <label class="text-grey">Invoice</label>
+                                               <p class="text-white">INV001</p>
+                                            </div>
+                                         </div>
+                                         <div class="col-lg-3 col-md-3 col-sm-6">
+                                            <div class="form-group">
+                                               <label class="text-grey">Quantity</label>
+                                               <p class="text-white">5</p>
+                                            </div>
+                                         </div>
+                                         <div class="col-lg-3 col-md-3 col-sm-6">
+                                            <div class="form-group">
+                                               <label class="text-grey"> Date</label>
+                                               <p class="text-white">8 Mar 2021</p>
+                                            </div>
+                                         </div>
+                                         <div class="col-lg-3 col-md-3 col-sm-6 d-flex justify-content-end align-items-center">
+                                            <div class="form-group d-flex align-items-center mb-0">
+                                               <button class="status_check btn-pending">Pending</button>
+                                            </div>
+                                         </div>
+                                      </div>
+                                   </div>
+                                </div>
+         
+                                       <div class="flex_buttons mb-4">
+                                         <button class="btn-invoice">Make Payment Now</button>
+                                       </div>
+                                       <accordion-heading >
+                                         <div class="flex_footer_accordion">
+                                            <div class="form-group ">
+                                               <label class="text-grey">Status</label>
+                                               <button class="status_check btn-pending">Pending</button>
+                                            </div>
+                                            <span class="text-white showmore">More Detail <img src="../../../../assets/images/arrow-right.png" alt=""></span>
+                                            <span class="text-white showless">Less Detail <img src="../../../../assets/images/arrow-down.png" alt=""></span>
+                                         </div>
+                                      </accordion-heading>
+                                    </accordion-group>
+                                 </accordion>
+                              </div>
+                           </div>
+          -->
+         
+         
+         
+                        </div>
+                       </div>
+                         
+     <ng-template #nodatafound>
+      <div class="accordion_wrapper mb-4">
+         <span style="color: aliceblue;">{{'No Data Found'|translate}} !!!!!!</span>
+      </div>
+     </ng-template>
+
+
+                         </div>
+                    </ng-template>
+                  </li>
+                </ul>
+                <div [ngbNavOutlet]="nav"></div>
+                
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+<form #form ngNoForm
+id="nonseamless" 
+method="post" 
+name="redirect" 
+action="https://test.ccavenue.com/transaction/transaction.do?command=initiateTransaction">
+<input type="hidden" id="encRequest" name="encRequest" value="{{encRequestRes}}">
+<input type="hidden" name="access_code" id="access_code" value="{{accessCode}}">
+</form>
+<app-footer></app-footer>

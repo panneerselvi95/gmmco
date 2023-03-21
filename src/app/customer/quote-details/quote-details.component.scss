@@ -1,0 +1,18 @@
+.qd-divide {
+    width: 20%;
+}
+table{
+    width: 100%;
+    background-color: white;
+    padding: 10px;
+}
+table thead td {
+    background: grey;
+    color: white;
+}
+table thead .qd-divide .text-grey{
+    color: #fff !important;
+}
+table thead td,tbody td{
+    padding:10px !important;
+}

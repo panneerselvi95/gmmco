@@ -1,0 +1,117 @@
+<app-header></app-header>
+<div class="content_section w-100 float-left">
+    <div class="container">
+        <div class="header_float">
+            <div class="bread_crumb">
+                <h1 class="mb-0">
+                    <img routerLink="/customer/home" class="mr-2 c-pointer" width="30" src="../../../../assets/images/back-arrow.png" alt="">
+                    <!-- My Account > -->
+                    <span routerLink="/customer/valid-foc" class="c-pointer"> Valid FOC </span>
+                    <!-- <span> > <b></b>Quote Detail</span> -->
+                </h1>
+            </div>
+            <div class="tabs_wrapper">
+
+            </div>
+        </div>
+        <div class="row custom_row m-0">
+            <div class="w-100 float-left p-0">
+                <div class="row m-0">
+                    <div class="container p-0">
+                        <h4 class="wrapper_title text-white mt-4 mb-4">Valid FOC</h4>
+                        <p class="text-white">Listed below are Free of Cost(FOC) items that are available for redemption against the purchase.</p>
+                        <div class="accordion_wrapper mb-4 order_details">
+                            <div class="accordion_row mb-3">
+                                <div class="bg_color_panel col-lg-12 p-0">
+                                    <div *ngIf="myfocs?.length > 0 ; else nodatafound">
+                                        <div class="table-responsive">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <td class="qd-divide">
+                                                            <div class="form-group">
+                                                                <label class="text-grey">Contract Number</label>
+                                                                <p class="text-white"></p>
+                                                            </div>
+                                                        </td>
+                                                        <td class="qd-divide">
+                                                            <div class="form-group">
+                                                                <label class="text-grey">Redeemable Value</label>
+                                                                <p class="text-white"></p>
+                                                            </div>
+                                                        </td>
+                                                        <td class="qd-divide">
+                                                            <div class="form-group">
+                                                                <label class="text-grey">{{'Valid Till'| translate }}</label>
+                                                                <p class="text-white"></p>
+                                                            </div>
+                                                        </td>
+                                                        <td class="qd-divide">
+                                                            <div class="form-group">
+                                                                <label class="text-grey">Serial No</label>
+                                                                <p class="text-white"></p>
+                                                            </div>
+                                                        </td>
+                                                        <td class="qd-divide">
+                                                            <div class="form-group">
+                                                                <label class="text-grey ">Ref Invoice No</label>
+                                                                <p class="text-white"></p>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let myfoc of myfocs">
+                                                        <!-- <tr *ngFor="let quotes of quoteDetails; let i = index"> -->
+                                                        <td class="qd-divide">
+                                                            <div class="form-group material-prnt d-flex">
+                                                                <label class="text-white">{{ myfoc.valueContract }}</label>
+                                                                <p class="text-white"></p>
+                                                            </div>
+                                                        </td>
+                                                        <!-- number : '1.0-2' -->
+                                                        <td class="qd-divide">
+                                                            <div class="form-group material-prnt d-flex">
+                                                                <label class="text-white">{{ myfoc.balanceValue | currency:'INR':'symbol-narrow':'1.2-2' }}</label>
+                                                                <p class="text-white"></p>
+                                                            </div>
+                                                        </td>
+                                                        <td class="qd-divide">
+                                                            <div class="form-group material-prnt d-flex">
+                                                                <label class="text-white">{{ myfoc.cvalidTo | date:'dd/MM/yyyy' }}</label>
+                                                                <p class="text-white"></p>
+                                                            </div>
+                                                        </td>
+                                                        <td class="qd-divide">
+                                                            <div class="form-group material-prnt d-flex">
+                                                                <label class="text-white">{{ myfoc.serialNumber }}</label>
+                                                                <p class="text-white"></p>
+                                                            </div>
+                                                        </td>
+                                                        <td class="qd-divide">
+                                                            <div class="form-group ">
+                                                                <label class="text-white">{{ myfoc.refInvoiceNo}}</label>
+                                                                <p class="description"></p>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                    <ng-template #nodatafound>
+                                        <div class="accordion_wrapper mb-4">
+                                            <span class="p-5" style="color: aliceblue;">{{'No Data Found'|translate}} !!!!!!</span>
+                                        </div>
+                                    </ng-template>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>

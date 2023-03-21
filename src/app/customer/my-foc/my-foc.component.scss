@@ -1,0 +1,39 @@
+.qd-divide {
+    width: 20%;
+}
+
+table {
+    background: #191B1D;
+    box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.15);
+    border-radius: 5px;
+    width: 100%;
+}
+
+table thead td {
+    // background: grey;
+    color: white;
+}
+
+table thead td .form-group {
+    margin-bottom: 0;
+}
+
+// table thead .qd-divide .text-grey {
+//     color: #fff !important;
+// }
+table thead td,
+tbody td {
+    padding: 10px !important;
+}
+
+.order_details .text-grey {
+    color: #888888 !important;
+}
+
+.order_details .text-white {
+    color: white !important;
+}
+
+td.qd-divide:nth-child(2) label {
+    text-align: end;
+}

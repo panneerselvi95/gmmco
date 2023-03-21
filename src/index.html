@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>GMMCOAssist</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">  -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Asap:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="Duplicate.js"></script>
+
+    <!-- for datepicker -->
+    <link href="https://cdn.syncfusion.com/ej2/ej2-base/styles/material.css" rel="stylesheet" />
+
+    <link href="https://cdn.syncfusion.com/ej2/ej2-buttons/styles/material.css" rel="stylesheet" />
+
+    <link href="https://cdn.syncfusion.com/ej2/ej2-inputs/styles/material.css" rel="stylesheet" />
+
+    <link href="https://cdn.syncfusion.com/ej2/ej2-popups/styles/material.css" rel="stylesheet" />
+
+    <link href="https://cdn.syncfusion.com/ej2/ej2-lists/styles/material.css" rel="stylesheet" />
+
+    <link href="https://cdn.syncfusion.com/ej2/ej2-calendars/styles/material.css" rel="stylesheet" />
+    <!-- <script>
+  // Broadcast that you're opening a page.
+  localStorage.openpages = Date.now();
+  window.addEventListener('storage', function (e) {
+      if(e.key == "openpages") {
+          // Listen if anybody else is opening the same page!
+          localStorage.page_available = Date.now();
+      }
+      if(e.key == "page_available") {
+          // alert("One more page already open");
+          sessionStorage.clear()
+      }
+  }, false);
+</script> -->
+
+    <!--
+<script>
+ document.addEventListener('keydown', function() {
+    if (event.keyCode == 123) {
+      // alert("You Can not Do This!");
+      event.preventDefault();
+
+      return false;
+    }
+    else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
+      // alert("You Can not Do This!");
+       event.preventDefault();
+      return false;
+    }
+
+    else if (event.ctrlKey && event.keyCode == 85) {
+      // alert("You Can not Do This!");
+      event.preventDefault();
+
+      return false;
+    }
+  }, false);
+
+  if (document.addEventListener) {
+    document.addEventListener('contextmenu', function(e) {
+      // alert("You Can not Do This!");
+      e.preventDefault();
+    }, false);
+  }
+
+  else {
+    document.attachEvent('oncontextmenu', function() {
+      // alert("You Can not Do This!");
+      event.preventDefault();
+
+      window.event.returnValue = false;
+    });
+  } -->
+    <!-- /* other script code */ -->
+
+
+    </script>
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7D0YB6MPPP"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-7D0YB6MPPP');
+    </script>
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+    <!-- <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-XXXXXXXX-X');
+</script> -->
+</head>
+
+<body id="gmmco-bd">
+    <app-root></app-root>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- BootStrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- BootStrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+    <script type="text/javascript">
+        $(window).on('beforeunload', function(e) {
+            e = e || window.event;
+            var localStorageTime = localStorage.getItem('storagetime')
+            if (localStorageTime != null && localStorageTime != undefined) {
+                var currentTime = new Date().getTime(),
+                    timeDifference = currentTime - localStorageTime;
+
+                if (timeDifference < 25) { //Browser Closed
+                    localStorage.removeItem('storagetime');
+                } else { //Browser Tab Closed
+                    localStorage.setItem('storagetime', new Date().getTime());
+                }
+
+            } else {
+                localStorage.setItem('storagetime', new Date().getTime());
+            }
+        });
+    </script>
+
+
+
+</body>
+
+</html>

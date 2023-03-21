@@ -1,0 +1,60 @@
+<app-header></app-header>
+<div class="pg-wrp">
+  <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <h3 class="pay-sec">{{'My Equipments'|translate}}</h3>
+              
+           <div *ngIf="equipmentList?.length > 0 ;else elsenodata">
+              <div class="lod-sec ds-bk" *ngFor="let list of equipmentList;let i = index">
+                <div class="ds-bk-sec">
+                      <div class="ds-txt ds-co">
+                          <label>{{'Model Number'|translate}}</label>
+                          <p>{{list.equipmentNumber }}</p>
+                      </div>
+
+                      <div class="ds-txt2 ds-co">
+                          <label>{{'Equipment Description'|translate}}</label>
+                          <p>{{list.assetDescription}}</p>
+                      </div>
+                      <div class="ds-txt3 ds-co">
+                        <label>{{'Serial No'|translate}}</label>
+                        <p>{{list.serialNumber}}</p>
+                      </div>
+                      <div class="ds-txt3 ds-co">
+                        <label>AMC {{'Date'|translate}}</label>
+                        <p>{{list.toDateContract==null? 'Not Applicable':''}}</p>
+                      </div>
+                      <div class="ds-txt3 ds-co">
+                        <label>{{'Is Default'|translate}}</label>
+                        <input type="checkbox" name="isDefault"  id=equipmentslist{{i}}  (click)="_Set_isDefault(list.iKunnr, list.serialNumber,list.eqpId)"  [checked]="list.isDefault == true">
+                      </div>
+
+
+                </div>
+                    <div class="ad-fix-sec">
+                        <div class="ds-tol">
+                          <label>{{'Status'|translate}}</label>
+                          <button class="edit-btn"><a>{{list.status	}}</a></button>
+                        </div>
+                      <div class="ad-cd-sc">
+                        <!-- <p>Add to Cart<img src="../../../assets/images/ad-arrow.png" alt=""></p> -->
+                      </div>
+                  </div>
+              </div>
+            </div>
+            <ng-template #elsenodata>
+
+              <div class="lod-sec ds-bk" >
+             NO DATA FOUND !!!
+              </div>
+            
+            </ng-template>
+         
+        </div>
+
+      </div>
+  </div>
+</div>
+<app-footer></app-footer>
+

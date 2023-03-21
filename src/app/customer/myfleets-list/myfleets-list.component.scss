@@ -1,0 +1,173 @@
+.tabs-container {
+    position: relative;
+    height: 50px;
+    padding: 0 2em;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.tabs {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    flex-wrap: no-wrap;
+    transform: translateX(0px);
+    transition: transform 300ms ease-in-out;
+}
+
+.tab {
+    width: 100px;
+    height: 100%;
+    padding-bottom: 1em;
+    margin: 0 20px;
+    flex-shrink: 0;
+    text-align: center;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+}
+
+.tab.active {
+    border-bottom-color: hotpink;
+    transition: all 300ms linear;
+}
+
+.change-btn {
+    height: 50px;
+    width: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #b5b5b5;
+    border-radius: 4px;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    background: white;
+    cursor: pointer;
+}
+
+.change-btn.hide {
+    cursor: not-allowed;
+    pointer-events: none;
+    color: #b5b5b5;
+}
+
+.change-btn.prev {
+    left: 0;
+}
+
+.change-btn.next {
+    right: 0;
+}
+
+.tab.active {
+    border-bottom-color: unset!important;
+    border-bottom: unset!important;
+}
+
+// popup
+div.modal-dialog {
+    max-width: 721px !important;
+    width: 721px !important;
+}
+
+// .hp-conatiner-inner {
+//     padding: 20px 20px 20px 20px;
+// }
+.homepage-body {
+    margin-top: 16px !important;
+}
+
+.homepage-body h2 {
+    color: #fff;
+}
+
+// 21/12/2021
+@media only screen and (max-width: 992px) {
+    .hp-content-base {
+        overflow-y: hidden;
+    }
+    .btn.pay-btn {
+        width: 192px!important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .hci-common-btn {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+@media only screen and (max-width: 1300px) {
+    .hci-common {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+// checkbox
+// .checkbox label {
+//     cursor: pointer;
+//     display: inline-block;
+//     position: relative;
+//     padding-left: 25px;
+//     margin-right: 10px;
+// }
+// .checkbox label:before {
+//     content: "";
+//     width: 15px;
+//     height: 15px;
+//     position: absolute;
+//     left: 0;
+// }
+// input[type=checkbox] {
+//     display: none;
+// }
+// .checkbox label:before {
+//     background: url('/assets/images/yellow-before.png') left center no-repeat;
+//     margin-top: 2px;
+// }
+// input[type=checkbox]:checked+label::after {
+//     background: url('/assets/images/yellow-after.png') left center no-repeat;
+// }
+.form-group input[type=checkbox] {
+    display: none;
+    cursor: pointer;
+}
+
+input[type=checkbox]+label {
+    position: relative;
+}
+
+input[type=checkbox]+label:before {
+    content: '';
+    -webkit-appearance: none;
+    background-color: #FCBA13;
+    // border: 1px solid #dedede;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    // padding: 10px;
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 5px;
+    top: -2px;
+}
+
+input[type=checkbox]:checked+label:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 6px;
+    width: 5px;
+    height: 10px;
+    border: 1px solid #0F1011;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    top: 6px;
+}

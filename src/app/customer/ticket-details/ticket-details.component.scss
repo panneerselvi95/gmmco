@@ -1,0 +1,33 @@
+.tic-sec.d-flex.justify-content-between {
+    flex-wrap: wrap;
+}
+.inp-sub button{
+    height: unset;
+    padding:10px ;
+}
+@media only screen and (max-width:768px){
+    .tic-sc-txt {
+        width: 50%;
+    }
+    .req-bck-inp .inp-sub {
+        text-align: center;
+    }
+    .req-bck-inp .inp-sub button{
+        margin: 0 !important;
+    }
+
+}
+@media only screen and (max-width:567px){
+    .jb-cd span {
+        display: block;
+    }
+    .tic-sc-txt {
+        width: 100%;
+    }
+    .tic-de.w-100.d-block{
+        border-radius: 0 !important;
+    }
+    h3.pay-sec.p-0 {
+        padding-left: 10px !important;
+    }
+}

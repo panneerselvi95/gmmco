@@ -1,0 +1,57 @@
+<app-header></app-header>
+<div class="pg-wrp">
+  <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+            <div class="src-sec">
+               <div class="sec-txt pd-sec">
+                 <a><img src="../../../assets/images/Back Arrow.png"></a>
+                  <li><a>Home  >  Cart List  >  Payment Selection</a></li>
+               </div>
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+          <h3 class="pay-sec">Payment Selection</h3>
+          <div class="lod-sec">
+            <div class="it-qt">
+               <p>H&T Filter<span>₹900.00</span></p>
+               <p>Axle and Brake Oil<span>₹500.00</span></p>
+               <p>Tax Value<span>₹180.00</span></p>
+               <p>CGST<span>₹90.00</span></p>
+               <p>SGST<span>₹90.00</span></p>
+               <p>IGST<span>0.00</span></p>
+               <p>TCS<span>₹300.00</span></p>
+               <p>Total Amount<span>₹6,375.00</span></p>
+               <p>Credit Value<span>-₹540.00</span></p>
+               <p>Amount Payable<span>₹5,835.00</span></p>
+            </div>
+          </div>
+
+          <div class="ord-sc fx-di">
+            <button routerLink="/customer/payment-gateway"><a>Proceed</a></button>
+            <p (click)="open(mymodal)"><img src="../../../assets/images/odr-img.png">From Credit</p>
+          </div>
+
+        </div>
+
+      </div>
+  </div>
+</div>
+<ng-template #mymodal let-modal>
+
+  <div class="modal-body d-fl-wr d-flex align-items-center justify-content-center">
+    <div class="cre-vale">
+            <h2>₹540</h2>
+            <p>Credit Value</p>
+    </div>
+    <div class="cre-sec-txt">
+      <p>Are you sure you want to use this<span>Credit value</span>?</p>
+      <div class="cre-btn">
+        <button class="no-btn"><a>NO</a></button>
+        <button class="yes-btn"><a>Yes</a></button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>
+<app-footer></app-footer>

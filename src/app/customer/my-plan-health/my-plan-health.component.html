@@ -1,0 +1,270 @@
+<app-header></app-header>
+<div class="content_section w-100 float-left">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="src-sec">
+                    <div class="sec-txt">
+                        <a routerLink="/customer/home"><img src="../../../assets/images/back-arrow.png"></a>
+                        <li><a>Home >  My Plan</a></li>
+                    </div>
+                    <div class="inp-sec">
+                        <input type="text" placeholder="Search Parts Here..." value="">
+                        <div class="src-div">
+                            <a><img src="../../../assets/images/search-img.png"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-100 float-left">
+                <div class="row m-0">
+                    <div class="container">
+                        <h4 class="wrapper_title text-white mt-4 mb-4">My Plan</h4>
+                        <div class="assistant-slider">
+                            <div class="arrow-alft-caption">
+                                <div class="select-eqip">
+                                    <span>SELECT AN EQUIPMENT TO <strong>View Specific Plan</strong> </span>
+                                </div>
+                                <div class="t-right nav-arrow">
+                                    <span class="change-btn prev" (click)="scrollTab(-1)" [class.hide]="atStart">
+                                        <img src="../../../assets/images/left-arrow.png">
+                                    </span>
+                                    <span class="change-btn next" [class.hide]="atEnd" (click)="scrollTab(1)">
+                                    <img src="../../../assets/images/right-arrow.png">
+                                  </span>
+                                </div>
+                            </div>
+                            <div class="hm-pg-tab assis-hm-pg-tab">
+                                <section class="tabs-container">
+                                    <ul *ngFor="let tab of tabs; let i=index" class="tabs" [ngStyle]="{'transform': abc }">
+                                        <li class="tab" [class.active]="selectedIndex===i" (click)="selectTab(i)">
+                                            <div class="assis-card-parent">
+                                                <div class="assis-card-left">
+                                                    <img src="../../../assets/images/assis-bulldowser1.png">
+                                                </div>
+                                                <div class="assis-card-right">
+                                                    <p><strong>424B2</strong> BACKHOE LOADER</p>
+                                                    <div class="acr-deferd">
+                                                        <label>Serial :</label> <span>K7C01126</span>
+                                                    </div>
+                                                    <div class="acr-deferd">
+                                                        <label>SMU Hours :</label> <span>280</span>
+                                                    </div>
+                                                    <div class="acr-deferd">
+                                                        <label>AMC Validity :</label> <span>Dec 21</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </section>
+                            </div>
+                        </div>
+                        <!-- <div class="raise-req-button">
+                            <button class="rais-req-btn btn">Raise Request</button>
+                        </div> -->
+
+                        <!-- tab -->
+                        <div class="assistant-tab-section">
+                            <ul ngbNav #nav="ngbNav" class="nav-tabs my-plan-upcmg-nav-tabs">
+                                <span class="tab-caption">Upcoming PM</span>
+                                <li ngbNavItem>
+                                    <a ngbNavLink><span class="tab-circle green-circle"></span>Upcoming PM</a>
+                                    <ng-template ngbNavContent>
+                                        <div class="new assiss-checkbox w-100">
+                                            <form>
+                                                <div class="form-group">
+                                                    <input type="checkbox" id="html">
+                                                    <label for="html">View All</label>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="accordion_wrapper my-assis-tab-card mb-4">
+                                            <div class="accordion_row mb-3">
+                                                <div class="bg_color_panel col-lg-12 p-0">
+                                                    <div class="row m-0">
+                                                        <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                            <div class="row m-0">
+                                                                <div class="col-xl-6 col-12 p-0 d-1">
+                                                                    <label>Model #</label>
+                                                                    <span class="matc matc-grey">B487594454</span>
+                                                                </div>
+                                                                <!-- <div class="col-xl-6 col-12 p-0 d-2">
+                                                        <label>Seriel #</label>
+                                                        <span class="matc matc-grey">K7C01126</span>
+                                                    </div> -->
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                            <div class="row m-0">
+                                                                <div class="col-xl-6 col-12 p-0 d-1">
+                                                                    <label>Seriel #</label>
+                                                                    <span class="matc">K7C01126</span>
+                                                                </div>
+                                                                <div class="col-xl-6 col-12 p-0 d-2">
+                                                                    <label>Date</label>
+                                                                    <span class="matc">09 Jan 2021</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-descrip-section">
+                                                        <div class="row m-0">
+                                                            <div class="col-xl-7 col-12 p-0 des-part mpu-decrip">
+                                                                <p class="mpu-descrip-green"><img src="../../assets/images/mpu-check.png" /> Visits Completed : 5</p>
+                                                                <p class="mpu-descrip-orange"><img src="../../assets/images/mpu-wall-clock.png" /> Visits Pending : 5</p>
+                                                            </div>
+                                                            <div class="col-xl-5 col-12 p-0 tab-anchor-section">
+                                                                <a href="#">See More Detail <img src="../../assets/images/arrow-right.png"/></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion_row mb-3">
+                                                <div class="bg_color_panel col-lg-12 p-0">
+                                                    <div class="row m-0">
+                                                        <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                            <div class="row m-0">
+                                                                <div class="col-xl-6 col-12 p-0 d-1">
+                                                                    <label>Ticket Number</label>
+                                                                    <span class="matc-green matc">TICK124686</span>
+                                                                </div>
+                                                                <div class="col-xl-6 col-12 p-0 d-2">
+                                                                    <label>Seriel #</label>
+                                                                    <span class="matc matc-grey">K7C01126</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                            <div class="row m-0">
+                                                                <div class="col-xl-6 col-12 p-0 d-1">
+                                                                    <label>Subject</label>
+                                                                    <span class="matc">Breakdown Help</span>
+                                                                </div>
+                                                                <div class="col-xl-6 col-12 p-0 d-2">
+                                                                    <label>Updated Date</label>
+                                                                    <span class="matc">09 Jan 2021</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-descrip-section">
+                                                        <div class="row m-0">
+                                                            <div class="col-xl-7 col-12 p-0 des-part">
+                                                                <label>Description</label>
+                                                                <span class="des-part-span">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</span>
+                                                            </div>
+                                                            <div class="col-xl-5 col-12 p-0 tab-anchor-section">
+                                                                <a href="#">See More Detail <img src="../../assets/images/arrow-right.png"/></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion_row mb-3">
+                                                <div class="bg_color_panel col-lg-12 p-0">
+                                                    <div class="row m-0">
+                                                        <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                            <div class="row m-0">
+                                                                <div class="col-xl-6 col-12 p-0 d-1">
+                                                                    <label>Ticket Number</label>
+                                                                    <span class="matc-green matc">TICK124686</span>
+                                                                </div>
+                                                                <div class="col-xl-6 col-12 p-0 d-2">
+                                                                    <label>Seriel #</label>
+                                                                    <span class="matc matc-grey">K7C01126</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                            <div class="row m-0">
+                                                                <div class="col-xl-6 col-12 p-0 d-1">
+                                                                    <label>Subject</label>
+                                                                    <span class="matc">Parts Delivery Issue</span>
+                                                                </div>
+                                                                <div class="col-xl-6 col-12 p-0 d-2">
+                                                                    <label>Updated Date</label>
+                                                                    <span class="matc">09 Jan 2021</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-descrip-section">
+                                                        <div class="row m-0">
+                                                            <div class="col-xl-7 col-12 p-0 des-part">
+                                                                <label>Description</label>
+                                                                <span class="des-part-span">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</span>
+                                                            </div>
+                                                            <div class="col-xl-5 col-12 p-0 tab-anchor-section">
+                                                                <a href="#">See More Detail <img src="../../assets/images/arrow-right.png"/></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="accordion_row">
+                                                <div class="bg_color_panel col-lg-12 p-0">
+                                                    <div class="row m-0">
+                                                        <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                            <div class="row m-0">
+                                                                <div class="col-xl-6 col-12 p-0 d-1">
+                                                                    <label>Ticket Number</label>
+                                                                    <span class="matc-green matc">TICK124686</span>
+                                                                </div>
+                                                                <div class="col-xl-6 col-12 p-0 d-2">
+                                                                    <label>Seriel #</label>
+                                                                    <span class="matc matc-grey">K7C01126</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-xl-6 col-12 matc-card-part p-0">
+                                                            <div class="row m-0">
+                                                                <div class="col-xl-6 col-12 p-0 d-1">
+                                                                    <label>Subject</label>
+                                                                    <span class="matc">Breakdown Help</span>
+                                                                </div>
+                                                                <div class="col-xl-6 col-12 p-0 d-2">
+                                                                    <label>Updated Date</label>
+                                                                    <span class="matc">09 Jan 2021</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-descrip-section">
+                                                        <div class="row m-0">
+                                                            <div class="col-xl-7 col-12 p-0 des-part">
+                                                                <label>Description</label>
+                                                                <span class="des-part-span">Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in laying out print, graphic or web designs.</span>
+                                                            </div>
+                                                            <div class="col-xl-5 col-12 p-0 tab-anchor-section">
+                                                                <a href="#">See More Detail <img src="../../assets/images/arrow-right.png"/></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-template>
+                                </li>
+                                <li ngbNavItem>
+                                    <a ngbNavLink><span class="tab-circle yellow-circle"></span>Health Alerts</a>
+                                    <ng-template ngbNavContent>Second content</ng-template>
+                                </li>
+
+                            </ul>
+                            <div [ngbNavOutlet]="nav"></div>
+                        </div>
+                        <!--End tab -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<app-footer></app-footer>

@@ -1,0 +1,14 @@
+@media only screen and (max-width: 760px ) {
+      .pro-fm-sec .form-control {
+            float: left;
+            width: 100%;
+      }
+      .pro-fm-sec .form-control:first-child{
+            padding-right: 0px !important;
+      }   
+}
+@media only screen and (max-width:567px){
+      div.form-section input{
+            font-size: 10px !important;
+      }
+}

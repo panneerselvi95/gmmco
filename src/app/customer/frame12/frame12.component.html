@@ -1,0 +1,18 @@
+<button class="btn btn-lg btn-outline-primary" (click)="open(mymodal)">{{'Open My Modal'|translate}}</button>
+
+<ng-template #mymodal let-modal>
+
+  <div class="modal-body d-fl-wr d-flex align-items-center justify-content-center">
+    <div class="cre-vale cre-img">
+            <img src="../../../assets/images/frm-13.png" alt="">
+    </div>
+    <div class="cre-sec-txt">
+      <p>You are trying to make a paymnent of<span> Rs 540</span> from your available Credit. Do you wish to authorize the payment</p>
+      <div class="cre-btn">
+        <button class="no-btn"><a>{{'NO'|translate}}</a></button>
+        <button class="yes-btn"><a>{{'Yes'|translate}}</a></button>
+      </div>
+    </div>
+  </div>
+
+</ng-template>

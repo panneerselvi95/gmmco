@@ -1,0 +1,214 @@
+<app-header></app-header>
+
+<div class="container-fluid bg-container text-white">
+
+    <div class="row yellow-row"></div>
+    <!-- 
+    <div class="row bg-1 py-3">
+        <div class=" nav1">
+            <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+            </a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+            <p class="p1 px-2">SHOPPING AT 
+                <strong>PEORGIA</strong>
+            </p>
+            <p class="px-2">paris</p>
+            <p class="px-2">paris</p>
+        </div>
+    </div> -->
+    <!-- order confirmation -->
+    <div class="row py-3">
+        <div class="col-6">
+            <div>
+                <h4 class="pl-2">ORDER CONFIRMATION</h4>
+            </div>
+        </div>
+        <div class="col-6 order-confirm-icon">
+            <a routerLink="/customer/my-orders">My Orders</a>
+            <!-- <i class="fa fa-upload"></i> -->
+            <!-- <i class="fa fa-print"></i> -->
+        </div>
+    </div>
+
+    <div class="row bg-1 py-2 address-row pl-5">
+        <div>
+            <h6 class="pt-3 mr-3">THANKS FOR YOUR ORDER</h6>
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 add-rows pl-0 pr-5">
+            <p>
+                <small><strong>ORDER NUMBER: </strong>{{orderData?.oorderlandingVM.poNumber}}</small>
+                <small><strong>SERIAL NO : </strong>{{orderData?.oorderlandingVM.serialNumber}} 
+                    {{orderData?.oorderlandingVM.modelOfAsset}}</small>
+
+                <small><strong>ORDER DATE :</strong> {{orderData?.oorderlandingVM.poDate | date:'dd/MM/yyyy '}}</small>
+
+                <small style=" color: #FCBA13;" *ngIf="orderData?.oorderlandingVM.isfoc == true"><strong style="white-space: nowrap;">REDEEMED FOC :</strong> {{  orderData?.oorderlandingVM.valuecontract}}</small>
+
+            </p>
+        </div>
+
+    </div>
+
+    <!-- Address row -->
+
+    <div class="row pt-3 address-row justify-content-center pl-2">
+        <div class="col-12 col-sm-6 col-md-4 border-right address-details pl-3">
+            <h6 class="text-uppercase">Shipping information</h6>
+            <p class="pb-3">
+                <small><strong class="col-3 pl-0" style="white-space: nowrap;">Customer Code :</strong> <span class="col pr-0" style="text-align: end;"> {{orderData?.oorderlandingVM.shipCustomerCode}}</span> </small>
+
+                <small><strong class="col-3 pl-0" style="white-space: nowrap;">Shipping Name :</strong> <span class="col pr-0" style="text-align: end;"> {{orderData?.oorderlandingVM.shipCustomerName}}</span> </small>
+                <small><strong class="col-3 pl-0" style="white-space: nowrap;">Shipping Address :</strong> <span class="col pr-0" style="text-align: end;">
+                    {{orderData?.oorderlandingVM.shipCustomerAddress1}}</span> </small>
+                <small><strong class="col-3 pl-0" style="white-space: nowrap;">Shipping City :</strong> <span class="col pr-0" style="text-align: end;"> {{orderData?.oorderlandingVM.shipCustomerCity}}</span> </small>
+                <small><strong class="col-3 pl-0" style="white-space: nowrap;">Shipping State :</strong> <span class="col pr-0" style="text-align: end;"> {{orderData?.oorderlandingVM.customerState}}</span> </small>
+
+                <small><strong class="col-3 pl-0" style="white-space: nowrap;">Shipping Pincode :</strong> <span class="col pr-0" style="text-align: end;"> {{orderData?.oorderlandingVM.shipCustomerPincode}}</span> </small>
+            </p>
+            <!-- <a routerLink="/customer/order-listings" class="button1">Order parts</a> -->
+
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 border-right address-details ">
+            <h6 class="text-uppercase">Billing Information</h6>
+            <p class="pb-3">
+                <small><strong class="col-3 pl-0" style="white-space: nowrap;">Customer Code :</strong> <span class="col pr-0" style="text-align: end;"> {{orderData?.oorderlandingVM.billCustomerCode}}</span></small>
+                <small><strong class="col-3 pl-0" style="white-space: nowrap;">Billing Name :</strong> <span class="col pr-0" style="text-align: end;"> {{orderData?.oorderlandingVM.billCustomerName}}</span></small>
+                <small><strong class="col-3 pl-0" style="white-space: nowrap;">Billing Address :</strong> <span class="col pr-0" style="text-align: end;">{{orderData?.oorderlandingVM.billCustomerAddress1}}</span></small>
+                <small><strong class="col-3 pl-0" style="white-space: nowrap;">Billing City :</strong> <span class="col pr-0" style="text-align: end;">{{orderData?.oorderlandingVM.billCustomerCity}}</span></small>
+                <small><strong class="col-3 pl-0" style="white-space: nowrap;">Billing State :</strong> <span class="col pr-0" style="text-align: end;">{{orderData?.oorderlandingVM.billCustomerState}}</span></small>
+                <small><strong class="col-3 pl-0" style="white-space: nowrap;">Billing Pincode :</strong> <span class="col pr-0" style="text-align: end;">{{orderData?.oorderlandingVM.billCustomerPincode}}</span></small>
+
+            </p>
+            <!-- <a routerLink="/customer/home" class="button1">Home</a> -->
+
+        </div>
+        <div class="col-12 col-sm-6 col-md-4 address-details">
+            <h6 class="text-uppercase">Customer Information</h6>
+            <p class="pb-3">
+                <small><strong class="col-3 pl-0" style="white-space: nowrap;">Customer Code :</strong> <span class="col pr-0" style="text-align: end;">{{orderData?.oorderlandingVM.customerCode}}</span></small>
+                <!-- <small><strong class="col-3 pl-0" style="white-space: nowrap;">Customer PAN:</strong> <span class="col pr-0" style="text-align: end;">{{customerData?.pan}}</span></small> -->
+                <small><strong class="col-3 pl-0" style="white-space: nowrap;">Customer Name :</strong> <span class="col pr-0" style="text-align: end;">{{orderData?.oorderlandingVM.customerName}}</span></small>
+                <small><strong class="col-3 pl-0" style="white-space: nowrap;">Customer Address :</strong> <span class="col pr-0" style="text-align: end;">{{orderData?.oorderlandingVM.customerAddress1}}</span></small>
+                <small><strong class="col-3 pl-0" style="white-space: nowrap;">Customer City :</strong> <span class="col pr-0" style="text-align: end;">{{orderData?.oorderlandingVM.customerCity }}</span></small>
+                <small><strong class="col-3 pl-0" style="white-space: nowrap;">Customer State :</strong> <span class="col pr-0" style="text-align: end;">{{orderData?.oorderlandingVM.customerState }}</span></small>
+
+                <small><strong class="col-3 pl-0" style="white-space: nowrap;">Customer Pincode :</strong> <span class="col pr-0" style="text-align: end;">{{orderData?.oorderlandingVM.customerPincode}}</span></small>
+
+
+            </p>
+            <!-- <a routerLink="/customer/my-orders" class="button1">My Orders</a> -->
+
+        </div>
+    </div>
+
+
+    <!-- Quantity row -->
+
+    <div class="row quantity-row p-4">
+        <h6>ITEMS IN YOUR ORDER</h6>
+        <div class="table-responsive">
+
+            <table class="table order-conform-table">
+                <thead>
+                    <tr>
+                        <th scope="col" style="text-align: center;">SNO</th>
+                        <th scope="col" style="text-align: center;">Material No</th>
+                        <th scope="col" style="text-align: center;">HSN Code</th>
+                        <th scope="col" style="text-align: center;">Qty</th>
+                        <th scope="col" style="text-align: center;">Unit Price</th>
+                        <th scope="col" *ngIf="orderData?.oorderlandingVM.discountValue > 0 " style="text-align: center;">Discount %</th>
+                        <th scope="col" *ngIf="orderData?.oorderlandingVM.discountValue >0" style="text-align: center;">Discount Value</th>
+                        <th scope="col" *ngIf="orderData?.oorderlandingVM.isfoc == false" style="text-align: center;">Taxable Value</th>
+                        <th scope="col" *ngIf="orderData?.oorderlandingVM.isfoc == false" style="text-align: center;">Extended Price</th>
+                        <th scope="col" *ngIf="orderData?.oorderlandingVM.cgstTotal != 0" style="text-align: center;">CGST %</th>
+                        <th scope="col" *ngIf="orderData?.oorderlandingVM.cgstTotal != 0" style="text-align: center;">CGST Value</th>
+                        <th scope="col" *ngIf="orderData?.oorderlandingVM.sgstTotal != 0" style="text-align: center;">SGST %</th>
+                        <th scope="col" *ngIf="orderData?.oorderlandingVM.sgstTotal != 0" style="text-align: center;">SGST Value</th>
+                        <th scope="col" *ngIf="orderData?.oorderlandingVM.igstTotal != 0" style="text-align: center;">IGST %</th>
+                        <th scope="col" *ngIf="orderData?.oorderlandingVM.igstTotal != 0" style="text-align: center;">IGST Value</th>
+                        <th scope="col" style="text-align: center;">Total Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let items of  orderData?.materiallists; let i = index" style="text-align: center;">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{items.material}}</td>
+                        <td>{{items.hsnCode}}</td>
+                        <td>{{items.qty}} {{items.uom}}</td>
+                        <td>
+                            <span>{{items.unitPrice | currency:'INR'}}</span>
+                        </td>
+                        <td *ngIf="items.discountValue >0">(-) {{convertToInt(items.discount) +'%' }}</td>
+                        <td *ngIf="items.discountValue >0">(-) {{items.discountValue | currency:'INR':'symbol-narrow':'1.2-2'}}</td>
+
+                        <td *ngIf="orderData?.oorderlandingVM.isfoc == false">{{ items.taxableValue | currency:'INR' }}</td>
+
+                        <td *ngIf="orderData?.oorderlandingVM.isfoc == false">{{items.extendedPrice | currency:'INR'}}</td>
+                        <td *ngIf="orderData?.oorderlandingVM.cgstTotal > 0">{{convertToInt(items.cgstPer) == 0?'--' : convertToInt(items.cgstPer) +'%' }} </td>
+
+
+                        <td *ngIf="orderData?.oorderlandingVM.cgstTotal > 0">{{items.cgstVal == 0?'--' : items.cgstVal | currency:'INR'}}</td>
+
+
+                        <td *ngIf="orderData?.oorderlandingVM.sgstTotal > 0">{{convertToInt(items.sgstPer == 0)?'--': convertToInt(items.sgstPer) +'%' }} </td>
+
+                        <td *ngIf="orderData?.oorderlandingVM.sgstTotal > 0">{{items.sgstVal == 0?'--' : items.sgstVal | currency:'INR'}}</td>
+
+                        <td *ngIf="orderData?.oorderlandingVM.igstTotal > 0">{{convertToInt(items.igstPer == 0)?'--': convertToInt(items.igstPer) +'%' }} </td>
+
+                        <td *ngIf="orderData?.oorderlandingVM.igstTotal > 0">{{items.igstVal == 0?'--' : items.igstVal | currency:'INR'}}</td>
+                        <td>{{items.total | currency:'INR'}}</td>
+                    </tr>
+                    <tr>
+                        <td class="bottom-table-con" colspan="15">
+
+                            <span *ngIf="orderData?.oorderlandingVM.discountValue > 0"> <b> Total Extended Value : </b>
+                                <p>{{orderData?.oorderlandingVM.extendedTotal | currency:'INR' }}</p>
+                            </span>
+
+                            <span *ngIf="orderData?.oorderlandingVM.discountValue > 0"><b>Discount Value :</b>
+                                <p> (-){{orderData?.oorderlandingVM.discountValue | currency:'INR'}}</p>
+                            </span>
+
+                            <span *ngIf="orderData?.oorderlandingVM.isfoc == false"> <b> Total Taxable Value : </b>
+                                <p>{{orderData?.oorderlandingVM.taxableValue | currency:'INR' }}</p>
+                            </span>
+
+                            <span *ngIf="orderData?.oorderlandingVM.cgstTotal > 0"><b>CGST :</b>
+                                <p>{{orderData?.oorderlandingVM.cgstTotal | currency:'INR'}}</p>
+                            </span>
+                            <span *ngIf="orderData?.oorderlandingVM.igstTotal > 0"><b>IGST :</b>
+                                <p>{{orderData?.oorderlandingVM.igstTotal | currency:'INR'}}</p>
+                            </span>
+                            <span *ngIf="orderData?.oorderlandingVM.sgstTotal > 0"><b>SGST :</b>
+                                <p>{{orderData?.oorderlandingVM.sgstTotal | currency:'INR'}}</p>
+                            </span>
+                            <span *ngIf="orderData?.oorderlandingVM.tcsApplied == true"> <b>Sub Total Value :</b>
+                                <p>{{orderData?.oorderlandingVM.subTotalValue | currency:'INR'}}</p>
+                            </span>
+                            <span *ngIf="orderData?.oorderlandingVM.tcsApplied == true"> <b>TCS :</b>
+                                <p>{{orderData?.oorderlandingVM.tcsTotal | currency:'INR'}}</p>
+                            </span>
+
+                            <span *ngIf="orderData?.oorderlandingVM.tcsApplied == true"> <b>Total Payable Amount :</b>
+                                <p>{{orderData?.oorderlandingVM.totalValue | currency:'INR'}}</p>
+                            </span>
+                            <span *ngIf="orderData?.oorderlandingVM.tcsApplied == false"><b>Total Payable Amount :</b>
+                                <p>{{orderData?.oorderlandingVM.subTotal | currency:'INR'}}</p>
+                            </span>
+
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

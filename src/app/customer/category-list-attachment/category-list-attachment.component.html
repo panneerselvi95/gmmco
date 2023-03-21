@@ -1,0 +1,92 @@
+<app-header></app-header>
+<div class="content_section w-100 float-left">
+    <div class="container">
+        <div class="header_float">
+            <div class="bread_crumb">
+                <h1 class="mb-0">
+                    <a><img routerLink="/customer/my-fleet-details" class="mr-2" width="30" src="../../../../assets/images/back-arrow.png" alt=""></a>{{'My Fleets'|translate}} > <span><a routerLink="/customer/my-fleet-details">Parts Catalogue</a></span>><span><b>{{'Part Detail'|translate}}</b></span>                    </h1>
+            </div>
+            <div class="tabs_wrapper">
+
+            </div>
+        </div>
+        <div class="row custom_row">
+            <div class="w-100 float-left">
+                <div class="row m-0">
+                    <div class="container">
+                        <h4 class="wrapper_title text-white mt-4 mb-4">{{ this.sno['id2']}}</h4>
+                        <div class="accordion_wrapper mb-4">
+                            <div class="attachment_main">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor="let parts of partsCategory">
+                                        <div class="attachment_first">
+                                            <img [src]="parts.imgpathWeb" onerror="this.src='../../../assets/images/no-image.png'">
+                                            <h1>{{parts.materialNo}} {{parts.partdesc}} </h1>
+                                            <!-- <h2><span><img src="../../../assets/images/green tick.png"></span> Compatible</h2> -->
+                                            <!-- <button class="btn">Add to Cart</button> -->
+                                            <button class="btn" routerLink="/customer/part-details/{{parts.materialNumber}}/{{parts.description}}">{{'Get Price And'|translate}} ETA</button>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                            <div routerLink="/customer/category-part-detail1"  class="attachment_first number_add">
+                                <img src="../../../assets/images/attachment_2.png">
+                                <h1>1730 mm (68 in), Bolt-On Cutting Edge</h1>
+                                <h2><span><img src="../../../assets/images/green tick.png"></span> Compatible</h2>
+                                <div class="input-number-wrapper">
+                                    <button class="decrease"><i class="fa fa-minus"></i></button>
+                                    <input type="text" value="3"/>
+                                    <button class="increase"><i class="fa fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                            <div routerLink="/customer/category-part-detail1"  class="attachment_first">
+                                <img src="../../../assets/images/attachment_3.png">
+                                <h1>MB200</h1>
+                                <h2><span><img src="../../../assets/images/green tick.png"></span> Compatible</h2>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                            <div  routerLink="/customer/category-part-detail1" class="attachment_first">
+                                <img src="../../../assets/images/attachment_4.png">
+                                <h1>1730 mm (68 in), Bolt-On Cutting Edge</h1>
+                                <h2><span><img src="../../../assets/images/green tick.png"></span> Compatible</h2>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                            <div  routerLink="/customer/category-part-detail1" class="attachment_first">
+                                <img src="../../../assets/images/attachment_1.png">
+                                <h1>254-8943: 914 mm (36 in) Pin On </h1>
+                                <h2><span><img src="../../../assets/images/green tick.png"></span> Compatible</h2>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                            <div routerLink="/customer/category-part-detail1"  class="attachment_first">
+                                <img src="../../../assets/images/attachment_3.png">
+                                <h1>MB200</h1>
+                                <h2><span><img src="../../../assets/images/green tick.png"></span> Compatible</h2>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                            <div routerLink="/customer/category-part-detail1"  class="attachment_first">
+                                <img src="../../../assets/images/attachment_4.png">
+                                <h1>1730 mm (68 in), Bolt-On Cutting Edge</h1>
+                                <h2><span><img src="../../../assets/images/green tick.png"></span> Compatible</h2>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div> -->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <app-footer></app-footer>

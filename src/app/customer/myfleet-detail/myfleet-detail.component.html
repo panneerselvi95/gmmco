@@ -1,0 +1,170 @@
+<app-header></app-header>
+<div class="pg-wrp">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="src-sec">
+                    <div class="sec-txt">
+                        <a routerLink="/customer/home"><img src="../../../assets/images/back-arrow.png"></a>
+                        <li>
+                            <a routerLink="/customer/home">{{'Home'|translate}}</a>
+                            <a class="ml-0" routerLink="/customer/home"> >{{'My Fleet' | translate}} </a>
+                            <a class="ml-0"> > {{'Parts Catalogue'|translate}}</a>
+                        </li>
+                    </div>
+                    <div class="header-search">
+                        <div class="search-bar-divison my_fleet_search">
+                            <input class="sbd-sec" type="text" placeholder="{{'Search Parts Here...'| translate}}" #val (input)="search_data(val.value)" />
+                            <!-- <select > -->
+                            <div class="filter_search">
+                                <div style="border: 1px solid;
+                    border-top: transparent;" *ngFor="let list of searchlist" (click)="route_parts(list)"><a>{{list.part_Description}}-{{list.material_No}}</a></div>
+                            </div>
+                            <!-- </select> -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                <div class="lod-sec">
+                    <div class="lod-sec-img">
+                        <!-- <img src="../../../assets/images/lod-img.png"> -->
+                        <img [src]=currentFleetDetail.imageWeb [alt]=currentFleetDetail.assetName onerror="this.src='../../../assets/images/no-image.png'">
+                    </div>
+                    <div class="lod-sec-txt">
+                        <h1><span>{{currentFleetDetail?.modelOfAsset}}</span> {{currentFleetDetail?.assetName}}</h1>
+                        <p>{{'Serial'|translate}}:<span>{{currentFleetDetail?.serialNumber}}</span>
+                            <img src="../../../assets/images/Group.png">
+                        </p>
+                        <!-- <p>SMU {{'Hours'|translate}}: <span>{{currentFleetDetail?.currentUsageHours || '--'}}</span> -->
+                        <!-- <img src="../../../assets/images/Group.png"> -->
+                        <!-- </p> -->
+                        <p>AMC {{'Validity'|translate}}: <span>{{currentFleetDetail?.toDateContract | date:'dd-MM-yyyy'|| '--'}}</span>
+                            <!-- <img src="../../../assets/images/Group.png"> -->
+                            <!-- routerLink="/customer/my-outstanding" -->
+                        </p>
+                        <div class="btn-sec">
+                            <!-- <button (click)="custDefault(currentFleetDetail?.modelOfAsset,currentFleetDetail?.assetName,partDetails?.serialNumber)"><a>
+                  {{'Request Service'|translate}}</a></button>
+              <button (click)="gotohealthalert()"><a>{{'View Plan'|translate}}</a></button> -->
+                        </div>
+                    </div>
+                </div>
+                <h4 class="cte-txt">{{'Category compatible for'|translate}} <strong>{{currentFleetDetail?.modelOfAsset}}</strong></h4>
+                <div class="col-lg-12 de-flx" *ngIf="partCompatibleList?.categoryDetils?.length > 0 ; else elsenocompfound">
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" *ngFor="let catlist of partCompatibleList?.categoryDetils">
+                        <div class="bg-cr" routerLink="/customer/category-list-attachment/{{catlist.serialNumber|| '1234'}}//{{catlist.descName}}">
+                            <div class="pro-img">
+                                <a> <img [src]="catlist.imageWeb" onerror="this.src='../../../assets/images/no-image.png'"></a>
+                            </div>
+                            <div class="pro-txt">
+                                <p>{{catlist?.descName}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <div class="bg-cr">
+              <div class="pro-img">
+                <img src="../../../assets/images/Fluids-img.png">
+              </div>
+              <div class="pro-txt">
+                <p>Fluids</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <div class="bg-cr">
+              <div class="pro-img">
+                <img src="../../../assets/images/eng-pt-img.png">
+              </div>
+              <div class="pro-txt">
+                <p>Engine Parts</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <div class="bg-cr">
+              <div class="pro-img">
+                <img src="../../../assets/images/kit-img.png">
+              </div>
+              <div class="pro-txt">
+                <p>PM KIT</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <div class="bg-cr">
+              <div class="pro-img">
+                <img src="../../../assets/images/att-img2.png">
+              </div>
+              <div class="pro-txt">
+                <p>Attachments</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 ">
+            <div class="bg-cr">
+              <div class="pro-img">
+                <img src="../../../assets/images/Fluids-img.png">
+              </div>
+              <div class="pro-txt">
+                <p>Fluids</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <div class="bg-cr">
+              <div class="pro-img">
+                <img src="../../../assets/images/eng-img.png">
+              </div>
+              <div class="pro-txt">
+                <p>Engine Parts</p>
+              </div>
+            </div>
+          </div> -->
+                </div>
+
+
+
+                <ng-template #elsenocompfound>
+                    <div class="col-lg-12 de-flx">
+                        <h5 style="color: aliceblue;"> No Data Found !!</h5>
+                    </div>
+                </ng-template>
+
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <div class="par-sec">
+                    <h5 class="caption-of-serial">{{'Parts compatible for'|translate}} <strong>{{currentFleetDetail?.modelOfAsset}}</strong></h5>
+                </div>
+
+
+                <div *ngIf="partCompatibleList?.partsModelImages?.length > 0 ; else elsenopartsfound">
+                    <div class="com-sec" *ngFor="let partslist of partCompatibleList?.partsModelImages" routerLink="/customer/part-details/{{partslist.material}}/{{partslist.description}}">
+                        <div class="par-img">
+                            <img [src]=partslist.imgpath [alt]=partslist.description onerror="this.src='../../../assets/images/no-image.png'" width="200px">
+                        </div>
+                        <div class="par-txt">
+                            <h3>{{partslist.description}}</h3>
+                            <p>{{partslist.materialNumber}}</p>
+                            <a routerLink="/customer/part-details/{{partslist.material}}/{{partslist.description}}">
+                                <img src="../../../assets/images/right-arrow.png">{{'View Detail'|translate}}
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <ng-template #elsenopartsfound>
+                    <div class="com-sec">
+                        <h5 style="color: aliceblue;"> No Data Found !!</h5>
+                    </div>
+                </ng-template>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

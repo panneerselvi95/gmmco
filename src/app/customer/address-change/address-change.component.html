@@ -1,0 +1,18 @@
+
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(mymodal)">{{'Open My Modal'|translate}}</button>
+
+<ng-template #mymodal let-modal>
+  <div class="modal-header mod-img">
+     <img src="../../../assets/images/adr-img.png">
+  </div>
+  <div class="modal-body md-ar-txt">
+        <p>You are trying to change your default shipping address of<span>Vitesco Nagar, Pune, Maharashtra</span>to another address. Do you wish to continue</p>
+  </div>
+  <div class="modal-footer md-bt-sc">
+    <div class="btn-sec jc-wi">
+      <button type="button" (click)="modal.close('Save click')"><a>{{'No'|translate}}</a></button>
+      <button><a>{{'Yes'|translate}}</a></button>
+     </div>
+  </div>
+</ng-template>

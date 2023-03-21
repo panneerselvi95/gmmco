@@ -1,0 +1,147 @@
+<app-header></app-header>
+<div class="content_section w-100 float-left">
+  <div class="container">
+    <div class="header_float">
+      <div class="bread_crumb">
+        <h1 class="mb-0">
+          <img routerLink="/customer/home" class="mr-2 c-pointer" width="30"
+            src="../../../../assets/images/back-arrow.png" alt="">
+          <!-- My Account > -->
+          <span routerLink="/customer/my-orders" class="c-pointer"> My Orders </span>
+          <span> > <b> </b>Order Detail</span>
+        </h1>
+      </div>
+      <div class="tabs_wrapper">
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="w-100 float-left">
+        <div class="row m-0">
+          <div class="container">
+            <h4 class="wrapper_title text-white mt-4 mb-4">My Orders</h4>
+            <div class="accordion_wrapper mb-4 order_details">
+              <div class="accordion_row mb-3">
+                <div class="bg_color_panel col-lg-12 p-0">
+                  <div class="row m-0 p-2">
+                    <div class="col-lg-2 col-md-2 col-sm-6">
+                      <div class="form-group">
+                        <label class="text-grey">Order Number</label>
+                        <p class="text-white">{{orders.sales_order_no.ponumber}}</p>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6">
+                      <div class="form-group">
+                        <label class="text-grey">Sales Order Number</label>
+                        <p class="text-white">{{orders.sales_order_no.salesOrderNo}}</p>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-6">
+                      <div class="form-group">
+                        <label class="text-grey">Order Value</label>
+                        <p class="text-white">₹ {{orders.sales_order_no.povalue}}</p>
+                      </div>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-6">
+                      <div class="form-group">
+                        <label class="text-grey">Quantity</label>
+                        <p class="text-white">{{orders.sales_order_no.poquantity}}</p>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6">
+                      <div class="form-group float-right">
+                        <label class="text-grey">Order Placed</label>
+                        <p class="text-white">{{orders.sales_order_no.createdOn | date:'dd/MM/yyyy'}}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <accordion>
+                    <accordion-group [isOpened]="true">
+                      <div class="accordion_content mt-4 mb-3">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                          <div class="row m-0">
+
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                              <div class="form-group">
+                                <label class="text-grey">Invoice</label>
+                                <p class="text-white">{{orders.specific_invoice.odnNo}}</p>
+                              </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                              <div class="form-group">
+                                <label class="text-grey">Quantity</label>
+                                <p class="text-white">{{orders.specific_invoice.invQty}}</p>
+                              </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                              <div class="form-group">
+                                <label class="text-grey ">Invoicevalue Date</label>
+                                <p class="text-white">{{orders.specific_invoice.invCrtdOn}}</p>
+                              </div>
+                            </div>
+                            <div
+                              class="col-lg-3 col-md-3 col-sm-6 d-flex justify-content-end align-items-center justify-content-mob-end">
+                              <div class="form-group st-ord-invoice d-flex align-items-center mb-0">
+                                <label class="wt-unset">Status</label>
+                                <button class="status_check btn-track">{{orders.specific_invoice.status}}</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <ng-container *ngFor="let order_detail of orders.order_detail; let i = index">
+                        <div *ngIf="orders.specific_invoice.invoiceNo == order_detail.invoiceNo" [ngClass]="i==0 ? 'bdt-0' : ''" class="accordion_content bg-white mb-3 p-0">
+                           <div class="row m-0 p-3">
+                             <div class="col-lg-3 col-md-3 col-sm-12">
+                               <div class="form-group material-prnt d-flex">
+                                 <label class="text-grey">Material</label>
+                                 <p class="text-white">{{splitchar(order_detail.material)[0]}}</p>
+                               </div>
+                             </div>
+                             <div class="col-lg-3 col-md-3 col-sm-12">
+                               <div class="form-group material-prnt d-flex">
+                                 <label class="text-grey">Quantity</label>
+                                 <p class="text-white">{{order_detail.invQty  | number : '1.0-0'}}</p>
+                               </div>
+                             </div>
+                             <div class="col-lg-3 col-md-3 col-sm-12">
+                              <div class="form-group ">
+                                <label class="text-grey">Description</label>
+                                <p class="description">{{order_detail.materialDescription}}</p>
+                              </div>
+                            </div>
+                             <div class="col-lg-3 col-md-3 col-sm-12">
+                               <div class="form-group material-prnt mb-0 d-flex align-items-center mp-end-value">
+                                 <label class="text-grey wt-unset for-label-shw">Value</label>
+                                 <button class="status_check btn-values">{{order_detail.invGrossVal | currency:'INR'}}</button>
+                               </div>
+                             </div>
+                             
+                           </div>
+                         </div>
+                      </ng-container>
+                      <accordion-heading>
+                        <div class="flex_footer_accordion">
+                          <div class="form-group ">
+                            <label class="text-grey ">Status</label>
+                            <button class="status_check btn-track">ON TRACK</button>
+                          </div>
+                          <span class="text-white showmore">More Detail <img
+                              src="../../../../assets/images/arrow-right.png" alt=""></span>
+                          <span class="text-white showless">Less Detail <img
+                              src="../../../../assets/images/arrow-down.png" alt=""></span>
+                        </div>
+                      </accordion-heading>
+                      <!--end visibility hidden-->
+                    </accordion-group>
+                  </accordion>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <app-footer></app-footer>

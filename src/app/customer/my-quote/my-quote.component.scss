@@ -1,0 +1,42 @@
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+}
+
+.cursor_none,
+.cursor_none a {
+    cursor: default;
+}
+
+.ds-txt2.ds-co.ds-co-right {
+    text-align: center;
+}
+
+// 21/12/2021
+@media only screen and (max-width:568px) {
+    .ds-bk-sec {
+        flex-direction: column;
+    }
+    .ds-txt2.ds-co.ds-co-right {
+        text-align: left !important;
+    }
+    .ds-txt3 {
+        align-items: flex-start;
+    }
+    .ad-cd-sc p,
+    .ds-co label,
+    .ds-co p {
+        margin-left: 0;
+    }
+}
+
+@media only screen and (max-width:992px) {
+    .ds-tol {
+        width: unset !important;
+        margin-bottom: 12px;
+        // flex-wrap: unset !important;
+    }
+    .ad-cd-sc {
+        margin-top: 17px;
+    }
+}

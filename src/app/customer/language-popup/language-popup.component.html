@@ -1,0 +1,41 @@
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(mymodal)">Open My Modal</button>
+
+<ng-template #mymodal let-modal>
+      <div class="modal-header mod-txt-bg">
+        <h4 class="modal-title" id="modal-basic-title">Language Preference</h4>
+        <button type="button" class="x-mar" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true"><img src="../../../assets/images/x-mar-img.png">  </span>
+        </button>
+      </div>
+      <div class="modal-body md-mn-sc">
+          <div class="row">
+              <div class="col-lg-6 col-xs-12">
+                <div class="lod-sec dx-fc">
+                  <h6>E</h6>
+                  <p class="lg-txt">ENGLISH</p>
+                </div>
+              </div>
+              <div class="col-lg-6 col-xs-12">
+                <div class="lod-sec dx-fc">
+                  <h6>ह</h6>
+                  <p class="lg-txt">हिन्दी</p>
+                </div>
+              </div>
+              <div class="col-lg-6 col-xs-12">
+                <div class="lod-sec dx-fc">
+                  <h6>த</h6>
+                  <p class="lg-txt">தமிழ்</p>
+                </div>
+              </div>
+          </div>
+      </div>
+      <div class="modal-footer md-bt-sc">
+        <div class="btn-sec">
+          <button type="button" (click)="modal.close('Save click')"><a>Cancel</a></button>
+          <button><a>Apply Changes</a></button>
+      </div>
+      </div>
+
+</ng-template>
+

@@ -1,0 +1,274 @@
+<app-header></app-header>
+<div class="content_section w-100 float-left">
+    <div class="container">
+        <div class="header_float">
+            <div class="bread_crumb">
+                <h1 class="mb-0">
+                    <img routerLink="/customer/home" class="mr-2 c-pointer" width="30" src="../../../../assets/images/back-arrow.png" alt="">
+                    <!-- My Account > -->
+                    <span>
+            <b>{{'My Orders'|translate}}</b>
+          </span>
+                </h1>
+            </div>
+            <div class="tabs_wrapper">
+
+            </div>
+        </div>
+        <div class="row custom_row m-0 ">
+            <div class="w-100 float-left p-0">
+                <div class="row m-0">
+                    <div class="container p-0">
+                        <h4 class="wrapper_title text-white mt-4 mb-4">{{'My Orders'|translate}}</h4>
+                        <ngx-accordion>
+                            <ngx-accordion-group *ngFor="let order of my_orders ; let i=index">
+                                <ngx-accordion-group-element>
+                                    <div class="row m-0 p-2 order-part">
+                                        <div class="col order-details">
+                                            <div class="form-group">
+                                                <label class="text-grey">{{'Order Number'|translate}}</label>
+                                                <p class="text-white">{{order.ponumber}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col order-details">
+                                            <div class="form-group">
+                                                <label class="text-grey">{{'Sales Order Number'|translate}}</label>
+                                                <p class="text-white">{{order.salesOrderNo}}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col order-details">
+                                            <div class="form-group">
+                                                <label class="text-grey">{{'Mode of Payment'|translate}}</label>
+                                                <p class="text-white" *ngIf="order.mode == 'online'">{{order.mode | titlecase}}</p>
+                                                <p class="text-white" *ngIf="order.mode == 'FOC'">{{order.mode}}</p>
+
+                                            </div>
+                                        </div>
+                                        <div class="col order-details">
+                                            <div class="form-group align-right-area">
+                                                <label class="text-grey">{{'Ordered Date'|translate}}</label>
+                                                <p class="text-white">{{order.podate | date:'dd/MM/yyyy'}} </p>
+
+                                            </div>
+                                        </div>
+                                        <div class="col order-details">
+                                            <div class="form-group qunty-padding">
+                                                <label class="text-grey">{{'Order Quantity'|translate}}</label>
+                                                <p class="text-white">{{order.poquantity | number : '1.0-0'}} </p>
+                                            </div>
+
+                                        </div>
+                                        <div class="col order-details" style="color: white;">
+                                            <div class="form-group">
+                                                <label class="text-grey">{{'Order Value'|translate}}</label>
+                                                <p class="text-white">{{numberWithCommas(order.povalue)}}</p>
+                                            </div>
+
+                                        </div>
+
+                                        <!-- <div class="col-lg-3 col-md-3 col-sm-6">
+                      <div class="form-group float-right">
+                        <label class="text-grey">Arriving</label>
+                        <p class="text-white">-</p>
+                      </div>
+                    </div> -->
+                                    </div>
+                                    <div class="accordion_btn">
+                                        <button style="color: aliceblue;" (click)="_get_order_details(order['salesOrderNo'],i) ">
+                      <span class="showdata">  Show More  <img src="../../../../assets/images/arrow-right.png" alt=""></span>
+                      <span class="hidedata">  Show Less  <img src="../../../../assets/images/arrow-down.png" alt=""> </span>
+                    </button>
+                                        <button style="color: aliceblue;     padding: 0px 23px 0 11px;" routerLink='/customer/order-confirmation' [queryParams]="{id:order.ponumber}">View Order Details <img src="../../../../assets/images/arrow-right.png" alt=""></button>
+                                        <!-- -->
+                                        <!-- <a >dsffffffff</a> -->
+
+                                    </div>
+
+                                </ngx-accordion-group-element>
+
+
+                                <ngx-accordion-group-child *ngFor="let order_detail of _filter_order_details(order_details[order.salesOrderNo]) ; let j = index">
+
+                                    <div class="accordion_content mt-3 mb-3 " *ngIf="order_detail.odnNo !='' && order_detail.odnNo.length == 12">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 pt-3">
+                                            <div class="row m-0">
+                                                <!-- <div class="col-lg-2 col-md-2 col-sm-6">
+                          <div class="form-group">
+                            <label class="text-grey">Invoice No</label>
+                            <p class="text-white">{{order_detail?.invoiceNo}}</p>
+                          </div>
+                        </div> -->
+                                                <div class="col-lg-2 col-md-2 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="text-grey">{{'Invoice'|translate}}</label>
+                                                        <p class="text-white">{{order_detail?.odnNo}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2 col-md-2 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="text-grey">{{'Quantity'|translate}}</label>
+                                                        <p class="text-white">{{order_detail?.invQty}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2 col-md-2 col-sm-6">
+                                                    <div class="form-group my-order-value">
+                                                        <label class="text-grey">{{'Value'|translate}}</label>
+                                                        <p class="text-white">{{order_detail?.invGrossVal | currency:'INR'}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="text-grey">{{'Invoice Date'|translate}}</label>
+                                                        <p class="text-white">{{order_detail?.invCrtdOn }}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-6 d-flex justify-content-center align-items-center">
+                                                    <div class="form-group d-flex align-items-center mb-0 my-ord-no-btn">
+                                                        <label class="text-grey">{{'Status'|translate}}</label>
+                                                        <button class="status_check btn-track">{{order_detail?.status}}</button>
+                                                        <img (click)="_order_detail_route(order.salesOrderNo, order_detail)" class="detailsarrow c-pointer" src="../../../../assets/images/arrow-right.png" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="shipment_details p-3">
+                                                    <h3 class="title_details"> <img src="../../../../assets/images/shipment.png" alt=""></h3>
+
+
+                                                    <h3 class="title_details">Shipment Tracking (LR) No: <span style="color: white;padding: 0 0 0 25px; ">{{order_detail.shipdetails?.trackingId}}</span> </h3>
+                                                    <h3 class="title_details">Shipment Booked On : <span style="color: white;padding: 0 0 0 25px; ">{{order_detail.shipdetails?.shipmentPickupDate |date:'dd/MM/yyyy h:mm:ss a'}}</span> </h3>
+                                                    <h3 class="title_details">Current Status : <span style="color: white;padding: 0 0 0 25px; ">{{order_detail.shipdetails?.latestStatusClass}}</span> </h3>
+
+                                                    <h3 class="title_details">Current Status As On : <span style="color: white;padding: 0 0 0 25px;">{{order_detail.shipdetails?.latestStatusTime | date:'dd/MM/yyyy h:mm:ss a'}}</span> </h3>
+
+                                                    <h3 class="title_details" *ngIf="order_detail.shipdetails?.latestStatusClass == 'Delivered'">As Shipment Delivered On : <span style="color: white;padding: 0 0 0 25px;">{{order_detail.shipdetails?.shipmentDeliveredDate  | date:'dd/MM/yyyy h:mm:ss a'}}</span> </h3>
+
+                                                    <h3 class="title_details" *ngIf="order_detail.shipdetails?.latestStatusClass != 'Delivered'"> ETA : <span style="color: white;">{{order_detail.shipdetails?.promisedDeliveredDate | date:'dd/MM/yyyy h:mm:ss a'}}</span> </h3>
+
+                                                    <ul>
+                                                        <li *ngFor="let trackstatus of order_detail?.checkpoints ;"> <small class="active"></small> <span>Your Shipment is {{trackstatus.statusClass}} At   ({{trackstatus?.location}})  On</span> <span style="color: white; padding: 0 0 0 25px;">{{trackstatus.checkpointTime  | date:'dd/MM/yyyy h:mm:ss a'	}}</span>                                                            </li>
+                                                        <!-- <li> <small class="active"></small><span>{{'Shipment Started On'|translate}}</span> <span>{{order_detail.shipdetails?.shipmentStartDate |  date:'dd/MM/yyyy' }}</span> -->
+                                                        <!-- </li>
+                            <li> <small class="in-active"></small><span>{{'Shipment Currently At'|translate}}</span><span>{{order_detail.shipdetails?.promisedDeliveredDate |  date:'dd/MM/yyyy' }}</span>
+                            </li>
+                            <li> <small class="in-active"></small><span>{{'Status'|translate}}</span><span>{{order_detail.shipdetails?.status }}</span>
+                            </li>
+                            <li> <small class="in-active"></small><span>{{'Shipment Currently At'|translate}}</span> <span>{{order_detail.shipdetails?.latestStatusLocation }}
+                                <small>(ETA)</small></span></li>
+                                <li> <small class="in-active"></small><span>{{'As On'|translate}}</span><span>{{order_detail.shipdetails?.latestStatusTime |  date:'dd/MM/yyyy' }}</span>
+                                </li>
+                                <li> <small class="in-active"></small><span>{{'Current Status'|translate}}</span><span>{{order_detail.shipdetails?.latestStatusDesc}}</span>
+                                </li>
+                                <li> <small class="in-active"></small><span>{{'Shipment Delivered On'|translate}}</span><span>{{order_detail.shipdetails?.shipmentDeliveredDate |  date:'dd/MM/yyyy' }}</span>
+                                </li> -->
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion_content mt-3 mb-3 " *ngIf="order_detail.odnNo !='' && order_detail.odnNo.length == 15">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 pt-3">
+                                            <div class="row m-0">
+                                                <!-- <div class="col-lg-2 col-md-2 col-sm-6">
+                          <div class="form-group">
+                            <label class="text-grey">Invoice No</label>
+                            <p class="text-white">{{order_detail?.invoiceNo}}</p>
+                          </div>
+                        </div> -->
+                                                <div class="col-lg-2 col-md-2 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="text-grey">{{'Delivery Challan'|translate}}</label>
+                                                        <p class="text-white">{{order_detail?.odnNo}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2 col-md-2 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="text-grey">{{'Quantity'|translate}}</label>
+                                                        <p class="text-white">{{order_detail?.obdQty}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2 col-md-2 col-sm-6">
+                                                    <div class="form-group my-order-value">
+                                                        <label class="text-grey">{{'Value'|translate}}</label>
+                                                        <p class="text-white">{{order_detail?.soGrossVal | currency:'INR'}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="text-grey">{{'Delivery Challan Date'|translate}}</label>
+                                                        <p class="text-white">{{order_detail?.obdCrtdOn }}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-6 d-flex justify-content-center align-items-center">
+                                                    <div class="form-group d-flex align-items-center mb-0 my-ord-no-btn">
+                                                        <label class="text-grey">{{'Status'|translate}}</label>
+                                                        <button class="status_check btn-track">{{order_detail?.status}}</button>
+                                                        <img (click)="_order_detail_route(order.salesOrderNo, order_detail)" class="detailsarrow c-pointer" src="../../../../assets/images/arrow-right.png" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="shipment_details p-3">
+                                                    <h3 class="title_details"> <img src="../../../../assets/images/shipment.png" alt=""></h3>
+
+
+                                                    <h3 class="title_details">Shipment Tracking (LR) No: <span style="color: white;padding: 0 0 0 25px; ">{{order_detail.shipdetails?.trackingId}}</span> </h3>
+                                                    <h3 class="title_details">Shipment Booked On : <span style="color: white;padding: 0 0 0 25px; ">{{order_detail.shipdetails?.shipmentPickupDate |date:'dd/MM/yyyy h:mm:ss a'}}</span> </h3>
+                                                    <h3 class="title_details">Current Status : <span style="color: white;padding: 0 0 0 25px; ">{{order_detail.shipdetails?.latestStatusClass}}</span> </h3>
+
+                                                    <h3 class="title_details">Current Status As On : <span style="color: white;padding: 0 0 0 25px;">{{order_detail.shipdetails?.latestStatusTime | date:'dd/MM/yyyy h:mm:ss a'}}</span> </h3>
+
+                                                    <h3 class="title_details" *ngIf="order_detail.shipdetails?.latestStatusClass == 'Delivered'">As Shipment Delivered On : <span style="color: white;padding: 0 0 0 25px;">{{order_detail.shipdetails?.shipmentDeliveredDate  | date:'dd/MM/yyyy h:mm:ss a'}}</span> </h3>
+
+                                                    <h3 class="title_details" *ngIf="order_detail.shipdetails?.latestStatusClass != 'Delivered'"> ETA : <span style="color: white;">{{order_detail.shipdetails?.promisedDeliveredDate | date:'dd/MM/yyyy h:mm:ss a'}}</span> </h3>
+
+                                                    <ul>
+                                                        <li *ngFor="let trackstatus of order_detail?.checkpoints ;"> <small class="active"></small> <span>Your Shipment is {{trackstatus.statusClass}} At   ({{trackstatus?.location}})  On</span> <span style="color: white; padding: 0 0 0 25px;">{{trackstatus.checkpointTime  | date:'dd/MM/yyyy h:mm:ss a'	}}</span>                                                            </li>
+                                                        <!-- <li> <small class="active"></small><span>{{'Shipment Started On'|translate}}</span> <span>{{order_detail.shipdetails?.shipmentStartDate |  date:'dd/MM/yyyy' }}</span> -->
+                                                        <!-- </li>
+                            <li> <small class="in-active"></small><span>{{'Shipment Currently At'|translate}}</span><span>{{order_detail.shipdetails?.promisedDeliveredDate |  date:'dd/MM/yyyy' }}</span>
+                            </li>
+                            <li> <small class="in-active"></small><span>{{'Status'|translate}}</span><span>{{order_detail.shipdetails?.status }}</span>
+                            </li>
+                            <li> <small class="in-active"></small><span>{{'Shipment Currently At'|translate}}</span> <span>{{order_detail.shipdetails?.latestStatusLocation }}
+                                <small>(ETA)</small></span></li>
+                                <li> <small class="in-active"></small><span>{{'As On'|translate}}</span><span>{{order_detail.shipdetails?.latestStatusTime |  date:'dd/MM/yyyy' }}</span>
+                                </li>
+                                <li> <small class="in-active"></small><span>{{'Current Status'|translate}}</span><span>{{order_detail.shipdetails?.latestStatusDesc}}</span>
+                                </li>
+                                <li> <small class="in-active"></small><span>{{'Shipment Delivered On'|translate}}</span><span>{{order_detail.shipdetails?.shipmentDeliveredDate |  date:'dd/MM/yyyy' }}</span>
+                                </li> -->
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex_buttons mb-4" *ngIf="order_detail.odnNo !=''">
+                                        <!-- <button (click)="request_mail(order_detail)" class="btn-invoice">{{'Request Invoice'|translate}}</button> -->
+                                        <button (click)="request_mail(order_detail)" class="btn-invoice">{{'Delivery Challan'|translate}}</button>
+                                        <button (click)="initiate_return(order_detail.obdCrtdOn)" class="btn-return">{{'Initiate Return'|translate}} {{ifStartDate(order_detail?.obdCrtdOn)}}</button>
+                                    </div>
+
+
+                                </ngx-accordion-group-child>
+
+
+                            </ngx-accordion-group>
+                        </ngx-accordion>
+
+                        <!-- <ng-template #elsenoorderfound>
+
+  <div class="accordion_wrapper mb-4" >
+    <div  class="accordion_row mb-3">
+
+    <h4 style="color:white;"> NO ORDERS FOUND !!!!!!</h4> 
+</div>
+
+
+  </div>
+</ng-template> -->
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
